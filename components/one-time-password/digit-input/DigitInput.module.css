@@ -1,0 +1,29 @@
+.grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+.digit {
+    width: 3rem;
+    height: 4rem;
+    font-size: 2rem;
+    border-radius: 0.4rem;
+    background-color: #e1e1e1;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+.digit:focus,
+.digit:active {
+    background-color: #6CD14E;
+    opacity: 0.7;
+}
+
+@media (prefers-color-scheme: dark) {
+    .digit {
+        background-color: rgba(255, 255, 255, .15);
+    }
+}

@@ -1,5 +1,7 @@
 interface PrimaryButtonProps {
-    title?: string
+    title?: string;
+    onClick?: (params: any) => any;
+    logMessage?: (message: string) => void;
 }
 
 export default PrimaryButtonProps

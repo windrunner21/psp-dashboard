@@ -1,0 +1,85 @@
+.modal {
+    min-width: 400px;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow:
+        0 0.5rem 3rem rgb(0 0 0 / 0.3);
+    background-color: #F3F4F8;
+    /* positioning */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-animation: fadein 200ms;
+    -moz-animation: fadein 200ms;
+    -ms-animation: fadein 200ms;
+    -o-animation: fadein 200ms;
+    animation: fadein 200ms;
+}
+
+.description {
+    line-height: 1.3;
+    font-size: 0.8rem;
+    color: #A2A5AC;
+    letter-spacing: 0.02rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .modal {
+        background-color: #262626;
+    }
+
+    .description {
+        color: white
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

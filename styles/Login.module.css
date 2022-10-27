@@ -38,6 +38,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .form {
@@ -46,6 +47,10 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+}
+
+.blur {
+    filter: blur(0.075rem);
 }
 
 .title {

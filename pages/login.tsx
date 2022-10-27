@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Login.module.css";
+import React from "react";
 
 // custom components
 import OderoLogo from "../components/logo";
@@ -10,8 +11,17 @@ import CheckboxWithLabel from "../components/checkbox-label";
 import PrimaryLink from "../components/primary-link";
 import PrimaryButton from "../components/primary-button";
 import Footer from "../components/footer";
+import OneTimePassword from "../components/one-time-password";
+import CloseButton from "../components/close-button";
 
 const Login: NextPage = () => {
+    const [phoneNumber, setPhoneNumber] = React.useState('{phone number}')
+    const [isModalVisible, setModalVisible] = React.useState(false)
+
+    function showOneTimePassword(value: boolean) {
+        setModalVisible(value)
+    }
+
     return (
         <>
             <Head>
@@ -25,7 +35,7 @@ const Login: NextPage = () => {
 
             <main className={styles.main}>
                 <div className={styles.leftContainer}>
-                    <div className={styles.form}>
+                    <div className={`${styles.form} ${isModalVisible && styles.blur}`}>
                         <OderoLogo />
                         <h2 className={styles.title}>Sign in</h2>
 
@@ -39,8 +49,12 @@ const Login: NextPage = () => {
                             <CheckboxWithLabel label="Remember for 30 days" />
                             <PrimaryLink href="/" label="Forgot password" />
                         </div>
-                        <PrimaryButton title="Sign in" />
+                        <PrimaryButton title="Sign in" onClick={() => showOneTimePassword(true)} />
                         <p className={styles.caption}>Don't have an account? <PrimaryLink href="/" label="Sign up" /></p>
+                    </div>
+
+                    <div hidden={!isModalVisible}>
+                        <OneTimePassword phoneNumber={phoneNumber} onClick={() => showOneTimePassword(false)} />
                     </div>
                 </div>
                 <div className={styles.rightContainer}>
