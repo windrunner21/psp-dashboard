@@ -1,0 +1,26 @@
+.footer {
+    display: flex;
+    flex: 1;
+    padding: 2rem 0;
+    margin: 0 2rem;
+    border-top: 1px solid #eaeaea;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.languages {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.languages div:hover {
+    cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+    .footer {
+        border-color: #222;
+    }
+}

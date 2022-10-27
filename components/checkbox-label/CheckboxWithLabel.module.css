@@ -1,0 +1,57 @@
+.grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.unchecked {
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 0.1rem solid #D2D4D8;
+    border-radius: 0.1rem;
+    font-size: 0.6rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.unchecked:hover {
+    cursor: pointer;
+}
+
+.checked {
+    content: "\2713";
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 0.1rem solid #D2D4D8;
+    border-radius: 0.1rem;
+    font-size: 0.6rem;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #6CD14E;
+    border-color: #6CD14E;
+    color: white;
+}
+
+.checked:hover {
+    cursor: pointer;
+}
+
+.checked:after {
+    content: "\2713";
+}
+
+
+.label {
+    margin-left: 0.5rem;
+    color: #393F4B;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+@media (prefers-color-scheme: dark) {
+    .label {
+        color: white;
+    }
+}
