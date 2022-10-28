@@ -12,13 +12,19 @@ import PrimaryLink from "../components/primary-link";
 import PrimaryButton from "../components/primary-button";
 import Footer from "../components/footer";
 import OneTimePassword from "../components/one-time-password";
-import CloseButton from "../components/close-button";
+import AlertDialog from "../components/alert-dialog";
+import AlertType from "../components/alert-dialog/AlertType";
 
 const Login: NextPage = () => {
-    const [phoneNumber, setPhoneNumber] = React.useState('{phone number}')
+    const [isAlertVisible, setAlertVisible] = React.useState(false)
+    const [alertTitle, setAlertTitle] = React.useState("")
+    const [alertDescription, setAlertDescription] = React.useState("")
+    const [alertType, setAlertType] = React.useState(AlertType.UNKNOWN)
     const [isModalVisible, setModalVisible] = React.useState(false)
+    const [loading, setIsLoading] = React.useState(false)
 
     function showOneTimePassword(value: boolean) {
+        setIsLoading(value)
         setModalVisible(value)
     }
 
@@ -35,6 +41,14 @@ const Login: NextPage = () => {
 
             <main className={styles.main}>
                 <div className={styles.leftContainer}>
+                    {isAlertVisible &&
+                        <AlertDialog
+                            title={alertTitle}
+                            description={alertDescription}
+                            type={alertType}
+                            onClick={() => setAlertVisible(false)}
+                        />
+                    }
                     <div className={`${styles.form} ${isModalVisible && styles.blur}`}>
                         <OderoLogo />
                         <h2 className={styles.title}>Sign in</h2>
@@ -43,19 +57,25 @@ const Login: NextPage = () => {
                             Welcome back! Please enter your details
                         </p>
 
-                        <TextField type="email" label="Email" placeholder="Enter your email" />
+                        <TextField type="email" label="Email" placeholder="Enter your email" validatorLabel="Invalid email address" autofocus={true} />
                         <TextField type="password" label="Password" placeholder="Password" />
                         <div className={styles.options}>
                             <CheckboxWithLabel label="Remember for 30 days" />
                             <PrimaryLink href="/" label="Forgot password" />
                         </div>
-                        <PrimaryButton title="Sign in" onClick={() => showOneTimePassword(true)} />
+                        <PrimaryButton title="Sign in" onClick={() => showOneTimePassword(true)} loading={loading} />
                         <p className={styles.caption}>Don't have an account? <PrimaryLink href="/" label="Sign up" /></p>
                     </div>
-
-                    <div hidden={!isModalVisible}>
-                        <OneTimePassword phoneNumber={phoneNumber} onClick={() => showOneTimePassword(false)} />
-                    </div>
+                    {isModalVisible &&
+                        <OneTimePassword
+                            phoneNumber={"{phone number}"}
+                            onClick={() => showOneTimePassword(false)}
+                            setAlertType={setAlertType}
+                            setAlertTitle={setAlertTitle}
+                            setAlertDescription={setAlertDescription}
+                            showAlert={setAlertVisible}
+                        />
+                    }
                 </div>
                 <div className={styles.rightContainer}>
                     <Image src="/welcome-vector.png" alt="Welcome Merchant Right Vector" width={514} height={346} />

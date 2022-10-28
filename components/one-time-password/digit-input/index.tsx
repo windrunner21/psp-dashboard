@@ -57,7 +57,8 @@ const DigitInput = (props: DigitInputProps) => {
             props.onChange(targetValue);
 
             target.blur();
-            console.log("firing request")
+
+            props.onPaste(targetValue);
         }
     };
 
@@ -87,7 +88,7 @@ const DigitInput = (props: DigitInputProps) => {
                     pattern="\d{1}"
                     maxLength={props.repeating}
                     value={digit}
-                    className={styles.digit}
+                    className={`${styles.digit} ${props.displayError && styles.error}`}
                     onChange={(e) => inputOnChange(e, index)}
                     onKeyDown={inputOnKeyDown}
                 />

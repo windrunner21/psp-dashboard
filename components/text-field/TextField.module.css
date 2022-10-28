@@ -12,12 +12,12 @@
 .input:hover,
 .input:focus,
 .input:active {
-    border-color: #6CD14E;
+    border-color: var(--primary);
     outline: none;
 }
 
 .label {
-    color: #393F4B;
+    color: var(--text);
     font-size: 0.8rem;
     font-weight: 500;
     margin: 1rem 0 0.5rem 0;

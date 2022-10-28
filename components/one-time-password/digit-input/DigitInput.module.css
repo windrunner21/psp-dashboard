@@ -18,8 +18,20 @@
 
 .digit:focus,
 .digit:active {
-    background-color: #6CD14E;
+    background-color: var(--primary);
     opacity: 0.7;
+}
+
+.error {
+    border: 0.15rem solid var(--error-primary);
+}
+
+@media (max-width: 400px) {
+    .digit {
+        width: 2.5rem;
+        height: 3.5rem;
+        font-size: 1.5rem;
+    }
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,7 +1,9 @@
 interface TextFieldProps {
-    label?: string
-    placeholder?: string;
-    type?: string
+  label?: string;
+  placeholder?: string;
+  type?: string;
+  validatorLabel?: string;
+  autofocus?: boolean;
 }
 
-export default TextFieldProps
+export default TextFieldProps;

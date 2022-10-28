@@ -1,0 +1,91 @@
+.loader {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    position: relative;
+    transform: rotate(45deg);
+}
+
+.loader::before {
+    content: '';
+    box-sizing: border-box;
+    width: 0.5rem;
+    height: 0.5rem;
+    position: absolute;
+    left: 0;
+    top: -0.5rem;
+    animation: animloader 4s ease infinite;
+}
+
+.loader::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    animation: animloader2 2s ease infinite;
+}
+
+@keyframes animloader {
+    0% {
+        box-shadow: 0 0.5rem rgba(255, 255, 255, 0), 0.5rem 0.5rem rgba(255, 255, 255, 0), 0.5rem 1rem rgba(255, 255, 255, 0), 0px 1rem rgba(255, 255, 255, 0);
+    }
+
+    12% {
+        box-shadow: 0 0.5rem white, 0.5rem 0.5rem rgba(255, 255, 255, 0), 0.5rem 1rem rgba(255, 255, 255, 0), 0px 1rem rgba(255, 255, 255, 0);
+    }
+
+    25% {
+        box-shadow: 0 0.5rem white, 0.5rem 0.5rem white, 0.5rem 1rem rgba(255, 255, 255, 0), 0px 1rem rgba(255, 255, 255, 0);
+    }
+
+    37% {
+        box-shadow: 0 0.5rem white, 0.5rem 0.5rem white, 0.5rem 1rem white, 0px 1rem rgba(255, 255, 255, 0);
+    }
+
+    50% {
+        box-shadow: 0 0.5rem white, 0.5rem 0.5rem white, 0.5rem 1rem white, 0px 1rem white;
+    }
+
+    62% {
+        box-shadow: 0 0.5rem rgba(255, 255, 255, 0), 0.5rem 0.5rem white, 0.5rem 1rem white, 0px 1rem white;
+    }
+
+    75% {
+        box-shadow: 0 0.5rem rgba(255, 255, 255, 0), 0.5rem 0.5rem rgba(255, 255, 255, 0), 0.5rem 1rem white, 0px 1rem white;
+    }
+
+    87% {
+        box-shadow: 0 0.5rem rgba(255, 255, 255, 0), 0.5rem 0.5rem rgba(255, 255, 255, 0), 0.5rem 1rem rgba(255, 255, 255, 0), 0px 1rem white;
+    }
+
+    100% {
+        box-shadow: 0 0.5rem rgba(255, 255, 255, 0), 0.5rem 0.5rem rgba(255, 255, 255, 0), 0.5rem 1rem rgba(255, 255, 255, 0), 0px 1rem rgba(255, 255, 255, 0);
+    }
+}
+
+@keyframes animloader2 {
+    0% {
+        transform: translate(0, 0) rotateX(0) rotateY(0);
+    }
+
+    25% {
+        transform: translate(100%, 0) rotateX(0) rotateY(180deg);
+    }
+
+    50% {
+        transform: translate(100%, 100%) rotateX(-180deg) rotateY(180deg);
+    }
+
+    75% {
+        transform: translate(0, 100%) rotateX(-180deg) rotateY(360deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotateX(0) rotateY(360deg);
+    }
+}

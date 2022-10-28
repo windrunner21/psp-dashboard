@@ -1,3 +1,24 @@
+:root {
+  --primary: #6CD14E;
+
+  --success: #F0F8F4;
+  --info: #E6EFFA;
+  --warning: #FEF8FA;
+  --error: #FAEDEA;
+
+  --success-primary: #51DC6C;
+  --info-primary: #3286EA;
+  --warning-primary: #FEBF23;
+  --error-primary: #FB5758;
+
+  --success-border: #D5EAD9;
+  --info-border: #B4CDEF;
+  --warning-border: #F4E1B9;
+  --error-border: #EFD0C6;
+
+  --text: #393F4B;
+}
+
 html,
 body {
   padding: 0;
@@ -19,6 +40,7 @@ a {
   html {
     color-scheme: dark;
   }
+
   body {
     color: white;
     background: black;

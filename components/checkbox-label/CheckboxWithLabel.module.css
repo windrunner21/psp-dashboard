@@ -29,8 +29,8 @@
     font-size: 0.6rem;
     text-align: center;
     vertical-align: middle;
-    background-color: #6CD14E;
-    border-color: #6CD14E;
+    background-color: var(--primary);
+    border-color: var(--primary);
     color: white;
 }
 

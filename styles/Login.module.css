@@ -86,6 +86,12 @@
 
 /* SCREEN SETTINGS */
 
+@media (max-width: 400px) {
+    .form {
+        min-width: 300px;
+    }
+}
+
 @media (max-width: 600px) {
     .form {
         padding: 0 2rem;
