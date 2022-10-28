@@ -71,3 +71,13 @@
         font-size: 0.7rem;
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    .title {
+        color: black;
+    }
+
+    .description {
+        color: var(--text)
+    }
+}

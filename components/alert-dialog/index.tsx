@@ -50,7 +50,7 @@ const AlertDialog = (props: AlertDialogProps) => {
                     <span className={styles.description}>{props.description}</span>
                 </div>
             </div>
-            <CloseButton onClick={props.onClick} />
+            <CloseButton onClick={props.onClick} shouldBeBlack={true} />
         </div>
     )
 }

@@ -64,7 +64,7 @@ const Login: NextPage = () => {
                             <PrimaryLink href="/" label="Forgot password" />
                         </div>
                         <PrimaryButton title="Sign in" onClick={() => showOneTimePassword(true)} loading={loading} />
-                        <p className={styles.caption}>Don't have an account? <PrimaryLink href="/" label="Sign up" /></p>
+                        <p className={styles.caption}>Don't have an account? <PrimaryLink href="https://odero.az/az/registration/" label="Sign up" /></p>
                     </div>
                     {isModalVisible &&
                         <OneTimePassword

@@ -3,7 +3,7 @@ import CloseButtonProps from "./interface"
 
 const CloseButton = (props: CloseButtonProps) => {
     return (
-        <span className={styles.close} onClick={props.onClick}>&#x2715;</span>
+        <span className={`${styles.close} ${props.shouldBeBlack && styles.black}`} onClick={props.onClick}>&#x2715;</span>
     )
 }
 
