@@ -21,14 +21,15 @@ const TextField = (props: TextFieldProps) => {
 
     function validate(target: EventTarget) {
         clearTimeout(timer);
-
-        timer = setTimeout(() => {
-            setHasError(!isValidEmailAddress(target))
-        }, waitTime);
+        if (props.type == "email") {
+            timer = setTimeout(() => {
+                setHasError(!isValidEmailAddress(target))
+            }, waitTime);
+        }
     }
 
     return (
-        <>
+        <div className={styles.grid}>
             <p className={styles.label}>{props.label}</p>
             <input
                 ref={inputRef}
@@ -40,7 +41,7 @@ const TextField = (props: TextFieldProps) => {
             {hasError && <div style={{ marginTop: "0.1rem" }}>
                 <Validator label={props.validatorLabel} />
             </div>}
-        </>
+        </div>
     )
 }
 

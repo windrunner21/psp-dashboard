@@ -10,11 +10,32 @@
     width: 100%;
     padding: 0.6rem;
     border-radius: 0.4rem;
-    border: 0.1rem solid #D2D4D8
+    border: 0.1rem solid #D2D4D8;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 37.88px;
 }
 
 .input:hover {
     cursor: pointer;
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    border-radius: 1rem;
+    box-shadow:
+        0 0.5rem 3rem rgb(0 0 0 / 0.3);
+    background-color: #F3F4F8;
+    padding: 1rem;
+    z-index: 1;
+}
+
+.input:hover .dropdownContent {
+    display: block;
 }
 
 .input:hover,
@@ -22,6 +43,10 @@
 .input:active {
     border-color: var(--primary);
     outline: none;
+}
+
+.option {
+    font-size: 0.8rem
 }
 
 .label {
@@ -38,5 +63,6 @@
 
     .input {
         border: 0.1rem solid rgba(255, 255, 255, .15);
+        background-color: #3B3B3B;
     }
 }

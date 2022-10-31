@@ -1,0 +1,9 @@
+.grid {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    bottom: 1rem;
+}

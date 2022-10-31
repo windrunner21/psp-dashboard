@@ -10,11 +10,13 @@
     width: 100%;
     padding: 0.6rem;
     border-radius: 0.4rem;
-    border: 0.1rem solid #D2D4D8
-}
-
-.input:hover {
-    cursor: pointer;
+    border: 0.1rem solid #D2D4D8;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 37.88px;
 }
 
 .input:hover,
@@ -24,11 +26,32 @@
     outline: none;
 }
 
+.option {
+    font-size: 0.8rem
+}
+
 .label {
     color: var(--text);
     font-size: 0.8rem;
     font-weight: 500;
     margin: 1rem 0 0.5rem 0;
+}
+
+.document {
+    font-size: 0.8rem;
+}
+
+.upload {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.upload:hover {
+    cursor: pointer;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,5 +61,7 @@
 
     .input {
         border: 0.1rem solid rgba(255, 255, 255, .15);
+        background-color: #3B3B3B;
     }
+
 }

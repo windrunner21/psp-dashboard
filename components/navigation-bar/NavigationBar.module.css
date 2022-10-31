@@ -1,0 +1,34 @@
+.grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+}
+
+.name {
+    color: var(--text);
+    font-size: 0.95rem;
+    margin-right: 1.5rem;
+}
+
+.name:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .name {
+        display: none;
+    }
+
+}
+
+@media (prefers-color-scheme: dark) {
+    .name {
+        color: white;
+    }
+}
