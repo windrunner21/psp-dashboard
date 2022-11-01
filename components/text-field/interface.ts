@@ -4,6 +4,9 @@ interface TextFieldProps {
   type?: string;
   validatorLabel?: string;
   autofocus?: boolean;
+  validateAgainst?: string;
+  pattern?: string;
+  max?: number;
 }
 
 export default TextFieldProps;

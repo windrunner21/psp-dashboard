@@ -9,6 +9,11 @@ import Validator from "../validator"
 import AlertType from "../alert-dialog/AlertType"
 
 const OneTimePassword = (props: OneTimePasswordProps) => {
+    // waiting for send
+    const [seconds, setSeconds] = React.useState(0)
+    const [minutes, setMinutes] = React.useState(1)
+    const [disabled, setDisabled] = React.useState(true)
+
     const codeLength: number = 6;
     const [otp, setOtp] = React.useState('');
     const onChange = (value: string) => setOtp(value);
@@ -43,6 +48,36 @@ const OneTimePassword = (props: OneTimePasswordProps) => {
         }
     }
 
+    function updateTime() {
+        if (minutes == 0 && seconds == 0) {
+            setDisabled(false)
+        }
+        else {
+            if (seconds == 0) {
+                setMinutes(minutes => minutes - 1);
+                setSeconds(59);
+            } else {
+                setSeconds(seconds => seconds - 1);
+            }
+        }
+    }
+
+    React.useEffect(() => {
+        const token = setTimeout(updateTime, 1000)
+
+        return function cleanUp() {
+            clearTimeout(token);
+        }
+    });
+
+    function resetTimer() {
+        if (!disabled) {
+            setSeconds(0);
+            setMinutes(1);
+            setDisabled(true)
+        }
+    };
+
     return (
         <div className={styles.modal}>
             <CloseButton onClick={props.onClick} />
@@ -55,7 +90,8 @@ const OneTimePassword = (props: OneTimePasswordProps) => {
                 <Validator label={`Verification code must be ${codeLength} digits long`} />
             </div>}
             <div style={{ marginBottom: "1.25rem" }}>
-                <PrimaryLink href="/" label="Send again" />
+                <PrimaryLink label="Resend code" onClick={resetTimer} disabled={disabled} />
+                <span className={styles.linkText}> in {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</span>
             </div>
             <PrimaryButton title="Verify" onClick={sendOneTimePasswordCode} loading={loading} />
         </div>

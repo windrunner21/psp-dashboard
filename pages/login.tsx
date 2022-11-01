@@ -57,7 +57,7 @@ const Login: NextPage = () => {
                             Welcome back! Please enter your details
                         </p>
 
-                        <TextField type="email" label="Email" placeholder="Enter your email" validatorLabel="Invalid email address" autofocus={true} />
+                        <TextField type="email" label="Email" placeholder="Enter your email" validatorLabel="Invalid email address" autofocus={true} validateAgainst="email" />
                         <TextField type="password" label="Password" placeholder="Password" />
                         <div className={styles.options}>
                             <CheckboxWithLabel label="Remember for 30 days" />

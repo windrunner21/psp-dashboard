@@ -11,17 +11,23 @@ const UploadField = (props: UploadProps) => {
     const labelRef = React.useRef<HTMLLabelElement>(null);
 
     function getFileName(e: any) {
-        const fileUploaded = e.target.files[0].name;
-        setFileName(fileUploaded)
+        console.log(e.target.files)
+        if (e.target.files[0] != undefined) {
+            const fileUploaded = e.target.files[0].name;
+            setFileName(fileUploaded)
+        } else {
+            setFileName("Upload removed")
+            setHasError(true)
+        }
     }
 
     return (
         <div className={styles.grid}>
             <p className={styles.label}>{props.label}</p>
-            <input type="file" id="actual-button" hidden onChange={(e) => getFileName(e)} />
+            <input type="file" id={props.id} hidden onChange={(e) => getFileName(e)} />
             <div className={styles.input}>
                 <span className={styles.document} ref={spanRef}>{fileName}</span>
-                <label className={styles.upload} htmlFor="actual-button" ref={labelRef}>Upload</label>
+                <label className={styles.upload} htmlFor={props.id} ref={labelRef}>Upload</label>
             </div>
             {hasError && <div style={{ marginTop: "0.1rem" }}>
                 <Validator label={props.validatorLabel} />

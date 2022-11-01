@@ -13,10 +13,6 @@ const Select = (props: SelectProps) => {
                 <span className={styles.option}>Choose an option</span>
                 <span>&#9207;</span>
             </div>
-            <div className={styles.dropdownContent}>
-                <p className={styles.dropdownItem}>Option #1</p>
-                <p className={styles.dropdownItem}>Option #2</p>
-            </div>
             {hasError && <div style={{ marginTop: "0.1rem" }}>
                 <Validator label={props.validatorLabel} />
             </div>}

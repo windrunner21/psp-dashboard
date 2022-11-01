@@ -31,29 +31,29 @@ const Onboard: NextPage = () => {
     const initialChoices = [
         {
             type: UserType.CONTRACTOR,
+            vat: true,
             image: "user",
-            label: "You are a freelance or independent contractor"
+            label: "You are a freelance or independent contractor (VAT payer)"
+        },
+        {
+            type: UserType.CONTRACTOR,
+            vat: false,
+            image: "user",
+            label: "You are a freelance or independent contractor (Non VAT payer)"
         },
         {
             type: UserType.COMPANY,
+            vat: true,
             image: "company",
-            label: "You have a company"
-        }
+            label: "You have a company (VAT payer)"
+        },
+        {
+            type: UserType.COMPANY,
+            vat: false,
+            image: "company",
+            label: "You have a company (Non VAT payer)"
+        },
     ]
-
-    function checkForErrorsAndProceed() {
-        if (false) {
-            setAlertType(AlertType.ERROR);
-            setAlertTitle("Something went wrong!")
-            setAlertDescription("We've encountered some unexpected error.")
-            setAlertVisible(true)
-        } else {
-            setAlertType(AlertType.SUCCESS);
-            setAlertTitle("Onboard Completed!")
-            setAlertDescription("You've successfully submitted your information.")
-            setAlertVisible(true)
-        }
-    }
 
     return (
         <>
@@ -70,14 +70,6 @@ const Onboard: NextPage = () => {
                 <div className={styles.leftContainer}>
                     <NavigationBar />
                     <div className={styles.form}>
-                        {isAlertVisible &&
-                            <AlertDialog
-                                title={alertTitle}
-                                description={alertDescription}
-                                type={alertType}
-                                onClick={() => setAlertVisible(false)}
-                            />
-                        }
                         <>
                             {step == 0 &&
                                 <div className={styles.subform}>
@@ -89,6 +81,12 @@ const Onboard: NextPage = () => {
                                                     setUserType(UserType.CONTRACTOR)
                                                     setStep(1)
                                                 } else if (index == 1) {
+                                                    setUserType(UserType.CONTRACTOR)
+                                                    setStep(1)
+                                                } else if (index == 2) {
+                                                    setUserType(UserType.COMPANY)
+                                                    setStep(1)
+                                                } else if (index == 3) {
                                                     setUserType(UserType.COMPANY)
                                                     setStep(1)
                                                 }
@@ -104,12 +102,12 @@ const Onboard: NextPage = () => {
                                 <div className={styles.subform}>
                                     <h1 style={{ marginBottom: "2rem" }}>Tell us about yourself</h1>
                                     <div className={styles.row}>
-                                        <TextField label="Name" placeholder="Your name" autofocus={true} />
+                                        <TextField label="Name" placeholder="Your name" validatorLabel="Invalid name" autofocus={true} validateAgainst="name" />
                                         <div style={{ width: "1rem" }} />
-                                        <TextField label="Surname" placeholder="Your surname" />
+                                        <TextField label="Surname" placeholder="Your surname" validatorLabel="Invalid surname" validateAgainst="name" />
                                     </div>
-                                    <TextField label="Work email" type="email" placeholder="Enter your work email" validatorLabel="Invalid email address" />
-                                    <TextField label="Phone number" placeholder="+994 (XX) XXX XX XX" validatorLabel="Invalid phone number" />
+                                    <TextField label="Work email" type="email" placeholder="Enter your work email" validatorLabel="Invalid email address" validateAgainst="email" />
+                                    <TextField label="Phone number" type="tel" placeholder="+994 (XX) XXX XX XX" pattern="+### (##) ### ## ##" validateAgainst="phoneNumber" />
                                     <div className={`${styles.row} ${styles.pagination}`}>
                                         <SecondaryBack onClick={() => {
                                             const stepWillSet = step - 1;
@@ -134,8 +132,8 @@ const Onboard: NextPage = () => {
                                     <Select label="Form of Operation" />
                                     <TextField label="Name of your Business" placeholder="Enter your business/company name" autofocus={true} />
                                     {/* <TextField label="Contact number for your Business" placeholder="Enter your business/company mobile or phone number" /> */}
-                                    <TextField label="Tax Number" placeholder="Enter your business/company tax number" />
-                                    <TextField label="IBAN" placeholder="Enter your business/company bank account number" />
+                                    <TextField label="Tax Number" placeholder="Enter your business/company tax number" validatorLabel="Invalid tax number" validateAgainst="voen" max={10} />
+                                    <TextField label="IBAN" placeholder="AZDD CCCC DDDD DDDD DDDD DDDD DDDD" pattern="#### #### #### #### #### #### ####" validateAgainst="iban" />
                                     <div className={`${styles.row} ${styles.pagination}`}>
                                         <SecondaryBack onClick={() => {
                                             const stepWillSet = step - 1;
@@ -158,7 +156,7 @@ const Onboard: NextPage = () => {
                                     <Select label="City" />
                                     <Select label="District" />
                                     <TextField label="Contact number for your Business" placeholder="Enter your business/company mobile or phone number" autofocus={true} />
-                                    <TextField label="Website" placeholder="Does your business have a website? Enter it!" />
+                                    <TextField label="Website" placeholder="Does your business have a website? Enter it!" validatorLabel="Invalid format. Don't forget to include https://" validateAgainst="website" />
                                     <div className={`${styles.row} ${styles.pagination}`}>
                                         <SecondaryBack onClick={() => {
                                             const stepWillSet = step - 1;
@@ -178,12 +176,12 @@ const Onboard: NextPage = () => {
                             {step == 4 &&
                                 <div className={styles.subform}>
                                     <h1 style={{ marginBottom: "2rem" }}>One last important step. Documents!</h1>
-                                    {userType == UserType.COMPANY && <UploadField label="Ordering from the State Register" />}
-                                    <UploadField label="Tax Number" />
-                                    <UploadField label="ID Card" />
-                                    <UploadField label="Bank Requisites" />
-                                    <UploadField label="Optional Documents #1" />
-                                    <UploadField label="Optional Documents #2" />
+                                    {userType == UserType.COMPANY && <UploadField id="stateregister" label="Ordering from the State Register" validatorLabel="Ordering upload failed" />}
+                                    <UploadField id="taxnumber" label="Tax Number" validatorLabel="Tax number upload failed" />
+                                    <UploadField id="idcard" label="ID Card" validatorLabel="ID card upload failed" />
+                                    <UploadField id="bankrequisites" label="Bank Requisites" validatorLabel="Bank requisites upload failed" />
+                                    <UploadField id="optional#1" label="Optional Documents #1" validatorLabel="First optional documents upload failed" />
+                                    <UploadField id="optional#2" label="Optional Documents #2" validatorLabel="Second optional documents upload failed" />
                                     <div className={`${styles.row} ${styles.pagination}`}>
                                         <SecondaryBack onClick={() => {
                                             const stepWillSet = step - 1;
@@ -191,7 +189,7 @@ const Onboard: NextPage = () => {
                                         }} />
                                         <div style={{ width: "1rem" }} />
                                         <SecondaryNext onClick={() => {
-                                            checkForErrorsAndProceed()
+
                                         }} />
                                     </div>
                                 </div>
@@ -205,6 +203,8 @@ const Onboard: NextPage = () => {
                             <Image src="/onboard/step0.svg" alt="Onboard Choice Logo" width={200} height={200} priority />
                             <h3>Welcome to Odero Onboard Procedure.</h3>
                             <p className={styles.description}>We need an information about your business in order for us to prepare your contract. Please have your business and personal documents ready and nearby.</p>
+                            <h4>What's a VAT?</h4>
+                            <p className={styles.description} style={{ fontSize: "0.9rem" }}>VAT Payer* - Value Added Tax Payer. VAT payer is a taxable person registered by the tax authority office as obliged to pay VAT.</p>
                         </div>
                     }
                     {step == 1 &&

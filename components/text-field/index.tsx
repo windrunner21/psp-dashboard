@@ -1,7 +1,7 @@
 import styles from "../text-field/TextField.module.css";
 import Validator from "../validator";
 import TextFieldProps from "./interface";
-import { isValidEmailAddress } from "../../constants"
+import { applyIBANPattern, applyPhoneNumberPattern, isValidEmailAddress, isValidNameSurname, isValidTaxNumber, isValidWebsite } from "../../constants"
 import React from "react";
 
 const TextField = (props: TextFieldProps) => {
@@ -21,12 +21,41 @@ const TextField = (props: TextFieldProps) => {
 
     function validate(target: EventTarget) {
         clearTimeout(timer);
-        if (props.type == "email") {
+
+        if (props.validateAgainst == "name") {
+            timer = setTimeout(() => {
+                setHasError(!isValidNameSurname(target))
+            }, waitTime);
+        }
+
+        if (props.validateAgainst == "email") {
             timer = setTimeout(() => {
                 setHasError(!isValidEmailAddress(target))
             }, waitTime);
         }
+
+        if (props.validateAgainst == "voen") {
+            timer = setTimeout(() => {
+                setHasError(!isValidTaxNumber(target))
+            }, waitTime);
+        }
+
+        if (props.validateAgainst == "website") {
+            timer = setTimeout(() => {
+                setHasError(!isValidWebsite(target))
+            }, waitTime);
+        }
     }
+
+    function handlePattern(e: any) {
+        if (props.pattern && props.validateAgainst == "phoneNumber") {
+            e.target.value = applyPhoneNumberPattern(e.target.value, props.pattern)
+        }
+
+        if (props.pattern && props.validateAgainst == "iban") {
+            e.target.value = applyIBANPattern(e.target.value, props.pattern)
+        }
+    };
 
     return (
         <div className={styles.grid}>
@@ -37,6 +66,9 @@ const TextField = (props: TextFieldProps) => {
                 placeholder={props.placeholder}
                 type={props.type}
                 onKeyUp={(e) => validate(e.target)}
+                onBlur={(e) => handlePattern(e)}
+                maxLength={props.max}
+                pattern={props.pattern}
             />
             {hasError && <div style={{ marginTop: "0.1rem" }}>
                 <Validator label={props.validatorLabel} />

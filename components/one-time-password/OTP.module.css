@@ -24,6 +24,12 @@
     letter-spacing: 0.02rem;
 }
 
+.linkText {
+    color: var(--text);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
 @media (max-width: 400px) {
     .modal {
         min-width: 350px;
