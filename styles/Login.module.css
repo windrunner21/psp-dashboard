@@ -42,7 +42,7 @@
 }
 
 .form {
-    min-width: 400px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -61,7 +61,7 @@
 
 .description {
     margin: 1rem 0;
-    line-height: 1;
+    line-height: 1.25;
     font-size: 1rem;
     color: #A2A5AC;
     letter-spacing: 0.05rem;

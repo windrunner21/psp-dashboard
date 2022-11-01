@@ -1,7 +1,11 @@
 import { NextPage } from "next";
+import styles from "../styles/Onboard.module.css"
 import Head from "next/head";
 import Image from 'next/image'
 import React from "react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+// custom components
 import NavigationBar from "../components/navigation-bar";
 import OnboardChoice from "../components/onboard-choice";
 import SecondaryBack from "../components/secondary-back";
@@ -10,8 +14,6 @@ import Select from "../components/select";
 import StepIndicators from "../components/step-indicators";
 import TextField from "../components/text-field";
 import UploadField from "../components/upload-field";
-import styles from "../styles/Onboard.module.css"
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 enum UserType {
     CONTRACTOR,
@@ -361,7 +363,7 @@ export default Onboard
 export async function getStaticProps({ locale }: { locale: string }) {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ["onboard", "languages"])),
+            ...(await serverSideTranslations(locale, ["onboard", "languages"]))
         },
     };
 }

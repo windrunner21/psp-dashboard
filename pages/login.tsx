@@ -3,6 +3,8 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Login.module.css";
 import React from "react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next';
 
 // custom components
 import OderoLogo from "../components/logo";
@@ -16,6 +18,9 @@ import AlertDialog from "../components/alert-dialog";
 import AlertType from "../components/alert-dialog/AlertType";
 
 const Login: NextPage = () => {
+    const { t } = useTranslation(['login', 'common']);
+    const title = `${t('title')} | Odero`;
+
     const [isAlertVisible, setAlertVisible] = React.useState(false)
     const [alertTitle, setAlertTitle] = React.useState("")
     const [alertDescription, setAlertDescription] = React.useState("")
@@ -31,10 +36,10 @@ const Login: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Login | Odero</title>
+                <title>{title}</title>
                 <meta
                     name="login"
-                    content="Merchant login page for the merchant.odero.az website."
+                    content={t('content')}
                 />
                 <link rel="icon" href="/odero.ico" />
             </Head>
@@ -51,20 +56,20 @@ const Login: NextPage = () => {
                     }
                     <div className={`${styles.form} ${isModalVisible && styles.blur}`}>
                         <OderoLogo />
-                        <h2 className={styles.title}>Sign in</h2>
+                        <h2 className={styles.title}>{t('signIn')}</h2>
 
                         <p className={styles.description}>
-                            Welcome back! Please enter your details
+                            {t('welcomeBack')}
                         </p>
 
-                        <TextField type="email" label="Email" placeholder="Enter your email" validatorLabel="Invalid email address" autofocus={true} validateAgainst="email" />
-                        <TextField type="password" label="Password" placeholder="Password" />
+                        <TextField type="email" label={t('common:email')} placeholder={t('common:emailPrompt')} validatorLabel="Invalid email address" autofocus={true} validateAgainst="email" />
+                        <TextField type="password" label={t('common:password')} placeholder={t('common:password')} />
                         <div className={styles.options}>
-                            <CheckboxWithLabel label="Remember for 30 days" />
-                            <PrimaryLink href="/" label="Forgot password" />
+                            <CheckboxWithLabel label={t('rememberMe')} />
+                            <PrimaryLink href="/" label={t('forgotPassword')} />
                         </div>
-                        <PrimaryButton title="Sign in" onClick={() => showOneTimePassword(true)} loading={loading} />
-                        <p className={styles.caption}>Don't have an account? <PrimaryLink href="https://odero.az/az/registration/" label="Sign up" /></p>
+                        <PrimaryButton title={t('signIn')} onClick={() => showOneTimePassword(true)} loading={loading} />
+                        <p className={styles.caption}>{t('noAccount')} <PrimaryLink href="https://odero.az/az/registration/" label={t('signUp')} /></p>
                     </div>
                     {isModalVisible &&
                         <OneTimePassword
@@ -80,8 +85,8 @@ const Login: NextPage = () => {
                 <div className={styles.rightContainer}>
                     <Image src="/welcome-vector.png" alt="Welcome Merchant Right Vector" width={514} height={346} />
                     <div className={styles.callout}>
-                        <h2>Working hard for you to always get the best news.</h2>
-                        <p>Sincerely, Odero.az Team 💚</p>
+                        <h2>{t('inspiration')}</h2>
+                        <p>{t('fromOderoAzTeam')}</p>
                     </div>
                 </div>
             </main >
@@ -92,3 +97,11 @@ const Login: NextPage = () => {
 };
 
 export default Login;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ["login", "common", "footer"]))
+        },
+    };
+}

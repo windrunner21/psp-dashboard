@@ -44,6 +44,10 @@
     .description {
         color: white
     }
+
+    .linkText {
+        color: white;
+    }
 }
 
 @keyframes fadein {

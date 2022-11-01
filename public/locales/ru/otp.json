@@ -1,0 +1,7 @@
+{
+    "title": "Enter verification code",
+    "subtitle": "We have just sent a verification code to provided {{ phone number }}",
+    "resend": "Resend code in",
+    "in": " in ",
+    "verify": "Verify"
+}
