@@ -61,6 +61,7 @@ const TextField = (props: TextFieldProps) => {
         <div className={styles.grid}>
             <p className={styles.label}>{props.label}</p>
             <input
+                style={props.capitalized ? { textTransform: "capitalize" } : {}}
                 ref={inputRef}
                 className={styles.input}
                 placeholder={props.placeholder}

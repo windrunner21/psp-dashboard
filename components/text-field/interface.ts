@@ -7,6 +7,7 @@ interface TextFieldProps {
   validateAgainst?: string;
   pattern?: string;
   max?: number;
+  capitalized?: boolean;
 }
 
 export default TextFieldProps;

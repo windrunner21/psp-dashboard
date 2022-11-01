@@ -71,129 +71,169 @@ const Onboard: NextPage = () => {
                     <NavigationBar />
                     <div className={styles.form}>
                         <>
-                            {step == 0 &&
-                                <div className={styles.subform}>
-                                    <h1 style={{ marginBottom: "2rem" }}>Tell us about your situation</h1>
-                                    {
-                                        initialChoices.map((initialChoice, index) => (
-                                            <OnboardChoice key={index} image={initialChoice.image} title={initialChoice.label} onClick={() => {
-                                                if (index == 0) {
-                                                    setUserType(UserType.CONTRACTOR)
-                                                    setStep(1)
-                                                } else if (index == 1) {
-                                                    setUserType(UserType.CONTRACTOR)
-                                                    setStep(1)
-                                                } else if (index == 2) {
-                                                    setUserType(UserType.COMPANY)
-                                                    setStep(1)
-                                                } else if (index == 3) {
-                                                    setUserType(UserType.COMPANY)
-                                                    setStep(1)
-                                                }
-                                            }} />
-                                        ))
-                                    }
-                                </div>
-                            }
+                            <div className={styles.subform} hidden={step != 0}>
+                                <h1 style={{ marginBottom: "2rem" }}>Tell us about your situation</h1>
+                                {
+                                    initialChoices.map((initialChoice, index) => (
+                                        <OnboardChoice key={index} image={initialChoice.image} title={initialChoice.label} onClick={() => {
+                                            if (index == 0) {
+                                                setUserType(UserType.CONTRACTOR)
+                                                setStep(1)
+                                            } else if (index == 1) {
+                                                setUserType(UserType.CONTRACTOR)
+                                                setStep(1)
+                                            } else if (index == 2) {
+                                                setUserType(UserType.COMPANY)
+                                                setStep(1)
+                                            } else if (index == 3) {
+                                                setUserType(UserType.COMPANY)
+                                                setStep(1)
+                                            }
+                                        }} />
+                                    ))
+                                }
+                            </div>
                         </>
 
                         <>
-                            {step == 1 &&
-                                <div className={styles.subform}>
-                                    <h1 style={{ marginBottom: "2rem" }}>Tell us about yourself</h1>
-                                    <div className={styles.row}>
-                                        <TextField label="Name" placeholder="Your name" validatorLabel="Invalid name" autofocus={true} validateAgainst="name" />
-                                        <div style={{ width: "1rem" }} />
-                                        <TextField label="Surname" placeholder="Your surname" validatorLabel="Invalid surname" validateAgainst="name" />
-                                    </div>
-                                    <TextField label="Work email" type="email" placeholder="Enter your work email" validatorLabel="Invalid email address" validateAgainst="email" />
-                                    <TextField label="Phone number" type="tel" placeholder="+994 (XX) XXX XX XX" pattern="+### (##) ### ## ##" validateAgainst="phoneNumber" />
-                                    <div className={`${styles.row} ${styles.pagination}`}>
-                                        <SecondaryBack onClick={() => {
-                                            const stepWillSet = step - 1;
-                                            setStep(stepWillSet)
-                                        }} />
-                                        <div style={{ width: "1rem" }} />
-                                        <SecondaryNext onClick={() => {
-                                            const stepWillSet = step + 1;
-                                            setStep(stepWillSet)
-                                        }} />
-                                    </div>
+                            <div className={styles.subform} hidden={step != 1}>
+                                <h1 style={{ marginBottom: "2rem" }}>Tell us about yourself</h1>
+                                <div className={styles.row}>
+                                    <TextField
+                                        label="Name"
+                                        placeholder="Your name"
+                                        validatorLabel="Invalid name"
+                                        validateAgainst="name"
+                                        autofocus={true}
+                                        capitalized={true}
+                                    />
+                                    <div style={{ width: "1rem" }} />
+                                    <TextField
+                                        label="Surname"
+                                        placeholder="Your surname"
+                                        validatorLabel="Invalid surname"
+                                        validateAgainst="name"
+                                        capitalized={true}
+                                    />
                                 </div>
-
-                            }
+                                <TextField
+                                    label="Work email"
+                                    type="email"
+                                    placeholder="Enter your work email"
+                                    validatorLabel="Invalid email address"
+                                    validateAgainst="email"
+                                />
+                                <TextField
+                                    label="Phone number"
+                                    type="tel"
+                                    placeholder="+994 (XX) XXX XX XX"
+                                    pattern="+### (##) ### ## ##"
+                                    validateAgainst="phoneNumber"
+                                />
+                                <div className={`${styles.row} ${styles.pagination}`}>
+                                    <SecondaryBack onClick={() => {
+                                        const stepWillSet = step - 1;
+                                        setStep(stepWillSet)
+                                    }} />
+                                    <div style={{ width: "1rem" }} />
+                                    <SecondaryNext onClick={() => {
+                                        const stepWillSet = step + 1;
+                                        setStep(stepWillSet)
+                                    }} />
+                                </div>
+                            </div>
                         </>
 
                         <>
-                            {step == 2 &&
-                                <div className={styles.subform}>
-                                    <h1 style={{ marginBottom: "2rem" }}>Tell us about your business</h1>
-                                    <Select label="Business Type" />
-                                    <Select label="Form of Operation" />
-                                    <TextField label="Name of your Business" placeholder="Enter your business/company name" autofocus={true} />
-                                    {/* <TextField label="Contact number for your Business" placeholder="Enter your business/company mobile or phone number" /> */}
-                                    <TextField label="Tax Number" placeholder="Enter your business/company tax number" validatorLabel="Invalid tax number" validateAgainst="voen" max={10} />
-                                    <TextField label="IBAN" placeholder="AZDD CCCC DDDD DDDD DDDD DDDD DDDD" pattern="#### #### #### #### #### #### ####" validateAgainst="iban" />
-                                    <div className={`${styles.row} ${styles.pagination}`}>
-                                        <SecondaryBack onClick={() => {
-                                            const stepWillSet = step - 1;
-                                            setStep(stepWillSet)
-                                        }} />
-                                        <div style={{ width: "1rem" }} />
-                                        <SecondaryNext onClick={() => {
-                                            const stepWillSet = step + 1;
-                                            setStep(stepWillSet)
-                                        }} />
-                                    </div>
+                            <div className={styles.subform} hidden={step != 2}>
+                                <h1 style={{ marginBottom: "2rem" }}>Tell us about your business</h1>
+                                <Select label="Business Type" />
+                                <Select label="Form of Operation" />
+                                <TextField
+                                    label="Name of your Business"
+                                    placeholder="Enter your business/company name"
+                                    autofocus={true}
+                                    capitalized={true}
+                                />
+                                <TextField
+                                    label="Tax Number"
+                                    placeholder="Enter your business/company tax number"
+                                    validatorLabel="Invalid tax number"
+                                    validateAgainst="voen"
+                                    max={10}
+                                />
+                                <TextField
+                                    label="IBAN"
+                                    placeholder="AZDD CCCC DDDD DDDD DDDD DDDD DDDD"
+                                    pattern="#### #### #### #### #### #### ####"
+                                    validateAgainst="iban"
+                                />
+                                <div className={`${styles.row} ${styles.pagination}`}>
+                                    <SecondaryBack onClick={() => {
+                                        const stepWillSet = step - 1;
+                                        setStep(stepWillSet)
+                                    }} />
+                                    <div style={{ width: "1rem" }} />
+                                    <SecondaryNext onClick={() => {
+                                        const stepWillSet = step + 1;
+                                        setStep(stepWillSet)
+                                    }} />
                                 </div>
-                            }
+                            </div>
                         </>
 
                         <>
-                            {step == 3 &&
-                                <div className={styles.subform}>
-                                    <h1 style={{ marginBottom: "2rem" }}>Provide us with contact information for your business</h1>
-                                    <Select label="City" />
-                                    <Select label="District" />
-                                    <TextField label="Contact number for your Business" placeholder="Enter your business/company mobile or phone number" autofocus={true} />
-                                    <TextField label="Website" placeholder="Does your business have a website? Enter it!" validatorLabel="Invalid format. Don't forget to include https://" validateAgainst="website" />
-                                    <div className={`${styles.row} ${styles.pagination}`}>
-                                        <SecondaryBack onClick={() => {
-                                            const stepWillSet = step - 1;
-                                            setStep(stepWillSet)
-                                        }} />
-                                        <div style={{ width: "1rem" }} />
-                                        <SecondaryNext onClick={() => {
-                                            const stepWillSet = step + 1;
-                                            setStep(stepWillSet)
-                                        }} />
-                                    </div>
+                            <div className={styles.subform} hidden={step != 3}>
+                                <h1 style={{ marginBottom: "2rem" }}>Provide us with contact information for your business</h1>
+                                <Select label="City" />
+                                <Select label="District" />
+                                <TextField
+                                    label="Contact number for your Business"
+                                    placeholder="Enter your business/company mobile or phone number"
+                                    pattern="+### (##) ### ## ##"
+                                    validateAgainst="phoneNumber"
+                                    autofocus={true}
+                                />
+                                <TextField
+                                    label="Website"
+                                    placeholder="Does your business have a website? Enter it!"
+                                    validatorLabel="Invalid format. Don't forget to include https://"
+                                    validateAgainst="website"
+                                />
+                                <div className={`${styles.row} ${styles.pagination}`}>
+                                    <SecondaryBack onClick={() => {
+                                        const stepWillSet = step - 1;
+                                        setStep(stepWillSet)
+                                    }} />
+                                    <div style={{ width: "1rem" }} />
+                                    <SecondaryNext onClick={() => {
+                                        const stepWillSet = step + 1;
+                                        setStep(stepWillSet)
+                                    }} />
                                 </div>
-                            }
+                            </div>
                         </>
 
                         <>
-                            {step == 4 &&
-                                <div className={styles.subform}>
-                                    <h1 style={{ marginBottom: "2rem" }}>One last important step. Documents!</h1>
-                                    {userType == UserType.COMPANY && <UploadField id="stateregister" label="Ordering from the State Register" validatorLabel="Ordering upload failed" />}
-                                    <UploadField id="taxnumber" label="Tax Number" validatorLabel="Tax number upload failed" />
-                                    <UploadField id="idcard" label="ID Card" validatorLabel="ID card upload failed" />
-                                    <UploadField id="bankrequisites" label="Bank Requisites" validatorLabel="Bank requisites upload failed" />
-                                    <UploadField id="optional#1" label="Optional Documents #1" validatorLabel="First optional documents upload failed" />
-                                    <UploadField id="optional#2" label="Optional Documents #2" validatorLabel="Second optional documents upload failed" />
-                                    <div className={`${styles.row} ${styles.pagination}`}>
-                                        <SecondaryBack onClick={() => {
-                                            const stepWillSet = step - 1;
-                                            setStep(stepWillSet)
-                                        }} />
-                                        <div style={{ width: "1rem" }} />
-                                        <SecondaryNext onClick={() => {
+                            <div className={styles.subform} hidden={step != 4}>
+                                <h1 style={{ marginBottom: "2rem" }}>One last important step. Documents!</h1>
+                                {userType == UserType.COMPANY && <UploadField id="stateregister" label="Ordering from the State Register" validatorLabel="Ordering upload failed" />}
+                                <UploadField id="taxnumber" label="Tax Number" validatorLabel="Tax number upload failed" />
+                                <UploadField id="idcard" label="ID Card" validatorLabel="ID card upload failed" />
+                                <UploadField id="bankrequisites" label="Bank Requisites" validatorLabel="Bank requisites upload failed" />
+                                <UploadField id="optional#1" label="Optional Documents #1" validatorLabel="First optional documents upload failed" />
+                                <UploadField id="optional#2" label="Optional Documents #2" validatorLabel="Second optional documents upload failed" />
+                                <div className={`${styles.row} ${styles.pagination}`}>
+                                    <SecondaryBack onClick={() => {
+                                        const stepWillSet = step - 1;
+                                        setStep(stepWillSet)
+                                    }} />
+                                    <div style={{ width: "1rem" }} />
+                                    <SecondaryNext onClick={() => {
 
-                                        }} />
-                                    </div>
+                                    }} />
                                 </div>
-                            }
+                            </div>
                         </>
                     </div>
                 </div>
