@@ -4,6 +4,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
+    position: relative;
 }
 
 .input {
@@ -30,8 +31,52 @@
     outline: none;
 }
 
+.options {
+    z-index: 1;
+    top: 5rem;
+    position: absolute;
+    width: 100%;
+    border-radius: 0.4rem;
+    background: #F5F6FA;
+    box-shadow:
+        0 3px 10px rgb(0 0 0 / 0.2);
+    overflow: auto;
+    max-height: 11rem;
+}
+
 .option {
-    font-size: 0.8rem
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 0;
+}
+
+/* show and hide options */
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+/* when options are shown focus the corresponding input */
+.inputFocused {
+    border-color: var(--primary);
+    outline: none;
+}
+
+ul.option p {
+    padding: 1rem;
+    margin: 0;
+}
+
+ul.option p:active,
+ul.option p:focus,
+ul.option p:hover,
+ul.option p[aria-selected="true"] {
+    border-radius: 0.4rem;
+    background-color: #D2D4D8;
+    cursor: pointer;
 }
 
 .label {

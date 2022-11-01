@@ -2,8 +2,6 @@ import { NextPage } from "next";
 import Head from "next/head";
 import Image from 'next/image'
 import React from "react";
-import AlertDialog from "../components/alert-dialog";
-import AlertType from "../components/alert-dialog/AlertType";
 import NavigationBar from "../components/navigation-bar";
 import OnboardChoice from "../components/onboard-choice";
 import SecondaryBack from "../components/secondary-back";
@@ -21,12 +19,9 @@ enum UserType {
 }
 
 const Onboard: NextPage = () => {
-    const [isAlertVisible, setAlertVisible] = React.useState(false)
-    const [alertTitle, setAlertTitle] = React.useState("")
-    const [alertDescription, setAlertDescription] = React.useState("")
-    const [alertType, setAlertType] = React.useState(AlertType.UNKNOWN)
     const [step, setStep] = React.useState(0)
     const [userType, setUserType] = React.useState(UserType.UNKNOWN)
+    const [city, setCity] = React.useState(-1)
 
     const initialChoices = [
         {
@@ -53,6 +48,37 @@ const Onboard: NextPage = () => {
             image: "company",
             label: "You have a company (Non VAT payer)"
         },
+    ]
+
+    const businessTypeOptions = [
+        "Limited Liability Company",
+        "Open Joint-Stock Company",
+        "Closed Joint-Stock Company"
+    ]
+
+    const formOfOperationOptions = [
+        "Standart",
+        "Marketplace"
+    ]
+
+    const cityOptions = [
+        "Baku",
+        "Ganja"
+    ]
+
+    const districtOptions = [
+        "Binəqədi",
+        "Khazar",
+        "Nərimanov",
+        "Nəsimi",
+        "Nizami",
+        "Pirallahı",
+        "Qaradağ",
+        "Sabail",
+        "Sabunçu",
+        "Suraxanı",
+        "Xətai",
+        "Yasamal"
     ]
 
     return (
@@ -147,8 +173,8 @@ const Onboard: NextPage = () => {
                         <>
                             <div className={styles.subform} hidden={step != 2}>
                                 <h1 style={{ marginBottom: "2rem" }}>Tell us about your business</h1>
-                                <Select label="Business Type" />
-                                <Select label="Form of Operation" />
+                                {userType == UserType.COMPANY && <Select label="Business Type" optionsList={businessTypeOptions} />}
+                                <Select label="Form of Operation" optionsList={formOfOperationOptions} />
                                 <TextField
                                     label="Name of your Business"
                                     placeholder="Enter your business/company name"
@@ -185,8 +211,8 @@ const Onboard: NextPage = () => {
                         <>
                             <div className={styles.subform} hidden={step != 3}>
                                 <h1 style={{ marginBottom: "2rem" }}>Provide us with contact information for your business</h1>
-                                <Select label="City" />
-                                <Select label="District" />
+                                <Select label="City" optionsList={cityOptions} onClick={setCity} />
+                                {city == 0 && <Select label="District" optionsList={districtOptions} />}
                                 <TextField
                                     label="Contact number for your Business"
                                     placeholder="Enter your business/company mobile or phone number"

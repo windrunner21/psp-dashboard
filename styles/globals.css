@@ -36,6 +36,28 @@ a {
   box-sizing: border-box;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #EAEAEA;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 2rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--success-primary);
+  border-radius: 2rem;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
