@@ -55,6 +55,8 @@ const TextField = (props: TextFieldProps) => {
         if (props.pattern && props.validateAgainst == "iban") {
             e.target.value = applyIBANPattern(e.target.value, props.pattern)
         }
+
+        if (props.setValue) { props.setValue(e.target.value) }
     };
 
     return (
@@ -70,6 +72,7 @@ const TextField = (props: TextFieldProps) => {
                 onBlur={(e) => handlePattern(e)}
                 maxLength={props.max}
                 pattern={props.pattern}
+                defaultValue={props.value}
             />
             {hasError && <div style={{ marginTop: "0.1rem" }}>
                 <Validator label={props.validatorLabel} />

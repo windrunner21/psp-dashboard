@@ -1,12 +1,32 @@
 import styles from "../language-select/LanguageSelect.module.css"
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next';
 
 const LanguageSelect = () => {
+    const { t } = useTranslation('languages');
+    const { locale } = useRouter();
+    const router = useRouter()
+    const { pathname, asPath, query } = router
+
     return (
         <div className={styles.dropdown}>
-            <span>English &#9207;</span>
+            <span>{t(`${locale}`)} &#9207;</span>
             <div className={styles.dropdownContent}>
-                <p className={styles.dropdownItem}>Azerbaijani</p>
-                <p className={styles.dropdownItem}>Russian</p>
+                {locale != 'az' && <p className={styles.dropdownItem} onClick={() => {
+                    router.push({ pathname, query }, asPath, { locale: "az" })
+                }}>
+                    {t('az')}
+                </p>}
+                {locale != 'ru' && <p className={styles.dropdownItem} onClick={() => {
+                    router.push({ pathname, query }, asPath, { locale: "ru" })
+                }}>
+                    {t('ru')}
+                </p>}
+                {locale != 'en' && <p className={styles.dropdownItem} onClick={() => {
+                    router.push({ pathname, query }, asPath, { locale: "en" })
+                }}>
+                    {t('en')}
+                </p>}
             </div>
         </div>
     )
