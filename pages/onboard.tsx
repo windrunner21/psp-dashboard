@@ -256,9 +256,19 @@ const Onboard: NextPage = () => {
                                     }} />
                                     <div style={{ width: "1rem" }} />
                                     <SecondaryNext onClick={() => {
-
+                                        const stepWillSet = step + 1;
+                                        setStep(stepWillSet)
                                     }} />
                                 </div>
+                            </div>
+                        </>
+
+                        <>
+                            <div className={styles.subform} hidden={step != 5}>
+                                <h1 style={{ marginBottom: "1rem" }}>Thanks for your time!</h1>
+                                <h1 style={{ marginBottom: "2rem" }}>And congratulations, we have successfully received your onboard application ✅</h1>
+                                <p>What's next? We will send you the contract soon, if everything is in order.</p>
+                                <p>You can always see the status of your application from here 👉</p>
                             </div>
                         </>
                     </div>
@@ -304,11 +314,17 @@ const Onboard: NextPage = () => {
                                 <p className={styles.description}>&#x2022; If you have old-gen ID card, scan the back side and upload it via optional documents.</p>
                                 <p className={styles.description}>&#x2022; License for tabacoo, drugs or alcohol products MUST be uploaded. Again use optional documents.</p>
                                 <p className={styles.description}>&#x2022; Optional documents can be omitted, if you do not require them.</p>
-
                             </div>
                         </div>
                     }
-                    <StepIndicators totalSteps={5} step={step} />
+                    {step < 5 && <StepIndicators totalSteps={5} step={step} />}
+                    {step == 5 &&
+                        <div>
+                            <Image src="/onboard/step5.svg" alt="Onboard Choice Logo" width={300} height={300} />
+                            <h3>Your application status is</h3>
+                            <h1 style={{ color: "var(--success-primary)" }}>APPLIED</h1>
+                        </div>
+                    }
                 </div>
             </main>
         </>
