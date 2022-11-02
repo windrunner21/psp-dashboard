@@ -1,7 +1,7 @@
 {
-    "title": "Enter verification code",
-    "subtitle": "We have just sent a verification code to provided {{ phone number }}",
-    "resend": "Resend code in",
-    "in": " in ",
-    "verify": "Verify"
+    "title": "Təsdiq kodunu daxil edin",
+    "subtitle": "Təqdim edilən {{ phoneNumber }} nömrəsinə təsdiq kodunu göndərdik",
+    "resend": "Kodu yenidən göndərin",
+    "in": "",
+    "verify": "Təsdiq edin"
 }

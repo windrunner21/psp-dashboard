@@ -1,5 +1,8 @@
 import React from "react"
 import CloseButton from "../close-button"
+import { useTranslation } from 'next-i18next';
+
+// custom components
 import styles from "../one-time-password/OTP.module.css"
 import PrimaryButton from "../primary-button"
 import PrimaryLink from "../primary-link"
@@ -9,6 +12,7 @@ import Validator from "../validator"
 import AlertType from "../alert-dialog/AlertType"
 
 const OneTimePassword = (props: OneTimePasswordProps) => {
+    const { t } = useTranslation('otp');
     // waiting for send
     const [seconds, setSeconds] = React.useState(0)
     const [minutes, setMinutes] = React.useState(1)
@@ -81,8 +85,8 @@ const OneTimePassword = (props: OneTimePasswordProps) => {
     return (
         <div className={styles.modal}>
             <CloseButton onClick={props.onClick} />
-            <h2>Enter verification code</h2>
-            <p className={styles.description}>We have just sent a verification code to provided {props.phoneNumber}</p>
+            <h2>{t('title')}</h2>
+            <p className={styles.description}>{t('subtitle', { phoneNumber: props.phoneNumber })}</p>
             <div style={{ marginTop: "1.5rem", marginBottom: "1.25rem" }}>
                 <DigitInput value={otp} repeating={codeLength} onChange={onChange} displayError={hasErrors} onPaste={sendPastedOneTimePasswordCode} />
             </div>
@@ -90,10 +94,10 @@ const OneTimePassword = (props: OneTimePasswordProps) => {
                 <Validator label={`Verification code must be ${codeLength} digits long`} />
             </div>}
             <div style={{ marginBottom: "1.25rem" }}>
-                <PrimaryLink label="Resend code" onClick={resetTimer} disabled={disabled} />
-                <span className={styles.linkText}> in {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</span>
+                <PrimaryLink label={t('resend')} onClick={resetTimer} disabled={disabled} />
+                <span className={styles.linkText}> {t('in')} {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</span>
             </div>
-            <PrimaryButton title="Verify" onClick={sendOneTimePasswordCode} loading={loading} />
+            <PrimaryButton title={t('verify')} onClick={sendOneTimePasswordCode} loading={loading} />
         </div>
     )
 }

@@ -73,7 +73,7 @@ const Login: NextPage = () => {
                     </div>
                     {isModalVisible &&
                         <OneTimePassword
-                            phoneNumber={"{phone number}"}
+                            phoneNumber={"+994 (51) 780 79 29"}
                             onClick={() => showOneTimePassword(false)}
                             setAlertType={setAlertType}
                             setAlertTitle={setAlertTitle}
@@ -101,7 +101,7 @@ export default Login;
 export async function getStaticProps({ locale }: { locale: string }) {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ["login", "common", "footer"]))
+            ...(await serverSideTranslations(locale, ["login", "otp", "common", "footer"]))
         },
     };
 }
