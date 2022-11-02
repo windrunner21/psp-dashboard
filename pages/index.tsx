@@ -18,7 +18,7 @@ const Home: NextPage = () => {
           Welcome to <a href="https://odero.az">Odero.az!</a>
         </h1>
 
-        <h3>Site is currently under construction.</h3>
+        <h3 className={styles.subtitle}>Site is currently under construction.</h3>
         <div className={styles.grid}>
           <div className={styles.link}>
             <Link href="/login">Login</Link>
