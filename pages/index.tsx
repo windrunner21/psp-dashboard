@@ -1,15 +1,14 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Index.module.css'
 
-const Home: NextPage = () => {
+const Index: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Home | Odero</title>
-        <meta name="home" content="Home page for the merchant odero website." />
+        <title>Contents | Odero</title>
+        <meta name="contents" content="Contents page for the merchant odero website." />
         <link rel="icon" href="/odero.ico" />
       </Head>
 
@@ -29,6 +28,10 @@ const Home: NextPage = () => {
           </div>
 
           <div className={styles.link}>
+            <Link href="/home">Dashboard</Link>
+          </div>
+
+          <div className={styles.link}>
             <Link href="/error">404 Page</Link>
           </div>
         </div>
@@ -37,4 +40,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Index
