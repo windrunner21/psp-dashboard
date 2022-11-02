@@ -17,7 +17,7 @@ const TextField = (props: TextFieldProps) => {
         if (props.autofocus) {
             inputRef.current?.focus();
         }
-    }, [])
+    }, [props.autofocus])
 
     function validate(target: EventTarget) {
         clearTimeout(timer);

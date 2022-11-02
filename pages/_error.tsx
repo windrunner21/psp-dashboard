@@ -25,7 +25,7 @@ const Error: NextPage = () => {
 
             <main className={styles.main}>
                 <div>
-                    <h1>We're sorry.</h1>
+                    <h1>We&apos;re sorry.</h1>
                     <h3>Some unexpected error occurred.</h3>
                     <PrimaryButton title="Try again" onClick={redirect} />
                 </div>

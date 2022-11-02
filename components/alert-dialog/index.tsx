@@ -6,10 +6,6 @@ import React from "react";
 import Image from 'next/image'
 
 const AlertDialog = (props: AlertDialogProps) => {
-
-    // let timer: NodeJS.Timeout;
-    // const waitTime = 500;
-
     const alertRef = React.useRef<HTMLDivElement>(null)
     const [style, setStyle] = React.useState(``)
     const [icon, setIcon] = React.useState("")
@@ -35,11 +31,7 @@ const AlertDialog = (props: AlertDialogProps) => {
             default:
                 return;
         }
-
-        // timer = setTimeout(() => {
-        //     alertRef.current?.remove();
-        // }, waitTime);
-    })
+    }, [props.type])
 
     return (
         <div ref={alertRef} className={style}>

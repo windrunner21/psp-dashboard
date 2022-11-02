@@ -30,7 +30,7 @@ const Error404: NextPage = () => {
                     <div className={styles.form}>
                         <h1 className={styles.title}>404</h1>
                         <h3 className={styles.subtitle}>Page Not Found!</h3>
-                        <p className={styles.description}>We're sorry, the page you requested could not be found. Please go back to the homepage!</p>
+                        <p className={styles.description}>We&apos;re sorry, the page you requested could not be found. Please go back to the homepage!</p>
                         <PrimaryButton title="Go back" onClick={redirect} />
                     </div>
                 </div>

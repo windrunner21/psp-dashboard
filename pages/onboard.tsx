@@ -293,7 +293,7 @@ const Onboard: NextPage = () => {
                                 <div className={styles.subform}>
                                     <h1 style={{ marginBottom: "1rem" }}>Thanks for your time!</h1>
                                     <h1 style={{ marginBottom: "2rem" }}>And congratulations, we have successfully received your onboard application ✅</h1>
-                                    <p>What's next? We will send you the contract soon, if everything is in order.</p>
+                                    <p>What&apos;s next? We will send you the contract soon, if everything is in order.</p>
                                     <p>You can always see the status of your application from here 👉</p>
                                 </div>
                             }
@@ -306,7 +306,7 @@ const Onboard: NextPage = () => {
                             <Image src="/onboard/step0.svg" alt="Onboard Choice Logo" width={200} height={200} priority />
                             <h3>Welcome to Odero Onboard Procedure.</h3>
                             <p className={styles.description}>We need an information about your business in order for us to prepare your contract. Please have your business and personal documents ready and nearby.</p>
-                            <h4>What's a VAT?</h4>
+                            <h4>What&apos;s a VAT?</h4>
                             <p className={styles.description} style={{ fontSize: "0.9rem" }}>VAT Payer* - Value Added Tax Payer. VAT payer is a taxable person registered by the tax authority office as obliged to pay VAT.</p>
                         </div>
                     }
@@ -328,7 +328,7 @@ const Onboard: NextPage = () => {
                     {step == 3 &&
                         <div className={styles.subform}>
                             <Image src="/onboard/step3.svg" alt="Onboard Choice Logo" width={200} height={200} />
-                            <h3>What if I don't have a website?</h3>
+                            <h3>What if I don&apos;t have a website?</h3>
                             <p className={styles.description}>No worries at all! If you sell your product via social media, you can pass a link to your social media accounts.</p>
                         </div>
                     }
