@@ -12,7 +12,7 @@ import Validator from "../validator"
 import AlertType from "../alert-dialog/AlertType"
 
 const OneTimePassword = (props: OneTimePasswordProps) => {
-    const { t } = useTranslation('otp');
+    const { t } = useTranslation(['otp', 'alert-dialog', 'validators']);
     // waiting for send
     const [seconds, setSeconds] = React.useState(0)
     const [minutes, setMinutes] = React.useState(1)
@@ -39,15 +39,15 @@ const OneTimePassword = (props: OneTimePasswordProps) => {
             setHasErrors(true)
             setIsLoading(false)
             props.setAlertType(AlertType.ERROR);
-            props.setAlertTitle("Something went wrong!")
-            props.setAlertDescription("We've encountered some unexpected error.")
+            props.setAlertTitle(t('alert-dialog:title.error'))
+            props.setAlertDescription(t('alert-dialog:subtitle.error'))
             props.showAlert(true)
         } else {
             setHasErrors(false)
             setIsLoading(true)
             props.setAlertType(AlertType.SUCCESS);
-            props.setAlertTitle("Congratulations!")
-            props.setAlertDescription("You've successfully logged in.")
+            props.setAlertTitle(t('alert-dialog:title.success'))
+            props.setAlertDescription(t('alert-dialog:subtitle.success.login'))
             props.showAlert(true)
         }
     }
@@ -91,7 +91,7 @@ const OneTimePassword = (props: OneTimePasswordProps) => {
                 <DigitInput value={otp} repeating={codeLength} onChange={onChange} displayError={hasErrors} onPaste={sendPastedOneTimePasswordCode} />
             </div>
             {hasErrors && <div style={{ marginBottom: "1.25rem" }}>
-                <Validator label={`Verification code must be ${codeLength} digits long`} />
+                <Validator label={t('validators:otp', { length: codeLength })} />
             </div>}
             <div style={{ marginBottom: "1.25rem" }}>
                 <PrimaryLink label={t('resend')} onClick={resetTimer} disabled={disabled} />

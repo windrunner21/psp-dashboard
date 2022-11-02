@@ -1,0 +1,12 @@
+{
+    "title": {
+        "success": "Congratulations!",
+        "error": "Something went wrong!"
+    },
+    "subtitle": {
+        "success": {
+            "login": "You've successfully logged in."
+        },
+        "error": "We've encountered some unexpected error."
+    }
+}

@@ -62,8 +62,19 @@ const Login: NextPage = () => {
                             {t('welcomeBack')}
                         </p>
 
-                        <TextField type="email" label={t('common:email')} placeholder={t('common:emailPrompt')} validatorLabel="Invalid email address" autofocus={true} validateAgainst="email" />
-                        <TextField type="password" label={t('common:password')} placeholder={t('common:password')} />
+                        <TextField
+                            type="email"
+                            label={t('common:email')}
+                            placeholder={t('common:emailPrompt')}
+                            validatorLabel={t('validators:email')}
+                            validateAgainst="email"
+                            autofocus={true}
+                        />
+                        <TextField
+                            type="password"
+                            label={t('common:password')}
+                            placeholder={t('common:password')}
+                        />
                         <div className={styles.options}>
                             <CheckboxWithLabel label={t('rememberMe')} />
                             <PrimaryLink href="/" label={t('forgotPassword')} />
@@ -101,7 +112,7 @@ export default Login;
 export async function getStaticProps({ locale }: { locale: string }) {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ["login", "otp", "common", "footer"]))
+            ...(await serverSideTranslations(locale, ["login", "otp", "alert-dialog", "common", "footer", "validators"]))
         },
     };
 }

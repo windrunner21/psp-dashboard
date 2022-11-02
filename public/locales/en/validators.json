@@ -1,0 +1,4 @@
+{
+    "email": "Invalid email address",
+    "otp": "Verification code must be {{ length }} digits long"
+}

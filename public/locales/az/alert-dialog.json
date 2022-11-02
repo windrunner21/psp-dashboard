@@ -1,0 +1,12 @@
+{
+    "title": {
+        "success": "Təbriklər!",
+        "error": "Xəta baş verdi!"
+    },
+    "subtitle": {
+        "success": {
+            "login": "Uğurla daxil olmusunuz."
+        },
+        "error": "Biz gözlənilməz xəta ilə qarşılaşdıq."
+    }
+}
