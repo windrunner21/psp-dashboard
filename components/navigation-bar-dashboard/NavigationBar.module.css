@@ -1,3 +1,7 @@
+.main {
+    width: 100%;
+}
+
 .grid {
     display: flex;
     flex-direction: row;
@@ -10,22 +14,7 @@
     flex-direction: row;
 }
 
-.name {
-    color: var(--text);
-    font-size: 0.95rem;
-    margin-right: 1.5rem;
-}
-
-.name:hover {
-    cursor: pointer;
-}
-
-@media (max-width: 600px) {
-    .name {
-        display: none;
-    }
-
-}
+@media (max-width: 600px) {}
 
 @media (prefers-color-scheme: dark) {
     .name {

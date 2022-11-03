@@ -6,7 +6,7 @@ import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // custom components
-import NavigationBar from "../components/navigation-bar";
+import NavigationBarOnboard from "../components/navigation-bar-onboard";
 import OnboardChoice from "../components/onboard-choice";
 import SecondaryBack from "../components/secondary-back";
 import SecondaryNext from "../components/secondary-next";
@@ -22,6 +22,8 @@ enum UserType {
 }
 
 const Onboard: NextPage = () => {
+    const [user, setUser] = React.useState("Imran Hajiyev")
+
     const [step, setStep] = React.useState(0)
     const [userType, setUserType] = React.useState(UserType.UNKNOWN)
     const [name, setName] = React.useState("")
@@ -101,7 +103,7 @@ const Onboard: NextPage = () => {
 
             <main className={styles.main}>
                 <div className={styles.leftContainer}>
-                    <NavigationBar />
+                    <NavigationBarOnboard user={user} />
                     <div className={styles.form}>
                         <>
                             {step == 0 &&

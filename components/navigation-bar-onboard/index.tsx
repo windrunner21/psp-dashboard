@@ -1,17 +1,18 @@
-import styles from "../navigation-bar/NavigationBar.module.css"
+import styles from "../navigation-bar-onboard/NavigationBar.module.css"
 import LanguageSelect from "../language-select"
 import OderoLogo from "../logo"
+import NavigationBarProps from "./interface"
 
-const NavigationBar = () => {
+const NavigationBarOnboard = (props: NavigationBarProps) => {
     return (
         <div className={styles.grid}>
             <OderoLogo />
             <div className={styles.options}>
-                <span className={styles.name}>Imran Hajiyev</span>
+                <span className={styles.name}>{props.user}</span>
                 <LanguageSelect />
             </div>
         </div>
     )
 }
 
-export default NavigationBar
+export default NavigationBarOnboard

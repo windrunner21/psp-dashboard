@@ -1,6 +1,10 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+// custom components
+import NavigationBarDashboard from "../components/navigation-bar-dashboard";
 
 const Home: NextPage = () => {
     return (
@@ -12,10 +16,18 @@ const Home: NextPage = () => {
             </Head>
 
             <main className={styles.main}>
-
+                <NavigationBarDashboard />
             </main>
         </>
     )
 }
 
 export default Home
+
+export async function getStaticProps({ locale }: { locale: string }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ["languages"]))
+        },
+    };
+}
