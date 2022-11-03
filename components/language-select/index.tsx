@@ -13,7 +13,7 @@ const LanguageSelect = () => {
         <div className={styles.dropdown}>
             <div className={styles.row}>
                 <span>{t(`${locale}`)}</span>
-                <Image src="/mui-icons/expand-more.svg" alt="expand more mui icon" width={20} height={20} />
+                <Image src="/mui-icons/expand-more.svg" alt="expand more material icon" width={20} height={20} />
             </div>
             <div className={styles.dropdownContent}>
                 {locale != 'az' && <p className={styles.dropdownItem} onClick={() => {

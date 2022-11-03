@@ -24,8 +24,8 @@ const Select = (props: SelectProps) => {
                 <span className={styles.option}>{props.optionsList[selectedOption]}</span>
                 {
                     isOptionsOpen ?
-                        <Image src="/mui-icons/expand-less.svg" alt="expand less mui icon" width={20} height={20} /> :
-                        <Image src="/mui-icons/expand-more.svg" alt="expand more mui icon" width={20} height={20} />
+                        <Image src="/mui-icons/expand-less.svg" alt="expand less material icon" width={20} height={20} /> :
+                        <Image src="/mui-icons/expand-more.svg" alt="expand more material icon" width={20} height={20} />
                 }
             </div>
             <div className={`${styles.options} ${isOptionsOpen ? styles.show : styles.hide}`}>

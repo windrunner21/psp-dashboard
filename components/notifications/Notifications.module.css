@@ -1,0 +1,28 @@
+.container {
+    padding: 0.5rem;
+}
+
+.container:hover {
+    background-color: #F3F4F8;
+    border-radius: 100%;
+}
+
+.notification {
+    position: relative;
+}
+
+.notification:hover {
+    cursor: pointer;
+}
+
+.dot {
+    z-index: 1;
+    position: absolute;
+    top: 0.2rem;
+    right: 0.1rem;
+    height: 0.5rem;
+    width: 0.5rem;
+    background-color: var(--error-primary);
+    border-radius: 50%;
+    display: inline-block;
+}

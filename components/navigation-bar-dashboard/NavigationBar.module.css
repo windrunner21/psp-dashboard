@@ -1,5 +1,6 @@
 .main {
     width: 100%;
+    margin: 1rem 3rem;
 }
 
 .grid {
@@ -9,9 +10,22 @@
     align-items: center;
 }
 
-.options {
+.leading {
     display: flex;
     flex-direction: row;
+    align-items: center;
+}
+
+.searchBar {
+    margin-left: 4rem;
+}
+
+.trailing {
+    width: 125px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media (max-width: 600px) {}
