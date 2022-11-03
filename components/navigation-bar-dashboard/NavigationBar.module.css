@@ -1,6 +1,6 @@
 .main {
     width: 100%;
-    margin: 1rem 3rem;
+    padding: 1rem 3rem;
 }
 
 .grid {
@@ -8,16 +8,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-}
-
-.leading {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.searchBar {
-    margin-left: 4rem;
 }
 
 .trailing {
@@ -28,10 +18,14 @@
     align-items: center;
 }
 
-@media (max-width: 600px) {}
+@media (max-width: 525px) {
+    .searchBar {
+        display: none;
+    }
 
-@media (prefers-color-scheme: dark) {
-    .name {
-        color: white;
+    .grid {
+        justify-content: flex-end;
     }
 }
+
+@media (prefers-color-scheme: dark) {}

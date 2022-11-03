@@ -3,3 +3,41 @@
     flex: 1;
     display: flex;
 }
+
+.leftContainer {
+    width: 15%;
+    position: relative;
+    transition: 500ms;
+    left: 0;
+}
+
+.collapse {
+    width: 5%;
+}
+
+.rightContainer {
+    width: 100%;
+    position: relative;
+}
+
+.mobile {
+    display: none;
+}
+
+.desktop {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .mobile {
+        display: block;
+    }
+
+    .leftContainer {
+        width: 30%;
+    }
+
+    .desktop {
+        display: none;
+    }
+}

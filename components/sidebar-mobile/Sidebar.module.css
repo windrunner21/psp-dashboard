@@ -1,0 +1,17 @@
+.sidebar {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.header {
+    margin: 1.7rem;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
