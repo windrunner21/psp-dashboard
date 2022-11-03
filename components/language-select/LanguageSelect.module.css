@@ -17,7 +17,7 @@
     border-radius: 1rem;
     box-shadow:
         0 0.5rem 3rem rgb(0 0 0 / 0.3);
-    background-color: #F3F4F8;
+    background-color: var(--secondary);
     padding: 1rem;
     z-index: 1;
 }

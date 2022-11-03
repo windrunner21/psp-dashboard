@@ -3,7 +3,7 @@
 }
 
 .container:hover {
-    background-color: #F3F4F8;
+    background-color: var(--secondary);
     border-radius: 50%;
 }
 

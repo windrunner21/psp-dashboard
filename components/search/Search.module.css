@@ -5,7 +5,7 @@
     align-items: center;
     padding: 0.5rem 2rem 0.5rem 1rem;
     border-radius: 0.4rem;
-    background-color: #F3F4F8;
+    background-color: var(--secondary);
 }
 
 .search:hover {
@@ -17,7 +17,7 @@
     margin-left: 0.5rem;
     font-size: 0.9rem;
     color: black;
-    background-color: #F3F4F8;
+    background-color: var(--secondary);
     border: none;
     outline: none;
 }

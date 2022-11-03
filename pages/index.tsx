@@ -28,7 +28,7 @@ const Index: NextPage = () => {
           </div>
 
           <div className={styles.link}>
-            <Link href="/home">Dashboard</Link>
+            <Link href="/dashboard">Dashboard</Link>
           </div>
 
           <div className={styles.link}>

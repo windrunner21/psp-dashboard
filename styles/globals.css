@@ -1,5 +1,7 @@
 :root {
   --primary: #6CD14E;
+  --primary-rgb: 108, 209, 78;
+  --secondary: #F3F4F8;
 
   --success: #F0F8F4;
   --info: #E6EFFA;
