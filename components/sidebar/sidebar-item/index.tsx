@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import styles from "../sidebar-item/SidebarItem.module.css"
 import SidebarItem from "./interface";
 
 const SidebarItem = (props: SidebarItem) => {
+    const router = useRouter();
     return (
         <>
             {
@@ -11,6 +13,8 @@ const SidebarItem = (props: SidebarItem) => {
                 <Link href={props.href}>
                     <div
                         className={`${styles.grid} 
+                        ${router.asPath == props.href && props.important ? styles.gridSelectedImportant : ''}
+                        ${router.asPath == props.href && !props.important ? styles.gridSelected : ''}
                         ${props.important ? styles.important : props.logout ? styles.logout : ''} 
                         ${props.collapsed ? styles.center : ''}`}
                     >

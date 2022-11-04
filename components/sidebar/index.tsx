@@ -11,6 +11,11 @@ const Sidebar = (props: SidebarProps) => {
     const router = useRouter()
     const [optionsCollapsed, collapseOptions] = React.useState(false)
 
+    // TEMPORARY
+    React.useEffect(() => {
+        collapseOptions(router.asPath.includes("/options"))
+    }, [])
+
     return (
         <div className={styles.sidebar}>
             <div className={styles.header}>
@@ -35,8 +40,8 @@ const Sidebar = (props: SidebarProps) => {
                 {
                     optionsCollapsed &&
                     <div>
-                        <SidebarItem title="Link" icon="link" important={true} collapsed={props.collapsed} href="/dashboard/options/wallet" />
-                        <SidebarItem title="Wallet" icon="wallet" important={true} collapsed={props.collapsed} href="/dashboard/options/pay-by-link" />
+                        <SidebarItem title="Link" icon="link" important={true} collapsed={props.collapsed} href="/dashboard/options/pay-by-link" />
+                        <SidebarItem title="Wallet" icon="wallet" important={true} collapsed={props.collapsed} href="/dashboard/options/wallet" />
                     </div>
                 }
                 <hr className={styles.divider} />

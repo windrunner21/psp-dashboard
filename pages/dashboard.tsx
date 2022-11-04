@@ -10,6 +10,7 @@ import Sidebar from "../components/sidebar";
 import SidebarMobile from "../components/sidebar-mobile";
 import NotificationsDialog from "../components/notifications-dialog";
 import NotificationItem from "../components/notifications-dialog/notifications-item/NotificationItem";
+import Statistics from "../components/statistics";
 
 const Dashboard: NextPage = () => {
     const [sidebarCollapsed, collapseSidebar] = React.useState(false)
@@ -46,6 +47,9 @@ const Dashboard: NextPage = () => {
                 </div>
                 <div className={styles.rightContainer}>
                     <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} />
+                    <div className={styles.pageContent}>
+                        <Statistics />
+                    </div>
                 </div>
                 {
                     areNotificationslVisible &&

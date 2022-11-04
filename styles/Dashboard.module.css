@@ -1,7 +1,8 @@
 .main {
-    height: 100vh;
+    min-height: 100vh;
     flex: 1;
     display: flex;
+    justify-content: stretch;
 }
 
 .leftContainer {
@@ -18,6 +19,10 @@
 .rightContainer {
     width: 100%;
     position: relative;
+}
+
+.pageContent {
+    padding: 1rem 3rem;
 }
 
 .mobile {

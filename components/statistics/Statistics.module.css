@@ -1,0 +1,17 @@
+.grid {
+    width: 350px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 0.6rem;
+    background-image: linear-gradient(to bottom right, var(--info), var(--success));
+}
+
+.greeting {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    color: var(--text);
+}
