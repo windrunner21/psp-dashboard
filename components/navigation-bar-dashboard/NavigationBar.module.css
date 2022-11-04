@@ -19,6 +19,11 @@
 }
 
 @media (max-width: 525px) {
+
+    .main {
+        padding: 1rem;
+    }
+
     .searchBar {
         display: none;
     }

@@ -28,13 +28,20 @@
     display: block;
 }
 
+@media (max-width: 525px) {
+    .main {
+        /* mobile viewport bug fix */
+        height: -webkit-fill-available;
+    }
+}
+
 @media (max-width: 600px) {
     .mobile {
         display: block;
     }
 
     .leftContainer {
-        width: 30%;
+        width: 100%;
     }
 
     .desktop {
