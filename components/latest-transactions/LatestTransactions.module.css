@@ -1,0 +1,10 @@
+.grid {
+    width: 100%;
+    height: calc(50% - 1rem);
+    border-radius: 0.6rem;
+    background-color: var(--secondary);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

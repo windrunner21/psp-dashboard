@@ -23,6 +23,16 @@
 
 .pageContent {
     padding: 1rem 3rem;
+    width: 100%;
+    height: calc(100vh - 5rem);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.graphAndTable {
+    width: 100%;
+    padding-left: 2rem;
 }
 
 .mobile {

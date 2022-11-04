@@ -11,6 +11,8 @@ import SidebarMobile from "../components/sidebar-mobile";
 import NotificationsDialog from "../components/notifications-dialog";
 import NotificationItem from "../components/notifications-dialog/notifications-item/NotificationItem";
 import Statistics from "../components/statistics";
+import Graphs from "../components/graphs";
+import LatestTransactions from "../components/latest-transactions";
 
 const Dashboard: NextPage = () => {
     const [sidebarCollapsed, collapseSidebar] = React.useState(false)
@@ -49,6 +51,11 @@ const Dashboard: NextPage = () => {
                     <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} />
                     <div className={styles.pageContent}>
                         <Statistics />
+                        <div className={styles.graphAndTable}>
+                            <Graphs />
+                            <div style={{ height: "2rem" }} />
+                            <LatestTransactions />
+                        </div>
                     </div>
                 </div>
                 {

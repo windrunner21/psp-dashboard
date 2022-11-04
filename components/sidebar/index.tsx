@@ -50,7 +50,7 @@ const Sidebar = (props: SidebarProps) => {
             <div className={`${styles.footer} ${props.collapsed ? styles.collapsed : ''}`} >
                 <SidebarItem title="Account" icon="profile" collapsed={props.collapsed} href="/account" />
                 <SidebarItem title="Settings" icon="settings" collapsed={props.collapsed} href="/settings" />
-                <SidebarItem title="Sign out" icon="logout" logout={true} href="/" />
+                <SidebarItem title="Sign out" icon="logout" collapsed={props.collapsed} logout={true} href="/" />
             </div>
             <div className={styles.swapper} onClick={() => props.collapse(!props.collapsed)}>
                 <Image src={`/mui-icons/chevron-${props.collapsed ? 'right' : 'left'}-700.svg`} alt="chevron right material icon" width={20} height={20} />
