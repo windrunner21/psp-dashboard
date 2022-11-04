@@ -2,11 +2,12 @@ import Image from "next/image"
 import { useRouter } from "next/router"
 import styles from "../footer/Footer.module.css"
 import { useTranslation } from 'next-i18next';
+import Link from "next/link";
 
 const Footer = () => {
     const { t } = useTranslation('footer');
     const router = useRouter()
-    const { pathname, asPath, query } = router
+    const { asPath } = router
 
     return (
         <footer className={styles.footer}>
@@ -18,14 +19,20 @@ const Footer = () => {
                 {t('caption')} &copy; {new Date().getFullYear()}
             </a>
             <div className={styles.languages}>
-                <div onClick={() => router.push({ pathname, query }, asPath, { locale: "az" })}>
-                    <Image src="/flags/az.svg" alt="Azerbaijani Flag Language" width={24} height={24} />
+                <div>
+                    <Link href={asPath} locale="az">
+                        <Image src="/flags/az.svg" alt="Azerbaijani Flag Language" width={24} height={24} />
+                    </Link>
                 </div>
-                <div style={{ margin: "0 1rem" }} onClick={() => router.push({ pathname, query }, asPath, { locale: "ru" })}>
-                    <Image src="/flags/ru.svg" alt="Russian Flag Language" width={24} height={24} />
+                <div style={{ margin: "0 1rem" }}>
+                    <Link href={asPath} locale="ru">
+                        <Image src="/flags/ru.svg" alt="Russian Flag Language" width={24} height={24} />
+                    </Link>
                 </div>
-                <div onClick={() => router.push({ pathname, query }, asPath, { locale: "en" })}>
-                    <Image src="/flags/en.svg" alt="USA Flag Language" width={24} height={24} />
+                <div>
+                    <Link href={asPath} locale="en">
+                        <Image src="/flags/en.svg" alt="US Flag Language" width={24} height={24} />
+                    </Link>
                 </div>
             </div>
         </footer>

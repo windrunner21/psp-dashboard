@@ -3,6 +3,7 @@ import Head from "next/head";
 import styles from "../styles/Dashboard.module.css"
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from 'next/router'
 
 // custom components
 import NavigationBarDashboard from "../components/navigation-bar-dashboard";
@@ -12,6 +13,8 @@ import NotificationsDialog from "../components/notifications-dialog";
 import NotificationItem from "../components/notifications-dialog/notifications-item/NotificationItem";
 
 const Home: NextPage = () => {
+    const router = useRouter()
+
     const [sidebarCollapsed, collapseSidebar] = React.useState(false)
     const [areNotificationslVisible, setNotificationsVisible] = React.useState(false)
     const [notificationsList, setNotificationsList] = React.useState([

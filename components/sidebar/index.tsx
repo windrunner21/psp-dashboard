@@ -5,8 +5,10 @@ import Image from "next/image";
 import OderoLogoSmall from "../logo-small";
 import SidebarItem from "./sidebar-item";
 import React from "react";
+import { useRouter } from "next/router";
 
 const Sidebar = (props: SidebarProps) => {
+    const router = useRouter()
     const [optionsCollapsed, collapseOptions] = React.useState(false)
 
     return (
@@ -17,9 +19,9 @@ const Sidebar = (props: SidebarProps) => {
                 </div>
             </div>
             <div className={`${styles.content} ${props.collapsed ? styles.collapsed : ''}`} >
-                <SidebarItem title="Dashboard" icon="dashboard" important={true} collapsed={props.collapsed} />
-                <SidebarItem title="Payments" icon="payments" important={true} collapsed={props.collapsed} />
-                <SidebarItem title="Refunds" icon="refunds" important={true} collapsed={props.collapsed} />
+                <SidebarItem title="Dashboard" icon="dashboard" important={true} collapsed={props.collapsed} href="/dashboard" />
+                <SidebarItem title="Payments" icon="payments" important={true} collapsed={props.collapsed} href="/dashboard/payments" />
+                <SidebarItem title="Refunds" icon="refunds" important={true} collapsed={props.collapsed} href="/dashboard/refunds" />
                 <hr className={styles.divider} />
                 <SidebarItem
                     title="Options"
@@ -33,17 +35,17 @@ const Sidebar = (props: SidebarProps) => {
                 {
                     optionsCollapsed &&
                     <div>
-                        <SidebarItem title="Link" icon="link" important={true} collapsed={props.collapsed} />
-                        <SidebarItem title="Wallet" icon="wallet" important={true} collapsed={props.collapsed} />
+                        <SidebarItem title="Link" icon="link" important={true} collapsed={props.collapsed} href="/dashboard/options/wallet" />
+                        <SidebarItem title="Wallet" icon="wallet" important={true} collapsed={props.collapsed} href="/dashboard/options/pay-by-link" />
                     </div>
                 }
                 <hr className={styles.divider} />
-                <SidebarItem title="Distribution" icon="distribution" important={true} collapsed={props.collapsed} />
+                <SidebarItem title="Distribution" icon="distribution" important={true} collapsed={props.collapsed} href="/dashboard/distribution" />
             </div>
             <div className={`${styles.footer} ${props.collapsed ? styles.collapsed : ''}`} >
-                <SidebarItem title="Profile" icon="profile" collapsed={props.collapsed} />
-                <SidebarItem title="Settings" icon="settings" collapsed={props.collapsed} />
-                <SidebarItem title="Sign out" icon="logout" logout={true} collapsed={props.collapsed} />
+                <SidebarItem title="Account" icon="profile" collapsed={props.collapsed} href="/account" />
+                <SidebarItem title="Settings" icon="settings" collapsed={props.collapsed} href="/settings" />
+                <SidebarItem title="Sign out" icon="logout" logout={true} href="/" />
             </div>
             <div className={styles.swapper} onClick={() => props.collapse(!props.collapsed)}>
                 <Image src={`/mui-icons/chevron-${props.collapsed ? 'right' : 'left'}-700.svg`} alt="chevron right material icon" width={20} height={20} />

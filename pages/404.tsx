@@ -1,19 +1,13 @@
 import { NextPage } from "next";
-import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from 'next/image'
 import styles from "../styles/404.module.css"
 
 // custom components
 import PrimaryButton from "../components/primary-button";
+import Link from "next/link";
 
 const Error404: NextPage = () => {
-    let router = useRouter()
-
-    function redirect() {
-        router.push("/")
-    }
-
     return (
         <>
             <Head>
@@ -31,7 +25,9 @@ const Error404: NextPage = () => {
                         <h1 className={styles.title}>404</h1>
                         <h3 className={styles.subtitle}>Page Not Found!</h3>
                         <p className={styles.description}>We&apos;re sorry, the page you requested could not be found. Please go back to the homepage!</p>
-                        <PrimaryButton title="Go back" onClick={redirect} />
+                        <Link href="/">
+                            <PrimaryButton title="Go back" />
+                        </Link>
                     </div>
                 </div>
                 <div className={styles.rightContainer}>

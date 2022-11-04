@@ -6,7 +6,8 @@ interface SidebarItem {
   logout?: boolean;
   collapsed?: boolean;
   state?: boolean;
-  onClick?: (params: any) => void;
+  onClick?: () => void;
+  href?: string;
 }
 
 export default SidebarItem;

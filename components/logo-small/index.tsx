@@ -1,13 +1,15 @@
 import styles from "../logo-small/LogoSmall.module.css"
-import { useRouter } from "next/router"
+import Link from "next/link"
 
 const OderoLogoSmall = () => {
-    const router = useRouter()
+
     return (
-        <picture className={styles.logo} onClick={() => router.push("/")}>
-            <source srcSet="/odero-logos/odero-small-dark.svg" media="(prefers-color-scheme: dark)" />
-            <img src="/odero-logos/odero-small.svg" alt="Odero Logo Small" width={35} height={35} />
-        </picture>
+        <Link href="/">
+            <picture className={styles.logo}>
+                <source srcSet="/odero-logos/odero-small-dark.svg" media="(prefers-color-scheme: dark)" />
+                <img src="/odero-logos/odero-small.svg" alt="Odero Logo Small" width={35} height={35} />
+            </picture>
+        </Link>
     )
 }
 
