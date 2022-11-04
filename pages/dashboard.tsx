@@ -8,9 +8,16 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import NavigationBarDashboard from "../components/navigation-bar-dashboard";
 import Sidebar from "../components/sidebar";
 import SidebarMobile from "../components/sidebar-mobile";
+import NotificationsDialog from "../components/notifications-dialog";
+import NotificationItem from "../components/notifications-dialog/notifications-item/NotificationItem";
 
 const Home: NextPage = () => {
     const [sidebarCollapsed, collapseSidebar] = React.useState(false)
+    const [areNotificationslVisible, setNotificationsVisible] = React.useState(false)
+    const [notificationsList, setNotificationsList] = React.useState([
+        new NotificationItem(1, "Payment Failed", "Your payment dated 21/10/2022 has failed due to unknown reasons.", true),
+        new NotificationItem(2, "Settlement Received", "Your settlement was last week successfully completed.", true),
+    ])
 
     React.useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -23,7 +30,7 @@ const Home: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Home | Odero</title>
+                <title>Dashboard | Odero</title>
                 <meta name="home" content="Dashboard page where you can view and manage your business." />
                 <link rel="icon" href="/odero.ico" />
             </Head>
@@ -38,8 +45,12 @@ const Home: NextPage = () => {
                     </div>
                 </div>
                 <div className={styles.rightContainer}>
-                    <NavigationBarDashboard />
+                    <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} />
                 </div>
+                {
+                    areNotificationslVisible &&
+                    <NotificationsDialog notifications={notificationsList} onClick={setNotificationsVisible} updateNotifications={setNotificationsList} />
+                }
             </main>
         </>
     )
