@@ -1,17 +1,17 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import styles from "../styles/Dashboard.module.css"
+import styles from "../../styles/Dashboard.module.css"
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // custom components
-import NavigationBarDashboard from "../components/navigation-bar-dashboard";
-import Sidebar from "../components/sidebar";
-import SidebarMobile from "../components/sidebar-mobile";
-import NotificationsDialog from "../components/notifications-dialog";
-import NotificationItem from "../components/notifications-dialog/notifications-item/NotificationItem";
+import NotificationItem from "../../components/notifications-dialog/notifications-item/NotificationItem";
+import Sidebar from "../../components/sidebar";
+import SidebarMobile from "../../components/sidebar-mobile";
+import NavigationBarDashboard from "../../components/navigation-bar-dashboard";
+import NotificationsDialog from "../../components/notifications-dialog";
 
-const Dashboard: NextPage = () => {
+const Distribution: NextPage = () => {
     const [sidebarCollapsed, collapseSidebar] = React.useState(false)
     const [areNotificationslVisible, setNotificationsVisible] = React.useState(false)
     const [notificationsList, setNotificationsList] = React.useState([
@@ -56,7 +56,7 @@ const Dashboard: NextPage = () => {
     )
 }
 
-export default Dashboard
+export default Distribution
 
 export async function getStaticProps({ locale }: { locale: string }) {
     return {

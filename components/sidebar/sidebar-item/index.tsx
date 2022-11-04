@@ -10,7 +10,9 @@ const SidebarItem = (props: SidebarItem) => {
                 props.href &&
                 <Link href={props.href}>
                     <div
-                        className={`${styles.grid} ${props.important ? styles.important : props.logout ? styles.logout : ''} ${props.collapsed ? styles.center : ''}`}
+                        className={`${styles.grid} 
+                        ${props.important ? styles.important : props.logout ? styles.logout : ''} 
+                        ${props.collapsed ? styles.center : ''}`}
                     >
                         <div className={styles.leading}>
                             <Image src={`/mui-icons/${props.icon}.svg`} alt="respective material icon for the sidebar item" width={22} height={22} />
@@ -32,7 +34,9 @@ const SidebarItem = (props: SidebarItem) => {
             {
                 !props.href &&
                 <div
-                    className={`${styles.grid} ${props.important ? styles.important : props.logout ? styles.logout : ''} ${props.collapsed ? styles.center : ''}`}
+                    className={`${styles.grid} 
+                    ${props.important ? styles.important : props.logout ? styles.logout : ''} 
+                    ${props.collapsed ? styles.center : ''}`}
                     onClick={props.onClick}
                 >
                     <div className={styles.leading}>

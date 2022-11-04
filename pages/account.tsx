@@ -11,7 +11,7 @@ import SidebarMobile from "../components/sidebar-mobile";
 import NotificationsDialog from "../components/notifications-dialog";
 import NotificationItem from "../components/notifications-dialog/notifications-item/NotificationItem";
 
-const Dashboard: NextPage = () => {
+const Account: NextPage = () => {
     const [sidebarCollapsed, collapseSidebar] = React.useState(false)
     const [areNotificationslVisible, setNotificationsVisible] = React.useState(false)
     const [notificationsList, setNotificationsList] = React.useState([
@@ -56,7 +56,7 @@ const Dashboard: NextPage = () => {
     )
 }
 
-export default Dashboard
+export default Account
 
 export async function getStaticProps({ locale }: { locale: string }) {
     return {
