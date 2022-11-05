@@ -46,19 +46,19 @@ const Onboard: NextPage = () => {
             type: UserType.CONTRACTOR,
             vat: false,
             image: "user",
-            label: t('step0.main.option1')
+            label: t('step0.main.option2')
         },
         {
             type: UserType.COMPANY,
             vat: true,
             image: "company",
-            label: t('step0.main.option1')
+            label: t('step0.main.option3')
         },
         {
             type: UserType.COMPANY,
             vat: false,
             image: "company",
-            label: t('step0.main.option1')
+            label: t('step0.main.option4')
         },
     ]
 

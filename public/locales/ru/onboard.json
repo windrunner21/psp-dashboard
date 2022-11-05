@@ -1,69 +1,69 @@
 {
     "title": "Заявка",
-    "content": "Merchant Onboard for Odero.az. Finish registration, sign a contract and get access to payment methods.",
+    "content": "Заявка на учетную запись Odero.az. Завершите регистрацию, подпишите договор и получите доступ к способам оплаты.",
     "step0": {
         "main": {
-            "title": "Tell us about your situation",
-            "option1": "You are a freelance or independent contractor (VAT payer)",
-            "option2": "You are a freelance or independent contractor (Non VAT payer)",
-            "option3": "You have a company (VAT payer)",
-            "option4": "You have a company (Non VAT payer)"
+            "title": "Расскажите о своей деятельности",
+            "option1": "Вы фрилансер или независимый подрядчик (плательщик НДС)",
+            "option2": "Вы фрилансер или независимый подрядчик (не плательщик НДС)",
+            "option3": "У вас есть компания (плательщик НДС)",
+            "option4": "У вас есть компания (не плательщик НДС)"
         },
         "help": {
-            "title": "Welcome to Odero Onboard Procedure.",
-            "subtitle": "We need an information about your business in order for us to prepare your contract. Please have your business and personal documents ready and nearby.",
-            "helperTitle": "What's a VAT?",
-            "helperSubtitle": "VAT Payer* - Value Added Tax Payer. VAT payer is a taxable person registered by the tax authority office as obliged to pay VAT."
+            "title": "Добро пожаловать на процесс подачи заявки на Odero",
+            "subtitle": "Для подготовки договора нам нужна информация о вашем бизнесе. Пожалуйста, подготовьте ваши юридические и личные документы",
+            "helperTitle": "Что такое НДС?",
+            "helperSubtitle": "Плательщик НДС* - Плательщик Налога на Добавленную Стоимость.. Плательщиком НДС является налогоплательщик, зарегистрированный в налоговом органе как обязанный по уплате НДС."
         }
     },
     "step1": {
         "main": {
-            "title": "Tell us about yourself"
+            "title": "Расскажите о себе"
         },
         "help": {
-            "title": "Are you the legal representative?",
-            "subtitle": "If so, please provide your contact information at which we can reach you anytime 24/7. Remember, this information will be used to represent your party in the contract."
+            "title": "Вы законный представитель?",
+            "subtitle": "Если да, пожалуйста, предоставьте свою контактную информацию, по которой мы можем связаться с вами в любое время 24/7. Помните, что эта информация будет использоваться для представления вашей стороны в договоре."
         }
     },
     "step2": {
         "main": {
-            "title": "Tell us about your business"
+            "title": "Расскажите о вашем бизнесе"
         },
         "help": {
-            "title": "Have questions? We are here for you.",
-            "subtitle": "How do I know which form of operations corresponds to my business? If you have merchants who sell their products on your website, then you are a MARKETPLACE.",
-            "example": "Popular examples: Amazon, Trendyol, Umico."
+            "title": "У вас есть вопросы? Мы готовы на них ответить",
+            "subtitle": "Как узнать, какая форма деятельности соответствует моему бизнесу? Если у вас есть продавцы, которые продают свою продукцию на вашем веб-сайте, то вы являетесь МАРКЕТПЛЕЙСОМ",
+            "example": "Популярные примеры: Amazon, Trendyol, Umico."
         }
     },
     "step3": {
         "main": {
-            "title": "Provide us with contact information for your business"
+            "title": "Предоставьте нам контактную информацию для вашего бизнеса"
         },
         "help": {
-            "title": "What if I don't have a website?",
-            "subtitle": "No worries at all! If you sell your product via social media, you can pass a link to your social media accounts."
+            "title": "А если у меня нет сайта?",
+            "subtitle": "Не беспокойтесь! Если вы продаете свой продукт через социальные сети, вы можете передать ссылку на свои учетные записи в социальных сетях."
         }
     },
     "step4": {
         "main": {
-            "title": "One last important step. Documents!"
+            "title": "Последний важный шаг. Документы!"
         },
         "help": {
-            "title": "Document upload rules!",
-            "option1": "All documents must be in pdf format.",
-            "option2": "If you have old-gen ID card, scan the back side and upload it via optional documents.",
-            "option3": "Optional documents can be omitted, if you do not require them."
+            "title": "Правила загрузки документов!",
+            "option1": "Все документы должны быть в pdf формате.",
+            "option2": "Если у вас есть удостоверение личности старого поколения, отсканируйте обратную сторону и загрузите ее с помощью дополнительных документов.",
+            "option3": "Дополнительные документы можно не указывать, если они вам не требуются."
         }
     },
     "step5": {
         "main": {
-            "title": "Thanks for your time!",
-            "title2": "And congratulations, we have successfully received your onboard application ✅",
-            "subtitle": "What's next? We will send you the contract soon, if everything is in order.",
-            "subtitle2": "You can always see the status of your application from here 👉"
+            "title": "Спасибо за ваше время!",
+            "title2": "Поздравляем, мы успешно получили вашу заявку на создание учетной записи ✅",
+            "subtitle": "Что дальше? Мы вышлем вам договор в ближайшее время, если все в порядке.",
+            "subtitle2": "Вы всегда можете увидеть статус вашей заявки здесь 👉"
         },
         "help": {
-            "title": "Your application status is"
+            "title": "Статус вашей заявки"
         }
     }
 }

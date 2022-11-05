@@ -94,8 +94,9 @@
 /* MOBILE */
 @media (max-width: 450px) {
     .grid {
-        width: 100%;
-        right: 0
+        width: calc(100% - 2rem);
+        right: 1rem;
+        left: 1rem;
     }
 
 
