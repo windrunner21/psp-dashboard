@@ -1,7 +1,6 @@
 import styles from "../language-select/LanguageSelect.module.css"
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next';
-import Image from "next/image";
 import Link from "next/link";
 
 const LanguageSelect = () => {
@@ -14,7 +13,10 @@ const LanguageSelect = () => {
         <div className={styles.dropdown}>
             <div className={styles.row}>
                 <span>{t(`${locale}`)}</span>
-                <Image src="/mui-icons/expand-more.svg" alt="expand more material icon" width={20} height={20} />
+                <picture>
+                    <source srcSet="/mui-icons/expand-more-dark.svg" media="(prefers-color-scheme: dark)" />
+                    <img src="/mui-icons/expand-more.svg" alt="expand more material icon" width={20} height={20} />
+                </picture>
             </div>
             <div className={styles.dropdownContent}>
                 {locale != 'az' && <p className={styles.dropdownItem}>

@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../select/Select.module.css"
-import Image from "next/image";
 import SelectProps from "./interface";
 
 // custom components
@@ -24,8 +23,15 @@ const Select = (props: SelectProps) => {
                 <span className={styles.option}>{props.optionsList[selectedOption]}</span>
                 {
                     isOptionsOpen ?
-                        <Image src="/mui-icons/expand-less.svg" alt="expand less material icon" width={20} height={20} /> :
-                        <Image src="/mui-icons/expand-more.svg" alt="expand more material icon" width={20} height={20} />
+                        <picture className={styles.logo}>
+                            <source srcSet="/mui-icons/expand-less-dark.svg" media="(prefers-color-scheme: dark)" />
+                            <img src="/mui-icons/expand-less.svg" alt="expand less material icon" width={20} height={20} />
+                        </picture>
+                        :
+                        <picture className={styles.logo}>
+                            <source srcSet="/mui-icons/expand-more-dark.svg" media="(prefers-color-scheme: dark)" />
+                            <img src="/mui-icons/expand-more.svg" alt="expand less material icon" width={20} height={20} />
+                        </picture>
                 }
             </div>
             <div className={`${styles.options} ${isOptionsOpen ? styles.show : styles.hide}`}>

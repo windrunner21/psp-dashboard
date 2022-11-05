@@ -50,6 +50,13 @@
     padding: 0;
 }
 
+.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 /* show and hide options */
 .show {
     display: block;

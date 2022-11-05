@@ -1,5 +1,5 @@
 .container {
-    padding: 0.5rem 0.6rem;
+    padding: 0.5rem;
 }
 
 .container:hover {
@@ -25,4 +25,18 @@
     background-color: var(--error-primary);
     border-radius: 50%;
     display: inline-block;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+    .container:hover {
+        background-color: var(--background-dark);
+        border-radius: 50%;
+    }
 }

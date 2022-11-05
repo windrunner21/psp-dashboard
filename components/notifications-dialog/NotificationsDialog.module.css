@@ -56,6 +56,7 @@
 }
 
 .list {
+    height: calc(100vh - 8.5rem);
     overflow: auto;
 }
 
@@ -75,6 +76,7 @@
     .grid {
         width: 50%;
     }
+
 }
 
 @media (max-width: 800px) {
@@ -89,10 +91,22 @@
     }
 }
 
+/* MOBILE */
 @media (max-width: 450px) {
     .grid {
         width: 100%;
         right: 0
+    }
+
+
+    .list {
+        height: calc(100vh - 14rem);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .grid {
+        background-color: #262626;
     }
 }
 

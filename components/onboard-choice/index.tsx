@@ -9,7 +9,10 @@ const OnboardChoice = (props: OnboardChoiceProps) => {
                 <Image src={`/icons/${props.image}.png`} alt="Onboard Choice Logo" width={35} height={35} />
                 <span className={styles.label}>{props.title}</span>
             </div>
-            <img src="/mui-icons/chevron-right-700.svg" alt="chevron right material icon" width={20} height={20} />
+            <picture>
+                <source srcSet="/mui-icons/chevron-right-700-dark.svg" media="(prefers-color-scheme: dark)" />
+                <img src="/mui-icons/chevron-right-700.svg" alt="chevron right material icon" width={20} height={20} />
+            </picture>
         </div>
     )
 }

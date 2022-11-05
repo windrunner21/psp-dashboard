@@ -90,7 +90,7 @@
 
 @media (prefers-color-scheme: dark) {
     .rightContainer {
-        background-color: rgba(255, 255, 255, .15);
+        background-color: var(--background-dark)
     }
 }
 

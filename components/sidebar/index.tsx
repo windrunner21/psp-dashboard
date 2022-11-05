@@ -1,7 +1,6 @@
 import styles from "../sidebar/Sidebar.module.css"
 import OderoLogo from "../logo";
 import SidebarProps from "./interface";
-import Image from "next/image";
 import OderoLogoSmall from "../logo-small";
 import SidebarItem from "./sidebar-item";
 import React from "react";
@@ -53,7 +52,10 @@ const Sidebar = (props: SidebarProps) => {
                 <SidebarItem title="Sign out" icon="logout" collapsed={props.collapsed} logout={true} href="/" />
             </div>
             <div className={styles.swapper} onClick={() => props.collapse(!props.collapsed)}>
-                <Image src={`/mui-icons/chevron-${props.collapsed ? 'right' : 'left'}-700.svg`} alt="chevron right material icon" width={20} height={20} />
+                <picture className={styles.logo}>
+                    <source srcSet={`/mui-icons/chevron-${props.collapsed ? 'right' : 'left'}-700-dark.svg`} media="(prefers-color-scheme: dark)" />
+                    <img src={`/mui-icons/chevron-${props.collapsed ? 'right' : 'left'}-700.svg`} alt="chevron right material icon" width={20} height={20} />
+                </picture>
             </div>
         </div >
     )

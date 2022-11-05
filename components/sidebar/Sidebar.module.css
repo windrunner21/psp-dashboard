@@ -48,10 +48,40 @@
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     border-radius: 50%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .swapper:hover {
     cursor: pointer;
+    box-shadow: 0 3px 15px rgb(0 0 0 / 0.2);
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    .sidebar {
+        border-right: 0.1rem solid var(--background-dark);
+    }
+
+    .swapper {
+        background-color: #262626;
+        box-shadow: 0 0 4px white;
+    }
+
+    .swapper:hover {
+        cursor: pointer;
+        box-shadow: 0 0 10px white;
+    }
+
+    .divider {
+        border: 1px solid var(--background-dark);
+    }
 }

@@ -2,6 +2,7 @@
   --primary: #6CD14E;
   --primary-rgb: 108, 209, 78;
   --secondary: #F3F4F8;
+  --background-dark: rgba(255, 255, 255, .15);
 
   --success: #F0F8F4;
   --info: #E6EFFA;
@@ -68,5 +69,10 @@ a {
   body {
     color: white;
     background: black;
+  }
+
+
+  ::-webkit-scrollbar-track {
+    background-color: #393F4B;
   }
 }

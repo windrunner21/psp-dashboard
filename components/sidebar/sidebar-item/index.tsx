@@ -19,7 +19,10 @@ const SidebarItem = (props: SidebarItem) => {
                         ${props.collapsed ? styles.center : ''}`}
                     >
                         <div className={styles.leading}>
-                            <Image src={`/mui-icons/${props.icon}.svg`} alt="respective material icon for the sidebar item" width={22} height={22} />
+                            <picture className={styles.logo}>
+                                <source srcSet={`/mui-icons/${props.icon}-dark.svg`} media="(prefers-color-scheme: dark)" />
+                                <img src={`/mui-icons/${props.icon}.svg`} alt="respective material icon for the sidebar item" width={22} height={22} />
+                            </picture>
                             {!props.collapsed && <span className={styles.title}>{props.title}</span>}
                         </div>
                         {
@@ -27,8 +30,15 @@ const SidebarItem = (props: SidebarItem) => {
                             <div>
                                 {
                                     props.state ?
-                                        <Image src="/mui-icons/expand-less.svg" alt="expand less material icon" width={18} height={18} /> :
-                                        <Image src="/mui-icons/expand-more.svg" alt="expand more material icon" width={18} height={18} />
+                                        <picture className={styles.logo}>
+                                            <source srcSet="/mui-icons/expand-less-dark.svg" media="(prefers-color-scheme: dark)" />
+                                            <img src="/mui-icons/expand-less.svg" alt="expand less material icon" width={18} height={18} />
+                                        </picture>
+                                        :
+                                        <picture className={styles.logo}>
+                                            <source srcSet="/mui-icons/expand-more-dark.svg" media="(prefers-color-scheme: dark)" />
+                                            <img src="/mui-icons/expand-more.svg" alt="expand less material icon" width={18} height={18} />
+                                        </picture>
                                 }
                             </div>
                         }
@@ -44,7 +54,10 @@ const SidebarItem = (props: SidebarItem) => {
                     onClick={props.onClick}
                 >
                     <div className={styles.leading}>
-                        <Image src={`/mui-icons/${props.icon}.svg`} alt="respective material icon for the sidebar item" width={22} height={22} />
+                        <picture className={styles.logo}>
+                            <source srcSet={`/mui-icons/${props.icon}-dark.svg`} media="(prefers-color-scheme: dark)" />
+                            <img src={`/mui-icons/${props.icon}.svg`} alt="respective material icon for the sidebar item" width={22} height={22} />
+                        </picture>
                         {!props.collapsed && <span className={styles.title}>{props.title}</span>}
                     </div>
                     {
@@ -52,8 +65,15 @@ const SidebarItem = (props: SidebarItem) => {
                         <div>
                             {
                                 props.state ?
-                                    <Image src="/mui-icons/expand-less.svg" alt="expand less material icon" width={18} height={18} /> :
-                                    <Image src="/mui-icons/expand-more.svg" alt="expand more material icon" width={18} height={18} />
+                                    <picture className={styles.logo}>
+                                        <source srcSet="/mui-icons/expand-less-dark.svg" media="(prefers-color-scheme: dark)" />
+                                        <img src="/mui-icons/expand-less.svg" alt="expand less material icon" width={18} height={18} />
+                                    </picture>
+                                    :
+                                    <picture className={styles.logo}>
+                                        <source srcSet="/mui-icons/expand-more-dark.svg" media="(prefers-color-scheme: dark)" />
+                                        <img src="/mui-icons/expand-more.svg" alt="expand less material icon" width={18} height={18} />
+                                    </picture>
                             }
                         </div>
                     }

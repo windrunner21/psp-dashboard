@@ -26,3 +26,21 @@
     outline: 0.12rem solid var(--primary);
     border-radius: 0.4rem;
 }
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+    .search {
+        background-color: var(--background-dark);
+    }
+
+    .input {
+        background-color: #262626;
+        color: white;
+    }
+}

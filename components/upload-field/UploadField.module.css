@@ -60,7 +60,7 @@
     }
 
     .input {
-        border: 0.1rem solid rgba(255, 255, 255, .15);
+        border: 0.1rem solid var(--background-dark);
         background-color: #3B3B3B;
     }
 

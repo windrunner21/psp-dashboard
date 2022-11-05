@@ -46,3 +46,37 @@
     font-size: 0.9rem;
     color: var(--text);
 }
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+    .title {
+        color: white;
+    }
+
+    .grid:hover {
+        cursor: pointer;
+        background-color: var(--background-dark);
+    }
+
+    .gridSelected {
+        background-color: var(--background-dark);
+    }
+
+    .gridSelectedImportant {
+        background-color: rgba(var(--primary-rgb), 0.7)
+    }
+
+    .important:hover {
+        background-color: rgba(var(--primary-rgb), 0.7)
+    }
+
+    .logout:hover {
+        background-color: var(--error-primary);
+    }
+}
