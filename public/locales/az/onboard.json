@@ -1,0 +1,69 @@
+{
+    "title": "Qəbul",
+    "content": "Merchant Onboard for Odero.az. Finish registration, sign a contract and get access to payment methods.",
+    "step0": {
+        "main": {
+            "title": "Tell us about your situation",
+            "option1": "You are a freelance or independent contractor (VAT payer)",
+            "option2": "You are a freelance or independent contractor (Non VAT payer)",
+            "option3": "You have a company (VAT payer)",
+            "option4": "You have a company (Non VAT payer)"
+        },
+        "help": {
+            "title": "Welcome to Odero Onboard Procedure.",
+            "subtitle": "We need an information about your business in order for us to prepare your contract. Please have your business and personal documents ready and nearby.",
+            "helperTitle": "What's a VAT?",
+            "helperSubtitle": "VAT Payer* - Value Added Tax Payer. VAT payer is a taxable person registered by the tax authority office as obliged to pay VAT."
+        }
+    },
+    "step1": {
+        "main": {
+            "title": "Tell us about yourself"
+        },
+        "help": {
+            "title": "Are you the legal representative?",
+            "subtitle": "If so, please provide your contact information at which we can reach you anytime 24/7. Remember, this information will be used to represent your party in the contract."
+        }
+    },
+    "step2": {
+        "main": {
+            "title": "Tell us about your business"
+        },
+        "help": {
+            "title": "Have questions? We are here for you.",
+            "subtitle": "How do I know which form of operations corresponds to my business? If you have merchants who sell their products on your website, then you are a MARKETPLACE.",
+            "example": "Popular examples: Amazon, Trendyol, Umico."
+        }
+    },
+    "step3": {
+        "main": {
+            "title": "Provide us with contact information for your business"
+        },
+        "help": {
+            "title": "What if I don't have a website?",
+            "subtitle": "No worries at all! If you sell your product via social media, you can pass a link to your social media accounts."
+        }
+    },
+    "step4": {
+        "main": {
+            "title": "One last important step. Documents!"
+        },
+        "help": {
+            "title": "Document upload rules!",
+            "option1": "All documents must be in pdf format.",
+            "option2": "If you have old-gen ID card, scan the back side and upload it via optional documents.",
+            "option3": "Optional documents can be omitted, if you do not require them."
+        }
+    },
+    "step5": {
+        "main": {
+            "title": "Thanks for your time!",
+            "title2": "And congratulations, we have successfully received your onboard application ✅",
+            "subtitle": "What's next? We will send you the contract soon, if everything is in order.",
+            "subtitle2": "You can always see the status of your application from here 👉"
+        },
+        "help": {
+            "title": "Your application status is"
+        }
+    }
+}

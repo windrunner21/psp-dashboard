@@ -2,12 +2,16 @@ import { NextPage } from "next";
 import Head from "next/head";
 import Image from 'next/image'
 import styles from "../styles/404.module.css"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next';
 
 // custom components
 import PrimaryButton from "../components/primary-button";
 import Link from "next/link";
 
 const Error404: NextPage = () => {
+    const { t } = useTranslation(['404']);
+
     return (
         <>
             <Head>
@@ -23,10 +27,12 @@ const Error404: NextPage = () => {
                 <div className={styles.leftContainer}>
                     <div className={styles.form}>
                         <h1 className={styles.title}>404</h1>
-                        <h3 className={styles.subtitle}>Page Not Found!</h3>
-                        <p className={styles.description}>We&apos;re sorry, the page you requested could not be found. Please go back to the homepage!</p>
+                        <h3 className={styles.subtitle}>{t('title')}</h3>
+                        <p className={styles.description}>{t('description')}</p>
                         <Link href="/">
-                            <PrimaryButton title="Go back" />
+                            <div>
+                                <PrimaryButton title={t('goBack')} />
+                            </div>
                         </Link>
                     </div>
                 </div>
@@ -39,3 +45,11 @@ const Error404: NextPage = () => {
 }
 
 export default Error404
+
+export async function getStaticProps({ locale }: { locale: string }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ["404"]))
+        },
+    };
+}

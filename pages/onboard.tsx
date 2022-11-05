@@ -4,6 +4,7 @@ import Head from "next/head";
 import Image from 'next/image'
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next';
 
 // custom components
 import NavigationBarOnboard from "../components/navigation-bar-onboard";
@@ -23,6 +24,8 @@ enum UserType {
 
 const Onboard: NextPage = () => {
     const [user, setUser] = React.useState("Imran Hajiyev")
+    const { t } = useTranslation(['onboard', 'common']);
+    const title = `${t('title')} | Odero`;
 
     const [step, setStep] = React.useState(0)
     const [userType, setUserType] = React.useState(UserType.UNKNOWN)
@@ -37,42 +40,42 @@ const Onboard: NextPage = () => {
             type: UserType.CONTRACTOR,
             vat: true,
             image: "user",
-            label: "You are a freelance or independent contractor (VAT payer)"
+            label: t('step0.main.option1')
         },
         {
             type: UserType.CONTRACTOR,
             vat: false,
             image: "user",
-            label: "You are a freelance or independent contractor (Non VAT payer)"
+            label: t('step0.main.option1')
         },
         {
             type: UserType.COMPANY,
             vat: true,
             image: "company",
-            label: "You have a company (VAT payer)"
+            label: t('step0.main.option1')
         },
         {
             type: UserType.COMPANY,
             vat: false,
             image: "company",
-            label: "You have a company (Non VAT payer)"
+            label: t('step0.main.option1')
         },
     ]
 
     const businessTypeOptions = [
-        "Limited Liability Company",
-        "Open Joint-Stock Company",
-        "Closed Joint-Stock Company"
+        t('common:llc'),
+        t('common:ojsc'),
+        t('common:cjsc'),
     ]
 
     const formOfOperationOptions = [
-        "Standart",
-        "Marketplace"
+        t('common:standart'),
+        t('common:marketplace'),
     ]
 
     const cityOptions = [
-        "Baku",
-        "Ganja"
+        "Bakı",
+        "Gəncə"
     ]
 
     const districtOptions = [
@@ -93,7 +96,7 @@ const Onboard: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Onboard | Odero</title>
+                <title>{title}</title>
                 <meta
                     name="onboard"
                     content="Merchant Onboard for Odero.az. Finish registration, sign a contract and get access to payment methods."
@@ -108,7 +111,7 @@ const Onboard: NextPage = () => {
                         <>
                             {step == 0 &&
                                 <div className={styles.subform}>
-                                    <h1 style={{ marginBottom: "2rem" }}>Tell us about your situation</h1>
+                                    <h1 style={{ marginBottom: "2rem" }}>{t('step0.main.title')}</h1>
                                     {
                                         initialChoices.map((initialChoice, index) => (
                                             <OnboardChoice key={index} image={initialChoice.image} title={initialChoice.label} onClick={() => {
@@ -135,11 +138,11 @@ const Onboard: NextPage = () => {
                         <>
                             {step == 1 &&
                                 <div className={styles.subform} >
-                                    <h1 style={{ marginBottom: "2rem" }}>Tell us about yourself</h1>
+                                    <h1 style={{ marginBottom: "2rem" }}>{t('step1.main.title')}</h1>
                                     <div className={styles.row}>
                                         <TextField
-                                            label="Name"
-                                            placeholder="Your name"
+                                            label={t('common:name')}
+                                            placeholder={t('common:namePrompt')}
                                             validatorLabel="Invalid name"
                                             validateAgainst="name"
                                             autofocus={name == "" ? true : false}
@@ -149,8 +152,8 @@ const Onboard: NextPage = () => {
                                         />
                                         <div style={{ width: "1rem" }} />
                                         <TextField
-                                            label="Surname"
-                                            placeholder="Your surname"
+                                            label={t('common:surname')}
+                                            placeholder={t('common:surnamePrompt')}
                                             validatorLabel="Invalid surname"
                                             validateAgainst="name"
                                             capitalized={true}
@@ -159,16 +162,16 @@ const Onboard: NextPage = () => {
                                         />
                                     </div>
                                     <TextField
-                                        label="Work email"
+                                        label={t('common:workEmail')}
                                         type="email"
-                                        placeholder="Enter your work email"
+                                        placeholder={t('common:workEmailPrompt')}
                                         validatorLabel="Invalid email address"
                                         validateAgainst="email"
                                         value={email}
                                         setValue={setEmail}
                                     />
                                     <TextField
-                                        label="Phone number"
+                                        label={t('common:phoneNumber')}
                                         type="tel"
                                         placeholder="+994 (XX) XXX XX XX"
                                         pattern="+### (##) ### ## ##"
@@ -194,24 +197,27 @@ const Onboard: NextPage = () => {
                         <>
                             {step == 2 &&
                                 <div className={styles.subform}>
-                                    <h1 style={{ marginBottom: "2rem" }}>Tell us about your business</h1>
-                                    {userType == UserType.COMPANY && <Select label="Business Type" optionsList={businessTypeOptions} />}
-                                    <Select label="Form of Operation" optionsList={formOfOperationOptions} />
+                                    <h1 style={{ marginBottom: "2rem" }}>{t('step2.main.title')}</h1>
+                                    {
+                                        userType == UserType.COMPANY &&
+                                        <Select label={t('common:businessType')} optionsList={businessTypeOptions} />
+                                    }
+                                    <Select label={t('common:operationForm')} optionsList={formOfOperationOptions} />
                                     <TextField
-                                        label="Name of your Business"
-                                        placeholder="Enter your business/company name"
+                                        label={t('common:businessName')}
+                                        placeholder={t('common:businessNamePrompt')}
                                         autofocus={true}
                                         capitalized={true}
                                     />
                                     <TextField
-                                        label="Tax Number"
-                                        placeholder="Enter your business/company tax number"
+                                        label={t('common:taxNumber')}
+                                        placeholder={t('common:taxNumberPrompt')}
                                         validatorLabel="Invalid tax number"
                                         validateAgainst="voen"
                                         max={10}
                                     />
                                     <TextField
-                                        label="IBAN"
+                                        label={t('common:iban')}
                                         placeholder="AZDD CCCC DDDD DDDD DDDD DDDD DDDD"
                                         pattern="#### #### #### #### #### #### ####"
                                         validateAgainst="iban"
@@ -234,19 +240,19 @@ const Onboard: NextPage = () => {
                         <>
                             {step == 3 &&
                                 <div className={styles.subform}>
-                                    <h1 style={{ marginBottom: "2rem" }}>Provide us with contact information for your business</h1>
-                                    <Select label="City" optionsList={cityOptions} onClick={setCity} />
-                                    {city == 0 && <Select label="District" optionsList={districtOptions} />}
+                                    <h1 style={{ marginBottom: "2rem" }}>{t('step3.main.title')}</h1>
+                                    <Select label={t('common:city')} optionsList={cityOptions} onClick={setCity} />
+                                    {city == 0 && <Select label={t('common:district')} optionsList={districtOptions} />}
                                     <TextField
-                                        label="Contact number for your Business"
-                                        placeholder="Enter your business/company mobile or phone number"
+                                        label={t('common:contactPhoneBusiness')}
+                                        placeholder={t('common:contactPhoneBusinessPrompt')}
                                         pattern="+### (##) ### ## ##"
                                         validateAgainst="phoneNumber"
                                         autofocus={true}
                                     />
                                     <TextField
-                                        label="Website"
-                                        placeholder="Does your business have a website? Enter it!"
+                                        label={t('common:website')}
+                                        placeholder={t('common:websitePrompt')}
                                         validatorLabel="Invalid format. Don't forget to include https://"
                                         validateAgainst="website"
                                     />
@@ -268,13 +274,33 @@ const Onboard: NextPage = () => {
                         <>
                             {step == 4 &&
                                 <div className={styles.subform}>
-                                    <h1 style={{ marginBottom: "2rem" }}>One last important step. Documents!</h1>
-                                    {userType == UserType.COMPANY && <UploadField id="stateregister" label="Ordering from the State Register" validatorLabel="Ordering upload failed" />}
-                                    <UploadField id="taxnumber" label="Tax Number" validatorLabel="Tax number upload failed" />
-                                    <UploadField id="idcard" label="ID Card" validatorLabel="ID card upload failed" />
-                                    <UploadField id="bankrequisites" label="Bank Requisites" validatorLabel="Bank requisites upload failed" />
-                                    <UploadField id="optional#1" label="Optional Documents #1" validatorLabel="First optional documents upload failed" />
-                                    <UploadField id="optional#2" label="Optional Documents #2" validatorLabel="Second optional documents upload failed" />
+                                    <h1 style={{ marginBottom: "2rem" }}>{t('step4.main.title')}</h1>
+                                    {userType == UserType.COMPANY && <UploadField id="stateregister" label={t('common:ordering')} validatorLabel="Ordering upload failed" />}
+                                    <UploadField
+                                        id="taxnumber"
+                                        label={t('common:taxNumber')}
+                                        validatorLabel="Tax number upload failed"
+                                    />
+                                    <UploadField
+                                        id="idcard"
+                                        label={t('common:idcard')}
+                                        validatorLabel="ID card upload failed"
+                                    />
+                                    <UploadField
+                                        id="bankrequisites"
+                                        label={t('common:bankRequisites')}
+                                        validatorLabel="Bank requisites upload failed"
+                                    />
+                                    <UploadField
+                                        id="optional#1"
+                                        label={t('common:optional1')}
+                                        validatorLabel="First optional documents upload failed"
+                                    />
+                                    <UploadField
+                                        id="optional#2"
+                                        label={t('common:optional2')}
+                                        validatorLabel="Second optional documents upload failed"
+                                    />
                                     <div className={`${styles.row} ${styles.pagination}`}>
                                         <SecondaryBack onClick={() => {
                                             const stepWillSet = step - 1;
@@ -293,10 +319,10 @@ const Onboard: NextPage = () => {
                         <>
                             {step == 5 &&
                                 <div className={styles.subform}>
-                                    <h1 style={{ marginBottom: "1rem" }}>Thanks for your time!</h1>
-                                    <h1 style={{ marginBottom: "2rem" }}>And congratulations, we have successfully received your onboard application ✅</h1>
-                                    <p>What&apos;s next? We will send you the contract soon, if everything is in order.</p>
-                                    <p>You can always see the status of your application from here 👉</p>
+                                    <h1 style={{ marginBottom: "1rem" }}>{t('step5.main.title')}</h1>
+                                    <h1 style={{ marginBottom: "2rem" }}>{t('step5.main.title2')}</h1>
+                                    <p>{t('step5.main.subtitle')}</p>
+                                    <p>{t('step5.main.subtitle2')}</p>
                                 </div>
                             }
                         </>
@@ -306,43 +332,42 @@ const Onboard: NextPage = () => {
                     {step == 0 &&
                         <div className={styles.subform}>
                             <Image src="/onboard/step0.svg" alt="Onboard Choice Logo" width={200} height={200} priority />
-                            <h3>Welcome to Odero Onboard Procedure.</h3>
-                            <p className={styles.description}>We need an information about your business in order for us to prepare your contract. Please have your business and personal documents ready and nearby.</p>
-                            <h4>What&apos;s a VAT?</h4>
-                            <p className={styles.description} style={{ fontSize: "0.9rem" }}>VAT Payer* - Value Added Tax Payer. VAT payer is a taxable person registered by the tax authority office as obliged to pay VAT.</p>
+                            <h3>{t('step0.help.title')}</h3>
+                            <p className={styles.description}>{t('step0.help.subtitle')}</p>
+                            <h4>{t('step0.help.helperTitle')}</h4>
+                            <p className={styles.description} style={{ fontSize: "0.9rem" }}>{t('step0.help.helperSubtitle')}</p>
                         </div>
                     }
                     {step == 1 &&
                         <div className={styles.subform}>
                             <Image src="/onboard/step1.svg" alt="Onboard Choice Logo" width={200} height={200} />
-                            <h3>Are you the legal representative?</h3>
-                            <p className={styles.description}>If so, please provide your contact information at which we can reach you anytime 24/7. Remember, this information will be used to represent your party in the contract.</p>
+                            <h3>{t('step1.help.title')}</h3>
+                            <p className={styles.description}>{t('step1.help.subtitle')}</p>
                         </div>
                     }
                     {step == 2 &&
                         <div className={styles.subform}>
                             <Image src="/onboard/step2.svg" alt="Onboard Choice Logo" width={200} height={200} />
-                            <h3>Have questions? We are here for you.</h3>
-                            <p className={styles.description}>How do I know which form of operations corresponds to my business? If you have merchants who sell their products on your website, then you are a MARKETPLACE.</p>
-                            <p className={styles.description}>Popular examples: Amazon, Trendyol, Umico.</p>
+                            <h3>{t('step2.help.title')}</h3>
+                            <p className={styles.description}>{t('step2.help.subtitle')}</p>
+                            <p className={styles.description}>{t('step2.help.example')}</p>
                         </div>
                     }
                     {step == 3 &&
                         <div className={styles.subform}>
                             <Image src="/onboard/step3.svg" alt="Onboard Choice Logo" width={200} height={200} />
-                            <h3>What if I don&apos;t have a website?</h3>
-                            <p className={styles.description}>No worries at all! If you sell your product via social media, you can pass a link to your social media accounts.</p>
+                            <h3>{t('step3.help.title')}</h3>
+                            <p className={styles.description}>{t('step3.help.subtitle')}</p>
                         </div>
                     }
                     {step == 4 &&
                         <div className={styles.subform}>
                             <Image src="/onboard/step4.svg" alt="Onboard Choice Logo" width={200} height={200} />
-                            <h3>Document upload rules!</h3>
+                            <h3>{t('step4.help.title')}</h3>
                             <div style={{ textAlign: "justify" }}>
-                                <p className={styles.description}>&#x2022; All documents must be in pdf format.</p>
-                                <p className={styles.description}>&#x2022; If you have old-gen ID card, scan the back side and upload it via optional documents.</p>
-                                <p className={styles.description}>&#x2022; License for tabacoo, drugs or alcohol products MUST be uploaded. Again use optional documents.</p>
-                                <p className={styles.description}>&#x2022; Optional documents can be omitted, if you do not require them.</p>
+                                <p className={styles.description}>&#x2022; {t('step4.help.option1')}</p>
+                                <p className={styles.description}>&#x2022; {t('step4.help.option2')}</p>
+                                <p className={styles.description}>&#x2022; {t('step4.help.option3')}</p>
                             </div>
                         </div>
                     }
@@ -350,8 +375,8 @@ const Onboard: NextPage = () => {
                     {step == 5 &&
                         <div>
                             <Image src="/onboard/step5.svg" alt="Onboard Choice Logo" width={300} height={300} />
-                            <h3>Your application status is</h3>
-                            <h1 style={{ color: "var(--success-primary)" }}>APPLIED</h1>
+                            <h3>{t('step5.help.title')}</h3>
+                            <h1 style={{ color: "var(--success-primary)", textTransform: "uppercase" }}>{t('common:applied')}</h1>
                         </div>
                     }
                 </div>
@@ -365,7 +390,7 @@ export default Onboard
 export async function getStaticProps({ locale }: { locale: string }) {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ["onboard", "languages"]))
+            ...(await serverSideTranslations(locale, ["onboard", "languages", "common"]))
         },
     };
 }
