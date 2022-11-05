@@ -1,69 +1,69 @@
 {
-    "title": "Qəbul",
-    "content": "Merchant Onboard for Odero.az. Finish registration, sign a contract and get access to payment methods.",
+    "title": "Qeydiyyat",
+    "content": "Odero.az üçün Üzv İş Yeri Qeydiyyatı. Qeydiyyatı bitirin, müqaviləni imzalayın və ödəniş üsullarına çıxış əldə edin.",
     "step0": {
         "main": {
-            "title": "Tell us about your situation",
-            "option1": "You are a freelance or independent contractor (VAT payer)",
-            "option2": "You are a freelance or independent contractor (Non VAT payer)",
-            "option3": "You have a company (VAT payer)",
-            "option4": "You have a company (Non VAT payer)"
+            "title": "Fəaliyyətiniz haqda məlumat verin",
+            "option1": "Siz fərdi sahibkar və ya frilansersiniz (ƏDV ödəyicisi)",
+            "option2": "Siz fərdi sahibkar və ya frilansersiniz (ƏDV ödəyicisi olmayan)",
+            "option3": "Siz hüquqi şəxssiniz (ƏDV ödəyicisi)",
+            "option4": "Siz hüquqi şəxssiniz (ƏDV ödəyicisi olmayan)"
         },
         "help": {
-            "title": "Welcome to Odero Onboard Procedure.",
-            "subtitle": "We need an information about your business in order for us to prepare your contract. Please have your business and personal documents ready and nearby.",
-            "helperTitle": "What's a VAT?",
-            "helperSubtitle": "VAT Payer* - Value Added Tax Payer. VAT payer is a taxable person registered by the tax authority office as obliged to pay VAT."
+            "title": "Odero Qeydiyyat Mərhələsinə Xoş Gəlmisiniz.",
+            "subtitle": "Müqavilənizi hazırlamaq üçün bizə biznesiniz haqqında məlumat lazımdır. Zəhmət olmasa hüquqi və şəxsi sənədlərinizi hazırlayın və yaxınlıqda saxlayın.",
+            "helperTitle": "ƏDV nədir?",
+            "helperSubtitle": "ƏDV ödəyicisi* - Əlavə Dəyər Vergisi Ödəyicisi. ƏDV ödəyicisi ƏDV-ni ödəmək öhdəliyi ilə vergi orqanında qeydiyyata alınmış vergi tutulan şəxsdir."
         }
     },
     "step1": {
         "main": {
-            "title": "Tell us about yourself"
+            "title": "Özünüz haqda məlumat verin"
         },
         "help": {
-            "title": "Are you the legal representative?",
-            "subtitle": "If so, please provide your contact information at which we can reach you anytime 24/7. Remember, this information will be used to represent your party in the contract."
+            "title": "Siz qanuni təmsilçisiniz?",
+            "subtitle": "Əgər elədirsə, zəhmət olmasa sizinlə 24/7 əlaqə saxlaya biləcəyimiz əlaqə məlumatlarınızı təqdim edin. Unutmayın ki, bu məlumat müqavilədə sizin məlumatlarınızda əks olunacaq."
         }
     },
     "step2": {
         "main": {
-            "title": "Tell us about your business"
+            "title": "Biznesiniz haqda məlumat verin"
         },
         "help": {
-            "title": "Have questions? We are here for you.",
-            "subtitle": "How do I know which form of operations corresponds to my business? If you have merchants who sell their products on your website, then you are a MARKETPLACE.",
-            "example": "Popular examples: Amazon, Trendyol, Umico."
+            "title": "Sualınız var? Sizin üçün buradayıq.",
+            "subtitle": "Hansı fəaliyyət formasının biznesimə uyğun olduğunu necə öyrənə bilərəm? Əgər digər sahibkarlar sizin veb-saytınızda öz məhsullarını satırsa, bu MARKETPLEYS fəaliyyətidir.",
+            "example": "Məşhur nümunələr: Amazon, Trendyol, Umico."
         }
     },
     "step3": {
         "main": {
-            "title": "Provide us with contact information for your business"
+            "title": "Korporativ əlaqə məlumatlarınızı təqdim edin"
         },
         "help": {
-            "title": "What if I don't have a website?",
-            "subtitle": "No worries at all! If you sell your product via social media, you can pass a link to your social media accounts."
+            "title": "Veb-saytım yoxdursa nə edim?",
+            "subtitle": "Narahat olmayın! Əgər məhsulunuzu sosial şəbəkələr vasitəsilə satırsınızda, sosail media istifadəçilərinizə ödəniş linki göndərə bilərsiniz."
         }
     },
     "step4": {
         "main": {
-            "title": "One last important step. Documents!"
+            "title": "Sonuncu vacib addım. Sənədlər!"
         },
         "help": {
-            "title": "Document upload rules!",
-            "option1": "All documents must be in pdf format.",
-            "option2": "If you have old-gen ID card, scan the back side and upload it via optional documents.",
-            "option3": "Optional documents can be omitted, if you do not require them."
+            "title": "Sənədləri yükləmə qaydası!",
+            "option1": "Bütün sənədlər pdf formatında olmalıdır.",
+            "option2": "Əgər sizin şəsiyyət vəsiqəniz könə nəsildirsə, arxa tərəfinin surətini əlavə sənədlər bölməsinə yükləyin.",
+            "option3": "Əlavə təqdim ediləcək sənəd yoxdursa, əlavə sənədlər bölməsi boş buraxıla bilər."
         }
     },
     "step5": {
         "main": {
-            "title": "Thanks for your time!",
-            "title2": "And congratulations, we have successfully received your onboard application ✅",
-            "subtitle": "What's next? We will send you the contract soon, if everything is in order.",
-            "subtitle2": "You can always see the status of your application from here 👉"
+            "title": "Vaxt ayırdığınız üçün təşəkkür edirik!",
+            "title2": "Təbriklər, qeydiyyat müraciətinizi uğurla qəbul etdik ✅",
+            "subtitle": "Sonra? Hər şey qaydasındadırsa, müqaviləni qısa zamanda sizə göndərəcəyik.",
+            "subtitle2": "Müraciətinizin statusunu hər zaman buradan görə bilərsiniz 👉"
         },
         "help": {
-            "title": "Your application status is"
+            "title": "Sizin müraciət statusunuz"
         }
     }
 }

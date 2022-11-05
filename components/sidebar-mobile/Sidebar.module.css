@@ -7,6 +7,7 @@
     align-items: flex-start;
     position: relative;
     border-right: 0.1rem solid var(--secondary);
+    background-color: white;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     -webkit-animation-name: slideIn;
     -webkit-animation-duration: 0.4s;
@@ -44,10 +45,9 @@
     cursor: pointer;
 }
 
-@media (max-width: 450px) {
+@media (prefers-color-scheme: dark) {
     .sidebar {
-        /* mobile viewport bug fix */
-        height: -webkit-fill-available;
+        background-color: #262626;
     }
 }
 

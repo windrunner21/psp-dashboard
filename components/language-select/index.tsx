@@ -21,17 +21,17 @@ const LanguageSelect = () => {
             <div className={styles.dropdownContent}>
                 {locale != 'az' && <p className={styles.dropdownItem}>
                     <Link href={asPath} locale="az">
-                        {t('az')}
+                        Azərbaycanca
                     </Link>
                 </p>}
                 {locale != 'ru' && <p className={styles.dropdownItem}>
                     <Link href={asPath} locale="ru">
-                        {t('ru')}
+                        Русский
                     </Link>
                 </p>}
                 {locale != 'en' && <p className={styles.dropdownItem}>
                     <Link href={asPath} locale="en">
-                        {t('en')}
+                        English
                     </Link>
                 </p>}
             </div>

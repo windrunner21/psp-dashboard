@@ -44,19 +44,17 @@
 }
 
 @media (max-width: 525px) {
-    .main {
-        /* mobile viewport bug fix */
-        height: -webkit-fill-available;
+    .leftContainer {
+        z-index: 2;
+        position: absolute;
+        left: 0;
+        width: 50%;
     }
 }
 
 @media (max-width: 600px) {
     .mobile {
         display: block;
-    }
-
-    .leftContainer {
-        width: 100%;
     }
 
     .desktop {
