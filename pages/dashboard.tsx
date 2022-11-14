@@ -19,35 +19,19 @@ const Dashboard: NextPage = () => {
     const [areNotificationslVisible, setNotificationsVisible] = React.useState(false)
     const [notificationsList, setNotificationsList] = React.useState([
         new NotificationItem(1, "Payment Failed", "Your payment dated 21/10/2022 has failed due to unknown reasons.", true),
-        new NotificationItem(2, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(3, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(4, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(5, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(6, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(7, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(8, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(9, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(10, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(4, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(5, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(6, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(7, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(8, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(9, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(10, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(4, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(5, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(6, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(7, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(8, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(9, "Settlement Received", "Your settlement was last week successfully completed.", true),
-        new NotificationItem(10, "Settlement Received", "Your settlement was last week successfully completed.", true),
+        new NotificationItem(2, "Settlement Received", "Your settlement for last week was successfully completed.", true),
+        new NotificationItem(3, "Settlement Received", "Your settlement for last week was successfully completed.", true),
+        new NotificationItem(4, "Settlement Received", "Your settlement for last week was successfully completed.", true),
+        new NotificationItem(5, "Settlement Received", "Your settlement for last week was successfully completed.", true),
+        new NotificationItem(6, "Settlement Received", "Your settlement for last week was successfully completed.", true),
+        new NotificationItem(7, "Settlement Received", "Your settlement for last week was successfully completed.", true),
+        new NotificationItem(8, "Settlement Received", "Your settlement for last week was successfully completed.", true),
+        new NotificationItem(9, "Settlement Received", "Your settlement for last week was successfully completed.", true),
     ])
 
     React.useEffect(() => {
         if (typeof window !== 'undefined') {
             window.addEventListener("resize", () => collapseSidebar(window.innerWidth <= 1200));
-
             return () => window.removeEventListener("resize", () => collapseSidebar(window.innerWidth <= 1200))
         }
     }, []);
@@ -71,14 +55,15 @@ const Dashboard: NextPage = () => {
                 </div>
                 <div className={styles.rightContainer}>
                     <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} />
-                    {/* <div className={styles.pageContent}>
+                    <div className={styles.pageContent}>
                         <Statistics />
+                        {/* <Statistics />
                         <div className={styles.graphAndTable}>
                             <Graphs />
                             <div style={{ height: "2rem" }} />
                             <LatestTransactions />
-                        </div>
-                    </div> */}
+                        </div> */}
+                    </div>
                 </div>
                 {
                     areNotificationslVisible &&
