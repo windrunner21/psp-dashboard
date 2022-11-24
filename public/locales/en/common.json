@@ -11,6 +11,7 @@
     "workEmail": "Work email",
     "workEmailPrompt": "Enter your work email",
     "phoneNumber": "Phone number",
+    "phoneNumberPrompt": "Enter your phone number",
     "businessType": "Business Type",
     "llc": "Limited Liability Company (LLC)",
     "ojsc": "Open Joint-Stock Company (OJSC)",

@@ -6,6 +6,7 @@ export const RE_NAME = /^[a-zA-Z ]{2,30}$/;
 export const RE_ONLY_DIGITS = /^[0-9]*$/;
 export const RE_WEBSITE =
   /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(:[0-9]+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+
 export function isValidNameSurname(target: EventTarget) {
   const targetStrong = target as HTMLTextAreaElement;
 
@@ -30,6 +31,10 @@ export function applyPhoneNumberPattern(str: string, mask: string) {
   if (!mask) return str;
 
   const numeric = str.replaceAll(/[^\d]/g, "");
+
+  if (numeric.length == 0) {
+    return str;
+  }
 
   let idx = 0;
   const formated = mask.split("").map((el) => {

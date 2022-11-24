@@ -28,6 +28,8 @@ const Login: NextPage = () => {
     const [isModalVisible, setModalVisible] = React.useState(false)
     const [loading, setIsLoading] = React.useState(false)
 
+    const [phoneNumber, setPhoneNumber] = React.useState("")
+
     function showOneTimePassword(value: boolean) {
         setIsLoading(value)
         setModalVisible(value)
@@ -63,11 +65,14 @@ const Login: NextPage = () => {
                         </p>
 
                         <TextField
-                            type="email"
-                            label={t('common:email')}
-                            placeholder={t('common:emailPrompt')}
+                            type="tel"
+                            label={t('common:phoneNumber')}
+                            placeholder={t('common:phoneNumberPrompt')}
                             validatorLabel={t('validators:email')}
-                            validateAgainst="email"
+                            validateAgainst="phoneNumber"
+                            pattern="+### (##) ### ## ##"
+                            value={phoneNumber}
+                            setValue={setPhoneNumber}
                             autofocus={true}
                         />
                         <TextField
@@ -84,7 +89,7 @@ const Login: NextPage = () => {
                     </div>
                     {isModalVisible &&
                         <OneTimePassword
-                            phoneNumber={"+994 (51) 780 79 29"}
+                            phoneNumber={phoneNumber}
                             onClick={() => showOneTimePassword(false)}
                             setAlertType={setAlertType}
                             setAlertTitle={setAlertTitle}
