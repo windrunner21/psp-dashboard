@@ -1,15 +1,10 @@
 import styles from "../text-field/TextField.module.css";
 import Validator from "../validator";
 import TextFieldProps from "./interface";
-import { applyIBANPattern, applyPhoneNumberPattern, isValidEmailAddress, isValidNameSurname, isValidTaxNumber, isValidWebsite } from "../../constants"
 import React from "react";
+import { applyIBANPattern, applyPhoneNumberPattern, isValidEmailAddress, isValidNameSurname, isValidTaxNumber, isValidWebsite } from "../../controllers/validators";
 
 const TextField = (props: TextFieldProps) => {
-
-    // waiting before error
-    let timer: NodeJS.Timeout;
-    const waitTime = 500;
-
     const [hasError, setHasError] = React.useState(false)
     const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -20,30 +15,21 @@ const TextField = (props: TextFieldProps) => {
     }, [props.autofocus])
 
     function validate(target: EventTarget) {
-        clearTimeout(timer);
-
-        if (props.validateAgainst == "name") {
-            timer = setTimeout(() => {
+        switch (props.validateAgainst) {
+            case "name":
                 setHasError(!isValidNameSurname(target))
-            }, waitTime);
-        }
-
-        if (props.validateAgainst == "email") {
-            timer = setTimeout(() => {
+                break;
+            case "email":
                 setHasError(!isValidEmailAddress(target))
-            }, waitTime);
-        }
-
-        if (props.validateAgainst == "voen") {
-            timer = setTimeout(() => {
+                break;
+            case "voen":
                 setHasError(!isValidTaxNumber(target))
-            }, waitTime);
-        }
-
-        if (props.validateAgainst == "website") {
-            timer = setTimeout(() => {
+                break;
+            case "website":
                 setHasError(!isValidWebsite(target))
-            }, waitTime);
+                break;
+            default:
+                break;
         }
     }
 
@@ -68,15 +54,12 @@ const TextField = (props: TextFieldProps) => {
                 className={styles.input}
                 placeholder={props.placeholder}
                 type={props.type}
-                onKeyUp={(e) => validate(e.target)}
-                onBlur={(e) => handlePattern(e)}
+                onBlur={(e) => { validate(e.target); handlePattern(e) }}
                 maxLength={props.max}
                 pattern={props.pattern}
                 defaultValue={props.value}
             />
-            {hasError && <div style={{ marginTop: "0.1rem" }}>
-                <Validator label={props.validatorLabel} />
-            </div>}
+            {hasError && <Validator label={props.validatorLabel} />}
         </div>
     )
 }

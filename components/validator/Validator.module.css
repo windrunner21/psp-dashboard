@@ -1,6 +1,13 @@
-.label {
+.container {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--error);
+    border: 0.1rem solid var(--error-primary);
+    border-radius: 0.6rem;
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 500;
+    line-height: 0.7rem;
     color: var(--error-primary);
-    line-height: 1;
-    font-size: 0.8rem;
-    letter-spacing: 0.02rem;
 }

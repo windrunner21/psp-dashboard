@@ -15,6 +15,7 @@ import Footer from "../components/footer";
 import OneTimePassword from "../components/one-time-password";
 import AlertDialog from "../components/alert-dialog";
 import AlertType from "../components/alert-dialog/AlertType";
+import sendSignUpForm from "../controllers/register";
 
 const Register: NextPage = () => {
     const { t } = useTranslation(['register', 'common']);
@@ -27,11 +28,18 @@ const Register: NextPage = () => {
     const [isModalVisible, setModalVisible] = React.useState(false)
     const [loading, setIsLoading] = React.useState(false)
 
+    // data
+    const [name, setName] = React.useState("")
+    const [surname, setSurname] = React.useState("")
     const [phoneNumber, setPhoneNumber] = React.useState("")
 
-    function showOneTimePassword(value: boolean) {
-        setIsLoading(value)
-        setModalVisible(value)
+    async function signUp() {
+        setIsLoading(true)
+        const status = await sendSignUpForm(name, surname, phoneNumber);
+        setIsLoading(false)
+        if (status == 200) {
+            setModalVisible(true)
+        }
     }
 
     return (
@@ -70,6 +78,7 @@ const Register: NextPage = () => {
                                 validateAgainst="name"
                                 autofocus={true}
                                 capitalized={true}
+                                setValue={setName}
 
                             />
                             <div style={{ width: "1rem" }} />
@@ -79,6 +88,7 @@ const Register: NextPage = () => {
                                 validatorLabel="Invalid surname"
                                 validateAgainst="name"
                                 capitalized={true}
+                                setValue={setSurname}
                             />
                         </div>
                         <TextField
@@ -92,13 +102,13 @@ const Register: NextPage = () => {
 
                         />
                         <div style={{ height: "1rem" }} />
-                        <PrimaryButton title={t('signIn')} onClick={() => showOneTimePassword(true)} loading={loading} />
+                        <PrimaryButton title={t('signUp')} onClick={() => signUp()} loading={loading} />
                         <p className={styles.caption}>{t('hadAccount')} <PrimaryLink href="/login" label={t('signIn')} /></p>
                     </div>
                     {isModalVisible &&
                         <OneTimePassword
                             phoneNumber={phoneNumber}
-                            onClick={() => showOneTimePassword(false)}
+                            onClick={() => setModalVisible(false)}
                             setAlertType={setAlertType}
                             setAlertTitle={setAlertTitle}
                             setAlertDescription={setAlertDescription}
