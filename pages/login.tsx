@@ -75,15 +75,6 @@ const Login: NextPage = () => {
                             setValue={setPhoneNumber}
                             autofocus={true}
                         />
-                        <TextField
-                            type="password"
-                            label={t('common:password')}
-                            placeholder={t('common:password')}
-                        />
-                        <div className={styles.options}>
-                            <CheckboxWithLabel label={t('rememberMe')} />
-                            <PrimaryLink href="/" label={t('forgotPassword')} />
-                        </div>
                         <PrimaryButton title={t('signIn')} onClick={() => showOneTimePassword(true)} loading={loading} />
                         <p className={styles.caption}>{t('noAccount')} <PrimaryLink href="https://odero.az/az/registration/" label={t('signUp')} /></p>
                     </div>
