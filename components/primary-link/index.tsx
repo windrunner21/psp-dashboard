@@ -1,10 +1,14 @@
-import Image from "next/image";
+import Link from "next/link";
 import styles from "../primary-link/PrimaryLink.module.css"
 import PrimaryLinkProps from "./interface";
 
 const PrimaryLink = (props: PrimaryLinkProps) => {
     return (
-        <a href={props.href} className={`${props.disabled ? styles.disabledLink : styles.link}`} onClick={props.onClick}>{props.label}</a>
+        props.href ?
+            <Link href={props.href}>
+                <span className={`${props.disabled ? styles.disabledLink : styles.link}`} onClick={props.onClick}>{props.label}</span>
+            </Link> :
+            <span className={`${props.disabled ? styles.disabledLink : styles.link}`} onClick={props.onClick} > {props.label}</span>
     )
 }
 

@@ -21,23 +21,23 @@ const Footer = () => {
             <div className={styles.languages}>
                 <div>
                     <Link href={asPath} locale="az">
-                        <>
+                        <div>
                             <Image src="/flags/az.svg" alt="Azerbaijani Flag Language" width={24} height={24} />
-                        </>
+                        </div>
                     </Link>
                 </div>
                 <div style={{ margin: "0 1rem" }}>
                     <Link href={asPath} locale="ru">
-                        <>
+                        <div>
                             <Image src="/flags/ru.svg" alt="Russian Flag Language" width={24} height={24} />
-                        </>
+                        </div>
                     </Link>
                 </div>
                 <div>
                     <Link href={asPath} locale="en">
-                        <>
+                        <div>
                             <Image src="/flags/en.svg" alt="US Flag Language" width={24} height={24} />
-                        </>
+                        </div>
                     </Link>
                 </div>
             </div>

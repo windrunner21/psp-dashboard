@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Login.module.css";
+import styles from "../styles/Register.module.css";
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from 'next-i18next';
@@ -16,8 +16,8 @@ import OneTimePassword from "../components/one-time-password";
 import AlertDialog from "../components/alert-dialog";
 import AlertType from "../components/alert-dialog/AlertType";
 
-const Login: NextPage = () => {
-    const { t } = useTranslation(['login', 'common']);
+const Register: NextPage = () => {
+    const { t } = useTranslation(['register', 'common']);
     const title = `${t('title')} | Odero`;
 
     const [isAlertVisible, setAlertVisible] = React.useState(false)
@@ -57,26 +57,43 @@ const Login: NextPage = () => {
                     }
                     <div className={`${styles.form} ${isModalVisible && styles.blur}`}>
                         <OderoLogo />
-                        <h2 className={styles.title}>{t('signIn')}</h2>
+                        <h2 className={styles.title}>{t('signUp')}</h2>
 
                         <p className={styles.description}>
-                            {t('welcomeBack')}
+                            {t('createAccount')}
                         </p>
+                        <div className={styles.row}>
+                            <TextField
+                                label={t('common:name')}
+                                placeholder={t('common:namePrompt')}
+                                validatorLabel="Invalid name"
+                                validateAgainst="name"
+                                autofocus={true}
+                                capitalized={true}
 
+                            />
+                            <div style={{ width: "1rem" }} />
+                            <TextField
+                                label={t('common:surname')}
+                                placeholder={t('common:surnamePrompt')}
+                                validatorLabel="Invalid surname"
+                                validateAgainst="name"
+                                capitalized={true}
+                            />
+                        </div>
                         <TextField
                             type="tel"
                             label={t('common:phoneNumber')}
                             placeholder={t('common:phoneNumberPrompt')}
-                            validatorLabel={t('validators:email')}
                             validateAgainst="phoneNumber"
                             pattern="+### (##) ### ## ##"
                             value={phoneNumber}
                             setValue={setPhoneNumber}
-                            autofocus={true}
+
                         />
                         <div style={{ height: "1rem" }} />
                         <PrimaryButton title={t('signIn')} onClick={() => showOneTimePassword(true)} loading={loading} />
-                        <p className={styles.caption}>{t('noAccount')} <PrimaryLink href="/register" label={t('signUp')} /></p>
+                        <p className={styles.caption}>{t('hadAccount')} <PrimaryLink href="/login" label={t('signIn')} /></p>
                     </div>
                     {isModalVisible &&
                         <OneTimePassword
@@ -103,12 +120,12 @@ const Login: NextPage = () => {
     );
 };
 
-export default Login;
+export default Register;
 
 export async function getStaticProps({ locale }: { locale: string }) {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ["login", "otp", "alert-dialog", "common", "footer", "validators"]))
+            ...(await serverSideTranslations(locale, ["register", "otp", "alert-dialog", "common", "footer", "validators"]))
         },
     };
 }

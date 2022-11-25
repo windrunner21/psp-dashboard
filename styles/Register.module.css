@@ -1,0 +1,136 @@
+.main {
+    min-height: 100vh;
+    flex: 1;
+    display: flex;
+}
+
+.rightContainer {
+    margin: 1rem;
+    border-radius: 1rem;
+    background-color: var(--secondary);
+    padding: 0 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.callout {
+    margin: 2rem 0;
+    width: 50%;
+    line-height: 2.5rem;
+    text-align: center;
+}
+
+.callout p {
+    width: 100%;
+    color: #393F4B;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+    text-align: right;
+}
+
+.leftContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.blur {
+    filter: blur(0.075rem);
+}
+
+.title {
+    margin: 0;
+    line-height: 1.15;
+    font-size: 3rem;
+}
+
+.description {
+    margin: 1rem 0;
+    line-height: 1.25;
+    font-size: 1rem;
+    color: #A2A5AC;
+    letter-spacing: 0.05rem;
+}
+
+.caption {
+    width: 100%;
+    color: #393F4B;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+    text-align: center;
+}
+
+.options {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* SCREEN SETTINGS */
+
+@media (max-width: 400px) {
+    .form {
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .form {
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .rightContainer {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .form {
+        padding: 0 2rem;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .footer {
+        border-color: #222;
+    }
+
+    .rightContainer {
+        background-color: var(--background-dark)
+    }
+
+    .caption {
+        color: white;
+    }
+
+    .callout p {
+        color: white;
+    }
+}

@@ -1,11 +1,9 @@
 {
     "title": "Login",
-    "content": "Merchant login page for the merchant.odero.az website.",
+    "description": "Login page for the odero az dashboard.",
     "signIn": "Sign in",
     "signUp": "Sign up",
     "welcomeBack": "Welcome back! Please enter your details",
-    "forgotPassword": "Forgot password",
-    "rememberMe": "Remember for 30 days",
     "noAccount": "Don't have an account?",
     "inspiration": "Working hard for you to always get successful payments.",
     "fromOderoAzTeam": "Sincerely, Odero.az Team 💚"
