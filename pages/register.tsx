@@ -40,6 +40,10 @@ const Register: NextPage = () => {
         if (status == 200) {
             setModalVisible(true)
         }
+
+        if (status == 500) {
+            setAlertVisible(true)
+        }
     }
 
     return (
