@@ -2,9 +2,10 @@ import AlertType from "./AlertType";
 
 interface AlertDialogProps {
   type?: AlertType;
+  delay?: number;
   title?: string;
   description?: string;
-  onClick: (params: any) => void;
+  onClick: () => void;
 }
 
 export default AlertDialogProps;

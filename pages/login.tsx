@@ -15,6 +15,7 @@ import Footer from "../components/footer";
 import OneTimePassword from "../components/one-time-password";
 import AlertDialog from "../components/alert-dialog";
 import AlertType from "../components/alert-dialog/AlertType";
+import PhoneNumberField from "../components/phone-number-field";
 
 const Login: NextPage = () => {
     const { t } = useTranslation(['login', 'common']);
@@ -63,13 +64,10 @@ const Login: NextPage = () => {
                             {t('welcomeBack')}
                         </p>
 
-                        <TextField
+                        <PhoneNumberField
                             type="tel"
                             label={t('common:phoneNumber')}
                             placeholder={t('common:phoneNumberPrompt')}
-                            validatorLabel={t('validators:email')}
-                            validateAgainst="phoneNumber"
-                            pattern="+### (##) ### ## ##"
                             value={phoneNumber}
                             setValue={setPhoneNumber}
                             autofocus={true}

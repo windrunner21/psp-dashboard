@@ -8,8 +8,8 @@ import PrimaryButton from "../primary-button"
 import PrimaryLink from "../primary-link"
 import DigitInput from "./digit-input"
 import OneTimePasswordProps from "./interface"
-import Validator from "../validator"
 import AlertType from "../alert-dialog/AlertType"
+import Validator from "../validator";
 
 const OneTimePassword = (props: OneTimePasswordProps) => {
     const { t } = useTranslation(['otp', 'alert-dialog', 'validators']);
@@ -39,8 +39,8 @@ const OneTimePassword = (props: OneTimePasswordProps) => {
             setHasErrors(true)
             setIsLoading(false)
             props.setAlertType(AlertType.ERROR);
-            props.setAlertTitle(t('alert-dialog:title.error'))
-            props.setAlertDescription(t('alert-dialog:subtitle.error'))
+            props.setAlertTitle(t('alert-dialog:title.error.generic'))
+            props.setAlertDescription(t('alert-dialog:subtitle.error.generic'))
             props.showAlert(true)
         } else {
             setHasErrors(false)
@@ -86,14 +86,12 @@ const OneTimePassword = (props: OneTimePasswordProps) => {
         <div className={styles.modal}>
             <CloseButton onClick={props.onClick} />
             <h2>{t('title')}</h2>
-            <p className={styles.description}>{t('subtitle', { phoneNumber: props.phoneNumber })}</p>
-            <div style={{ marginTop: "1.5rem", marginBottom: "1.25rem" }}>
+            <p className={styles.description}>{t('subtitle', { phoneNumber: "+994 " + props.phoneNumber })}</p>
+            <div style={{ marginTop: "1.5rem" }}>
                 <DigitInput value={otp} repeating={codeLength} onChange={onChange} displayError={hasErrors} onPaste={sendPastedOneTimePasswordCode} />
             </div>
-            {hasErrors && <div style={{ marginBottom: "1.25rem" }}>
-                <Validator label={t('validators:otp', { length: codeLength })} />
-            </div>}
-            <div style={{ marginBottom: "1.25rem" }}>
+            {hasErrors && <Validator label={t('validators:otp', { length: codeLength })} />}
+            <div style={{ marginTop: "1.25rem", marginBottom: "1.25rem" }}>
                 <PrimaryLink label={t('resend')} onClick={resetTimer} disabled={disabled} />
                 <span className={styles.linkText}> {t('in')} {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</span>
             </div>

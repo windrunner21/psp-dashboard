@@ -1,12 +1,20 @@
 {
     "title": {
         "success": "Congratulations!",
-        "error": "Something went wrong!"
+        "error": {
+            "generic": "Something went wrong!",
+            "wrongForm": "Mistakes found!",
+            "emptyForm": "Oh no!"
+        }
     },
     "subtitle": {
         "success": {
             "login": "You've successfully logged in."
         },
-        "error": "We've encountered some unexpected error."
+        "error": {
+            "generic": "We've encountered some unexpected error.",
+            "wrongForm": "Please check your form for mistakes.",
+            "emptyForm": "Looks like you did not fill out the form."
+        }
     }
 }

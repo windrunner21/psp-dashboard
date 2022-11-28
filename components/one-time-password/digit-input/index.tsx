@@ -82,6 +82,7 @@ const DigitInput = (props: DigitInputProps) => {
             {valueItems.map((digit, index) =>
                 <input
                     key={index}
+                    style={index == 3 ? { marginLeft: "1rem" } : undefined}
                     type="text"
                     inputMode="numeric"
                     autoComplete="one-time-code"
@@ -92,6 +93,7 @@ const DigitInput = (props: DigitInputProps) => {
                     onChange={(e) => inputOnChange(e, index)}
                     onKeyDown={inputOnKeyDown}
                 />
+
             )}
         </div>
     )

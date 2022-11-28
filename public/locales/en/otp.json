@@ -1,6 +1,6 @@
 {
     "title": "Enter verification code",
-    "subtitle": "We have just sent a verification code to provided {{ phoneNumber }}",
+    "subtitle": "We have just sent a verification code to the provided {{ phoneNumber }}",
     "resend": "Resend code",
     "in": "in",
     "verify": "Verify"

@@ -10,6 +10,8 @@ const AlertDialog = (props: AlertDialogProps) => {
     const [style, setStyle] = React.useState(``)
     const [icon, setIcon] = React.useState("")
 
+
+
     React.useEffect(() => {
         switch (props.type) {
             case AlertType.SUCCESS:
@@ -31,7 +33,12 @@ const AlertDialog = (props: AlertDialogProps) => {
             default:
                 return;
         }
-    }, [props.type])
+
+        const timer = setTimeout(() => {
+            props.onClick()
+        }, props.delay);
+        return () => clearTimeout(timer)
+    }, [props.type, props.delay, props])
 
     return (
         <div ref={alertRef} className={style}>

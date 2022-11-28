@@ -1,12 +1,20 @@
 {
     "title": {
         "success": "Təbriklər!",
-        "error": "Xəta baş verdi!"
+        "error": {
+            "generic": "Xəta baş verdi!",
+            "wrongForm": "Xəta tapıldı!",
+            "emptyForm": "Vay!"
+        }
     },
     "subtitle": {
         "success": {
             "login": "Uğurla daxil olmusunuz."
         },
-        "error": "Biz gözlənilməz xəta ilə qarşılaşdıq."
+        "error": {
+            "generic": "Biz gözlənilməz xəta ilə qarşılaşdıq.",
+            "wrongForm": "Səhvlər üçün daxiletmənizi yenidən yoxlayın.",
+            "emptyForm": "Görünür, siz formanızı doldurmamısınız."
+        }
     }
 }

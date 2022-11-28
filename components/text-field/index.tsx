@@ -1,5 +1,4 @@
 import styles from "../text-field/TextField.module.css";
-import Validator from "../validator";
 import TextFieldProps from "./interface";
 import React from "react";
 import { applyIBANPattern, applyPhoneNumberPattern, isValidEmailAddress, isValidNameSurname, isValidTaxNumber, isValidWebsite } from "../../controllers/validators";
@@ -47,11 +46,11 @@ const TextField = (props: TextFieldProps) => {
 
     return (
         <div className={styles.grid}>
-            <p className={styles.label}>{props.label}</p>
+            <p className={`${styles.label} ${hasError ? styles.labelError : ''}`}>{hasError ? props.validatorLabel : props.label}</p>
             <input
                 style={props.capitalized ? { textTransform: "capitalize" } : {}}
                 ref={inputRef}
-                className={styles.input}
+                className={`${styles.input} ${hasError ? styles.inputError : ''}`}
                 placeholder={props.placeholder}
                 type={props.type}
                 onBlur={(e) => { validate(e.target); handlePattern(e) }}
@@ -59,7 +58,6 @@ const TextField = (props: TextFieldProps) => {
                 pattern={props.pattern}
                 defaultValue={props.value}
             />
-            {hasError && <Validator label={props.validatorLabel} />}
         </div>
     )
 }

@@ -20,25 +20,10 @@ export function isValidEmailAddress(target: EventTarget) {
   }
 }
 
-export function applyPhoneNumberPattern(str: string, mask: string) {
-  if (!mask) return str;
-
-  const numeric = str.replaceAll(/[^\d]/g, "");
-
-  if (numeric.length == 0) {
-    return str;
-  }
-
-  let idx = 0;
-  const formated = mask.split("").map((el) => {
-    if (el == "#") {
-      el = numeric[idx];
-      idx++;
-    }
-    return el;
-  });
-
-  return formated.join("");
+export function applyPhoneNumberPattern(str: string) {
+  return str
+    .replaceAll(/[^\d]/g, "")
+    .replace(/(\d{2})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4");
 }
 
 export function applyIBANPattern(str: string, mask: string) {

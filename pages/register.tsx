@@ -16,6 +16,7 @@ import OneTimePassword from "../components/one-time-password";
 import AlertDialog from "../components/alert-dialog";
 import AlertType from "../components/alert-dialog/AlertType";
 import sendSignUpForm from "../controllers/register";
+import PhoneNumberField from "../components/phone-number-field";
 
 const Register: NextPage = () => {
     const { t } = useTranslation(['register', 'common']);
@@ -34,15 +35,35 @@ const Register: NextPage = () => {
     const [phoneNumber, setPhoneNumber] = React.useState("")
 
     async function signUp() {
-        setIsLoading(true)
-        const status = await sendSignUpForm(name, surname, phoneNumber);
-        setIsLoading(false)
-        if (status == 200) {
-            setModalVisible(true)
-        }
+        // empty form error messages
+        setAlertType(AlertType.ERROR);
+        setAlertTitle(t('alert-dialog:title.error.emptyForm'))
+        setAlertDescription(t('alert-dialog:subtitle.error.emptyForm'))
 
-        if (status == 500) {
+        // check for empty forms
+        if (name == "" || surname == "" || phoneNumber == "") {
             setAlertVisible(true)
+        } else {
+            setIsLoading(true)
+
+            // wait for server to return status
+            const status = await sendSignUpForm(name, surname, phoneNumber);
+            setIsLoading(false)
+
+            if (status == 200) {
+                setModalVisible(true)
+            } else {
+                setAlertType(AlertType.ERROR);
+                setAlertTitle(t('alert-dialog:title.error.generic'))
+                setAlertDescription(t('alert-dialog:subtitle.error.generic'))
+
+                if (status == 501) {
+                    setAlertType(AlertType.ERROR);
+                    setAlertTitle(t('alert-dialog:title.error.wrongForm'))
+                    setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
+                }
+                setAlertVisible(true)
+            }
         }
     }
 
@@ -61,6 +82,7 @@ const Register: NextPage = () => {
                 <div className={styles.leftContainer}>
                     {isAlertVisible &&
                         <AlertDialog
+                            delay={4000}
                             title={alertTitle}
                             description={alertDescription}
                             type={alertType}
@@ -95,12 +117,10 @@ const Register: NextPage = () => {
                                 setValue={setSurname}
                             />
                         </div>
-                        <TextField
+                        <PhoneNumberField
                             type="tel"
                             label={t('common:phoneNumber')}
                             placeholder={t('common:phoneNumberPrompt')}
-                            validateAgainst="phoneNumber"
-                            pattern="+### (##) ### ## ##"
                             value={phoneNumber}
                             setValue={setPhoneNumber}
 

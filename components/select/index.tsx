@@ -2,9 +2,6 @@ import React from "react";
 import styles from "../select/Select.module.css"
 import SelectProps from "./interface";
 
-// custom components
-import Validator from "../validator";
-
 const Select = (props: SelectProps) => {
     const [hasError, setHasError] = React.useState(false)
 
@@ -53,7 +50,7 @@ const Select = (props: SelectProps) => {
                 </ul>
             </div>
             {hasError && <div style={{ marginTop: "0.1rem" }}>
-                <Validator label={props.validatorLabel} />
+                {/* <Validator label={props.validatorLabel} /> */}
             </div>}
         </div>
     )
