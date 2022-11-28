@@ -1,5 +1,11 @@
 import axios from "axios";
-import { BATSIGN, HOST, PORT, capitalizeFirstLetter } from "../constants";
+import {
+  BATSIGN,
+  HOST,
+  PORT,
+  capitalizeFirstLetter,
+  CONNECTION,
+} from "../constants";
 
 export default async function sendSignUpForm(
   name: string,
@@ -8,7 +14,7 @@ export default async function sendSignUpForm(
 ) {
   console.log(getRawPhoneNumber(phone));
   const response = await axios.post(
-    `http://${HOST}:${PORT}/signup`,
+    `${CONNECTION}://${HOST}:${PORT}/signup`,
     {
       fullname: generateFullNameFrom(name, surname),
       phone: getRawPhoneNumber(phone),
