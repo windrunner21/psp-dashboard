@@ -33,10 +33,6 @@ const TextField = (props: TextFieldProps) => {
     }
 
     function handlePattern(e: any) {
-        if (props.pattern && props.validateAgainst == "phoneNumber") {
-            e.target.value = applyPhoneNumberPattern(e.target.value, props.pattern)
-        }
-
         if (props.pattern && props.validateAgainst == "iban") {
             e.target.value = applyIBANPattern(e.target.value, props.pattern)
         }
