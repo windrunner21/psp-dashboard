@@ -44,7 +44,7 @@ const Login: NextPage = () => {
             setIsLoading(true)
 
             // wait for server to return status
-            const status = await sendOTP(phoneNumber);
+            const status = await sendOTP(phoneNumber, 1);
             setIsLoading(false)
 
             if (status == 200) {

@@ -47,7 +47,7 @@ const Register: NextPage = () => {
             setIsLoading(true)
 
             // wait for server to return status
-            const status = await sendOTP(phoneNumber);
+            const status = await sendOTP(phoneNumber, 0);
             setIsLoading(false)
 
             if (status == 200) {
