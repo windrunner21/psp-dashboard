@@ -1,5 +1,7 @@
 interface OneTimePasswordProps {
-  phoneNumber?: string;
+  name?: string;
+  surname?: string;
+  phoneNumber: string;
   onClick?: (params: any) => void;
   setAlertTitle: (params: any) => void;
   setAlertDescription: (params: any) => void;

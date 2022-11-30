@@ -1,6 +1,7 @@
 import React from "react"
 import CloseButton from "../close-button"
 import { useTranslation } from 'next-i18next';
+import Router from 'next/router'
 
 // custom components
 import styles from "../one-time-password/OTP.module.css"
@@ -10,10 +11,12 @@ import DigitInput from "./digit-input"
 import OneTimePasswordProps from "./interface"
 import AlertType from "../alert-dialog/AlertType"
 import Validator from "../validator";
+import { sendSignInForm, sendSignUpForm } from "../../controllers/auth";
 
 const OneTimePassword = (props: OneTimePasswordProps) => {
     const { t } = useTranslation(['otp', 'alert-dialog', 'validators']);
-    // waiting for send
+
+    // waiting for resend
     const [seconds, setSeconds] = React.useState(0)
     const [minutes, setMinutes] = React.useState(1)
     const [disabled, setDisabled] = React.useState(true)
@@ -32,9 +35,9 @@ const OneTimePassword = (props: OneTimePasswordProps) => {
         checkForErrorsAndProceed(targetValue)
     }
 
-    function checkForErrorsAndProceed(targetValue?: string) {
+    async function checkForErrorsAndProceed(targetValue?: string) {
         const resultedOTP = targetValue ?? otp
-        console.log(resultedOTP)
+
         if (resultedOTP.length != 6) {
             setHasErrors(true)
             setIsLoading(false)
@@ -45,10 +48,52 @@ const OneTimePassword = (props: OneTimePasswordProps) => {
         } else {
             setHasErrors(false)
             setIsLoading(true)
-            props.setAlertType(AlertType.SUCCESS);
-            props.setAlertTitle(t('alert-dialog:title.success'))
-            props.setAlertDescription(t('alert-dialog:subtitle.success.login'))
-            props.showAlert(true)
+
+            // wait for server to return status
+            let status
+            if (props.name && props.surname) {
+                status = await sendSignUpForm(props.name, props.surname, props.phoneNumber, resultedOTP);
+            } else {
+                status = await sendSignInForm(props.phoneNumber, resultedOTP);
+            }
+            setIsLoading(false)
+
+            if (status == 200) {
+                props.setAlertType(AlertType.SUCCESS);
+                props.setAlertTitle(t('alert-dialog:title.success'))
+                props.setAlertDescription(t('alert-dialog:subtitle.success.login'))
+                props.showAlert(true)
+
+                // navigate
+                Router.push("/dashboard")
+            } else {
+                props.setAlertType(AlertType.ERROR);
+                props.setAlertTitle(t('alert-dialog:title.error.generic'))
+                props.setAlertDescription(t('alert-dialog:subtitle.error.generic'))
+
+                // client side
+                if (status == 401 || status == 502) {
+                    props.setAlertType(AlertType.WARNING);
+                    props.setAlertTitle(t('alert-dialog:title.error.wrongForm'))
+                    props.setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
+                }
+
+                // no response received
+                if (status == 999) {
+                    props.setAlertType(AlertType.INFORMATION);
+                    props.setAlertTitle(t('alert-dialog:title.error.generic'))
+                    props.setAlertDescription(t('alert-dialog:subtitle.error.generic'))
+                }
+
+                // axios side
+                if (status === 1000) {
+                    props.setAlertType(AlertType.INFORMATION);
+                    props.setAlertTitle(t('alert-dialog:title.error.emptyForm'))
+                    props.setAlertDescription(t('alert-dialog:subtitle.error.generic'))
+                }
+
+                props.showAlert(true)
+            }
         }
     }
 

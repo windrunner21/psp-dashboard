@@ -42,7 +42,7 @@ const TextField = (props: TextFieldProps) => {
 
     return (
         <div className={styles.grid}>
-            <p className={`${styles.label} ${hasError ? styles.labelError : ''}`}>{hasError ? props.validatorLabel : props.label}</p>
+            <p className={styles.label}>{props.label}</p>
             <input
                 style={props.capitalized ? { textTransform: "capitalize" } : {}}
                 ref={inputRef}

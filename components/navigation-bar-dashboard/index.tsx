@@ -4,6 +4,7 @@ import Notifications from "../notifications"
 import Search from "../search"
 import NavigationBarDashboardProps from "./interface"
 import React from "react"
+import DashboardEnvironment from "../dashboard-environment"
 
 const NavigationBarDashboard = (props: NavigationBarDashboardProps) => {
     const [unread, setUnread] = React.useState(true)
@@ -16,6 +17,7 @@ const NavigationBarDashboard = (props: NavigationBarDashboardProps) => {
                 </div>
                 <div className={styles.trailing}>
                     <LanguageSelect />
+                    <DashboardEnvironment />
                     <Notifications unread={unread} onClick={() => {
                         setUnread(false)
                         props.onNotificationsClick(true)

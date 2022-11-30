@@ -10,7 +10,7 @@
     width: 100%;
     padding: 0.6rem;
     border-radius: 0.4rem;
-    border: 0.1rem solid #D2D4D8
+    border: 0.1rem solid #D2D4D8;
 }
 
 .input:hover {
@@ -24,6 +24,11 @@
     outline: none;
 }
 
+.input:focus,
+.input:active {
+    background-color: transparent;
+}
+
 .label {
     color: var(--text);
     font-size: 0.8rem;
@@ -33,11 +38,9 @@
 
 .inputError {
     border-color: var(--error-primary);
+    background-color: var(--error);
 }
 
-.labelError {
-    color: var(--error-primary);
-}
 
 @media (prefers-color-scheme: dark) {
     .label {

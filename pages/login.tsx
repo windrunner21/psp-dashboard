@@ -8,7 +8,6 @@ import { useTranslation } from 'next-i18next';
 
 // custom components
 import OderoLogo from "../components/logo";
-import TextField from "../components/text-field";
 import PrimaryLink from "../components/primary-link";
 import PrimaryButton from "../components/primary-button";
 import Footer from "../components/footer";
@@ -16,6 +15,7 @@ import OneTimePassword from "../components/one-time-password";
 import AlertDialog from "../components/alert-dialog";
 import AlertType from "../components/alert-dialog/AlertType";
 import PhoneNumberField from "../components/phone-number-field";
+import { sendOTP } from "../controllers/auth";
 
 const Login: NextPage = () => {
     const { t } = useTranslation(['login', 'common']);
@@ -28,11 +28,58 @@ const Login: NextPage = () => {
     const [isModalVisible, setModalVisible] = React.useState(false)
     const [loading, setIsLoading] = React.useState(false)
 
+    // data
     const [phoneNumber, setPhoneNumber] = React.useState("")
 
-    function showOneTimePassword(value: boolean) {
-        setIsLoading(value)
-        setModalVisible(value)
+    async function signIn() {
+        // empty form error messages
+        setAlertType(AlertType.ERROR);
+        setAlertTitle(t('alert-dialog:title.error.emptyForm'))
+        setAlertDescription(t('alert-dialog:subtitle.error.emptyForm'))
+
+        // check for empty forms
+        if (phoneNumber == "") {
+            setAlertVisible(true)
+        } else {
+            setIsLoading(true)
+
+            // wait for server to return status
+            const status = await sendOTP(phoneNumber);
+            setIsLoading(false)
+
+            if (status == 200) {
+                setModalVisible(true)
+            } else {
+                setAlertType(AlertType.ERROR);
+                setAlertTitle(t('alert-dialog:title.error.generic'))
+                setAlertDescription(t('alert-dialog:subtitle.error.generic'))
+
+                // client side
+                if (status == 401) {
+                    setAlertType(AlertType.WARNING);
+                    setAlertTitle(t('alert-dialog:title.error.wrongForm'))
+                    setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
+                }
+
+                // server side 502 already exists TODO
+
+                // no response received
+                if (status == 999) {
+                    setAlertType(AlertType.INFORMATION);
+                    setAlertTitle(t('alert-dialog:title.error.generic'))
+                    setAlertDescription(t('alert-dialog:subtitle.error.generic'))
+                }
+
+                // axios side
+                if (status === 1000) {
+                    setAlertType(AlertType.INFORMATION);
+                    setAlertTitle(t('alert-dialog:title.error.emptyForm'))
+                    setAlertDescription(t('alert-dialog:subtitle.error.generic'))
+                }
+
+                setAlertVisible(true)
+            }
+        }
     }
 
     return (
@@ -50,6 +97,7 @@ const Login: NextPage = () => {
                 <div className={styles.leftContainer}>
                     {isAlertVisible &&
                         <AlertDialog
+                            delay={4000}
                             title={alertTitle}
                             description={alertDescription}
                             type={alertType}
@@ -73,13 +121,13 @@ const Login: NextPage = () => {
                             autofocus={true}
                         />
                         <div style={{ height: "1rem" }} />
-                        <PrimaryButton title={t('signIn')} onClick={() => showOneTimePassword(true)} loading={loading} />
+                        <PrimaryButton title={t('signIn')} onClick={async () => await signIn()} loading={loading} />
                         <p className={styles.caption}>{t('noAccount')} <PrimaryLink href="/register" label={t('signUp')} /></p>
                     </div>
                     {isModalVisible &&
                         <OneTimePassword
                             phoneNumber={phoneNumber}
-                            onClick={() => showOneTimePassword(false)}
+                            onClick={() => setModalVisible(false)}
                             setAlertType={setAlertType}
                             setAlertTitle={setAlertTitle}
                             setAlertDescription={setAlertDescription}

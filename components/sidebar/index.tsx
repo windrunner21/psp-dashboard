@@ -28,7 +28,7 @@ const Sidebar = (props: SidebarProps) => {
                 <SidebarItem title="Refunds" icon="refunds" important={true} collapsed={props.collapsed} href="/dashboard/refunds" />
                 <hr className={styles.divider} />
                 <SidebarItem
-                    title="Options"
+                    title="More"
                     icon="tune"
                     hasTrailing={true}
                     important={true}

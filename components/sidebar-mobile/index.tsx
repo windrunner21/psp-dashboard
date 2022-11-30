@@ -33,7 +33,7 @@ const SidebarMobile = () => {
                         <SidebarItem title="Refunds" icon="refunds" important={true} />
                         <hr className={styles.divider} />
                         <SidebarItem
-                            title="Options"
+                            title="More"
                             icon="tune"
                             hasTrailing={true}
                             important={true}

@@ -65,6 +65,11 @@
     }
 
     .input {
-        border: 0.1rem solid var(--background-dark)
+        border: 0.1rem solid var(--background-dark);
+    }
+
+    .prefix {
+        border: 0.1rem solid var(--background-dark);
+        background-color: #3B3B3B;
     }
 }

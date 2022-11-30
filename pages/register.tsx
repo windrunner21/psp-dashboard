@@ -15,7 +15,7 @@ import Footer from "../components/footer";
 import OneTimePassword from "../components/one-time-password";
 import AlertDialog from "../components/alert-dialog";
 import AlertType from "../components/alert-dialog/AlertType";
-import sendSignUpForm from "../controllers/register";
+import { sendOTP } from "../controllers/auth";
 import PhoneNumberField from "../components/phone-number-field";
 
 const Register: NextPage = () => {
@@ -47,7 +47,7 @@ const Register: NextPage = () => {
             setIsLoading(true)
 
             // wait for server to return status
-            const status = await sendSignUpForm(name, surname, phoneNumber);
+            const status = await sendOTP(phoneNumber);
             setIsLoading(false)
 
             if (status == 200) {
@@ -57,11 +57,27 @@ const Register: NextPage = () => {
                 setAlertTitle(t('alert-dialog:title.error.generic'))
                 setAlertDescription(t('alert-dialog:subtitle.error.generic'))
 
-                if (status == 501) {
-                    setAlertType(AlertType.ERROR);
+                // client side
+                if (status == 401 || status == 502) {
+                    setAlertType(AlertType.WARNING);
                     setAlertTitle(t('alert-dialog:title.error.wrongForm'))
                     setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
                 }
+
+                // no response received
+                if (status == 999) {
+                    setAlertType(AlertType.INFORMATION);
+                    setAlertTitle(t('alert-dialog:title.error.generic'))
+                    setAlertDescription(t('alert-dialog:subtitle.error.generic'))
+                }
+
+                // axios side
+                if (status === 1000) {
+                    setAlertType(AlertType.INFORMATION);
+                    setAlertTitle(t('alert-dialog:title.error.emptyForm'))
+                    setAlertDescription(t('alert-dialog:subtitle.error.generic'))
+                }
+
                 setAlertVisible(true)
             }
         }
@@ -126,11 +142,13 @@ const Register: NextPage = () => {
 
                         />
                         <div style={{ height: "1rem" }} />
-                        <PrimaryButton title={t('signUp')} onClick={() => signUp()} loading={loading} />
+                        <PrimaryButton title={t('signUp')} onClick={async () => await signUp()} loading={loading} />
                         <p className={styles.caption}>{t('hadAccount')} <PrimaryLink href="/login" label={t('signIn')} /></p>
                     </div>
                     {isModalVisible &&
                         <OneTimePassword
+                            name={name}
+                            surname={surname}
                             phoneNumber={phoneNumber}
                             onClick={() => setModalVisible(false)}
                             setAlertType={setAlertType}

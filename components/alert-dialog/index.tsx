@@ -11,7 +11,6 @@ const AlertDialog = (props: AlertDialogProps) => {
     const [icon, setIcon] = React.useState("")
 
 
-
     React.useEffect(() => {
         switch (props.type) {
             case AlertType.SUCCESS:

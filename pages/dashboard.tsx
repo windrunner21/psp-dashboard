@@ -56,13 +56,6 @@ const Dashboard: NextPage = () => {
                 <div className={styles.rightContainer}>
                     <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} />
                     <div className={styles.pageContent}>
-                        <Statistics />
-                        {/* <Statistics />
-                        <div className={styles.graphAndTable}>
-                            <Graphs />
-                            <div style={{ height: "2rem" }} />
-                            <LatestTransactions />
-                        </div> */}
                     </div>
                 </div>
                 {
