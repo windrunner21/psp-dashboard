@@ -1,7 +1,7 @@
 import styles from "../text-field/TextField.module.css";
 import TextFieldProps from "./interface";
 import React from "react";
-import { applyIBANPattern, applyPhoneNumberPattern, isValidEmailAddress, isValidNameSurname, isValidTaxNumber, isValidWebsite } from "../../controllers/validators";
+import { applyIBANPattern, isValidEmailAddress, isValidNameSurname, isValidTaxNumber, isValidWebsite } from "../../controllers/validators";
 
 const TextField = (props: TextFieldProps) => {
     const [hasError, setHasError] = React.useState(false)
@@ -17,6 +17,7 @@ const TextField = (props: TextFieldProps) => {
         switch (props.validateAgainst) {
             case "name":
                 setHasError(!isValidNameSurname(target))
+                props.validatorCallback!(isValidNameSurname(target))
                 break;
             case "email":
                 setHasError(!isValidEmailAddress(target))

@@ -59,6 +59,11 @@
     margin: 1rem 0 0.5rem 0;
 }
 
+.inputError {
+    border-color: var(--error-primary);
+    background-color: var(--error);
+}
+
 @media (prefers-color-scheme: dark) {
     .label {
         color: white

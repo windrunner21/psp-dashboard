@@ -7,7 +7,7 @@ import {
   CONNECTION,
 } from "../constants";
 
-export async function sendOTP(phone: string, type: number) {
+export async function sendOTP(phone: string, type: string, language: string) {
   let status = undefined;
 
   await axios
@@ -21,6 +21,7 @@ export async function sendOTP(phone: string, type: number) {
           "Content-Type": "application/json",
           batsign: BATSIGN,
           type: type,
+          language: language,
         },
       }
     )

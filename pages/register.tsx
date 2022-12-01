@@ -5,6 +5,7 @@ import styles from "../styles/Register.module.css";
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router'
 
 // custom components
 import OderoLogo from "../components/logo";
@@ -19,6 +20,7 @@ import { sendOTP } from "../controllers/auth";
 import PhoneNumberField from "../components/phone-number-field";
 
 const Register: NextPage = () => {
+    const { locale } = useRouter();
     const { t } = useTranslation(['register', 'common']);
     const title = `${t('title')} | Odero`;
 
@@ -29,25 +31,37 @@ const Register: NextPage = () => {
     const [isModalVisible, setModalVisible] = React.useState(false)
     const [loading, setIsLoading] = React.useState(false)
 
-    // data
+    // form data
     const [name, setName] = React.useState("")
+    const [nameCorrect, setNameCorrect] = React.useState(false)
     const [surname, setSurname] = React.useState("")
+    const [surnameCorrect, setSurnameCorrect] = React.useState(false)
     const [phoneNumber, setPhoneNumber] = React.useState("")
+    const [phoneNumberCorrect, setPhoneNumberCorrect] = React.useState(false)
 
     async function signUp() {
+        console.log(nameCorrect)
+        console.log(surnameCorrect)
+        console.log(phoneNumberCorrect)
         // empty form error messages
         setAlertType(AlertType.ERROR);
         setAlertTitle(t('alert-dialog:title.error.emptyForm'))
         setAlertDescription(t('alert-dialog:subtitle.error.emptyForm'))
 
-        // check for empty forms
-        if (name == "" || surname == "" || phoneNumber == "") {
+        // check for empty then invalid form
+        if (name === "" || surname === "" || phoneNumber === "") {
+            setAlertVisible(true)
+        }
+        else if (!nameCorrect || !surnameCorrect || !phoneNumberCorrect) {
+            setAlertType(AlertType.WARNING);
+            setAlertTitle(t('alert-dialog:title.error.wrongForm'))
+            setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
             setAlertVisible(true)
         } else {
             setIsLoading(true)
 
             // wait for server to return status
-            const status = await sendOTP(phoneNumber, 0);
+            const status = await sendOTP(phoneNumber, "signup", locale ? locale : 'az');
             setIsLoading(false)
 
             if (status == 200) {
@@ -118,10 +132,10 @@ const Register: NextPage = () => {
                                 placeholder={t('common:namePrompt')}
                                 validatorLabel="Invalid name"
                                 validateAgainst="name"
+                                validatorCallback={setNameCorrect}
                                 autofocus={true}
                                 capitalized={true}
                                 setValue={setName}
-
                             />
                             <div style={{ width: "1rem" }} />
                             <TextField
@@ -129,6 +143,7 @@ const Register: NextPage = () => {
                                 placeholder={t('common:surnamePrompt')}
                                 validatorLabel="Invalid surname"
                                 validateAgainst="name"
+                                validatorCallback={setSurnameCorrect}
                                 capitalized={true}
                                 setValue={setSurname}
                             />
@@ -139,7 +154,7 @@ const Register: NextPage = () => {
                             placeholder={t('common:phoneNumberPrompt')}
                             value={phoneNumber}
                             setValue={setPhoneNumber}
-
+                            validateNumber={setPhoneNumberCorrect}
                         />
                         <div style={{ height: "1rem" }} />
                         <PrimaryButton title={t('signUp')} onClick={async () => await signUp()} loading={loading} />

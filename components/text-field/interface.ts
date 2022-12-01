@@ -9,6 +9,7 @@ interface TextFieldProps {
   pattern?: string;
   max?: number;
   value?: string;
+  validatorCallback?: (params: any) => void;
   setValue?: (params: any) => void;
 }
 

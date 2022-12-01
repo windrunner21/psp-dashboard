@@ -5,6 +5,7 @@ import styles from "../styles/Login.module.css";
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from 'next-i18next';
+import { useRouter } from "next/router";
 
 // custom components
 import OderoLogo from "../components/logo";
@@ -18,6 +19,7 @@ import PhoneNumberField from "../components/phone-number-field";
 import { sendOTP } from "../controllers/auth";
 
 const Login: NextPage = () => {
+    const { locale } = useRouter();
     const { t } = useTranslation(['login', 'common']);
     const title = `${t('title')} | Odero`;
 
@@ -28,8 +30,9 @@ const Login: NextPage = () => {
     const [isModalVisible, setModalVisible] = React.useState(false)
     const [loading, setIsLoading] = React.useState(false)
 
-    // data
+    // form data
     const [phoneNumber, setPhoneNumber] = React.useState("")
+    const [phoneNumberCorrect, setPhoneNumberCorrect] = React.useState(false)
 
     async function signIn() {
         // empty form error messages
@@ -40,11 +43,16 @@ const Login: NextPage = () => {
         // check for empty forms
         if (phoneNumber == "") {
             setAlertVisible(true)
+        } else if (!phoneNumberCorrect) {
+            setAlertType(AlertType.WARNING);
+            setAlertTitle(t('alert-dialog:title.error.wrongForm'))
+            setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
+            setAlertVisible(true)
         } else {
             setIsLoading(true)
 
             // wait for server to return status
-            const status = await sendOTP(phoneNumber, 1);
+            const status = await sendOTP(phoneNumber, "signin", locale ? locale : 'az');
             setIsLoading(false)
 
             if (status == 200) {
@@ -118,6 +126,7 @@ const Login: NextPage = () => {
                             placeholder={t('common:phoneNumberPrompt')}
                             value={phoneNumber}
                             setValue={setPhoneNumber}
+                            validateNumber={setPhoneNumberCorrect}
                             autofocus={true}
                         />
                         <div style={{ height: "1rem" }} />
