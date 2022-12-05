@@ -7,6 +7,7 @@ interface OneTimePasswordProps {
   setAlertDescription: (params: any) => void;
   setAlertType: (params: any) => void;
   showAlert: (params: any) => void;
+  type?: string;
 }
 
 export default OneTimePasswordProps;

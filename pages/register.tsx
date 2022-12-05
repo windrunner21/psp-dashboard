@@ -13,7 +13,7 @@ import TextField from "../components/text-field";
 import PrimaryLink from "../components/primary-link";
 import PrimaryButton from "../components/primary-button";
 import Footer from "../components/footer";
-import OneTimePassword from "../components/one-time-password";
+import { OneTimePassword } from "../components/one-time-password";
 import AlertDialog from "../components/alert-dialog";
 import AlertType from "../components/alert-dialog/AlertType";
 import { sendOTP } from "../requests/auth";
@@ -28,7 +28,7 @@ const Register: NextPage = () => {
     const [alertTitle, setAlertTitle] = React.useState("")
     const [alertDescription, setAlertDescription] = React.useState("")
     const [alertType, setAlertType] = React.useState(AlertType.UNKNOWN)
-    const [isModalVisible, setModalVisible] = React.useState(false)
+    const [step, setStep] = React.useState(0)
     const [loading, setIsLoading] = React.useState(false)
 
     // form data
@@ -62,7 +62,8 @@ const Register: NextPage = () => {
             setIsLoading(false)
 
             if (status == 200) {
-                setModalVisible(true)
+                const stepWillSet = step + 1;
+                setStep(stepWillSet)
             } else {
                 setAlertType(AlertType.ERROR);
                 setAlertTitle(t('alert-dialog:title.error.generic'))
@@ -101,53 +102,59 @@ const Register: NextPage = () => {
                             onClick={() => setAlertVisible(false)}
                         />
                     }
-                    <div className={`${styles.form} ${isModalVisible && styles.blur}`}>
-                        <OderoLogo />
-                        <h2 className={styles.title}>{t('signUp')}</h2>
+                    {step == 0 &&
+                        <div className={styles.form}>
+                            <OderoLogo />
+                            <h2 className={styles.title}>{t('signUp')}</h2>
 
-                        <p className={styles.description}>
-                            {t('createAccount')}
-                        </p>
-                        <div className={styles.row}>
-                            <TextField
-                                label={t('common:name')}
-                                placeholder={t('common:namePrompt')}
-                                validatorLabel="Invalid name"
-                                validateAgainst="name"
-                                validatorCallback={setNameCorrect}
-                                autofocus={true}
-                                capitalized={true}
-                                setValue={setName}
+                            <p className={styles.description}>
+                                {t('createAccount')}
+                            </p>
+                            <div className={styles.row}>
+                                <TextField
+                                    label={t('common:name')}
+                                    placeholder={t('common:namePrompt')}
+                                    validatorLabel="Invalid name"
+                                    validateAgainst="name"
+                                    validatorCallback={setNameCorrect}
+                                    autofocus={true}
+                                    capitalized={true}
+                                    setValue={setName}
+                                />
+                                <div style={{ width: "1rem" }} />
+                                <TextField
+                                    label={t('common:surname')}
+                                    placeholder={t('common:surnamePrompt')}
+                                    validatorLabel="Invalid surname"
+                                    validateAgainst="name"
+                                    validatorCallback={setSurnameCorrect}
+                                    capitalized={true}
+                                    setValue={setSurname}
+                                />
+                            </div>
+                            <PhoneNumberField
+                                type="tel"
+                                label={t('common:phoneNumber')}
+                                placeholder={t('common:phoneNumberPrompt')}
+                                value={phoneNumber}
+                                setValue={setPhoneNumber}
+                                validateNumber={setPhoneNumberCorrect}
                             />
-                            <div style={{ width: "1rem" }} />
-                            <TextField
-                                label={t('common:surname')}
-                                placeholder={t('common:surnamePrompt')}
-                                validatorLabel="Invalid surname"
-                                validateAgainst="name"
-                                validatorCallback={setSurnameCorrect}
-                                capitalized={true}
-                                setValue={setSurname}
-                            />
+                            <div style={{ height: "1rem" }} />
+                            <PrimaryButton title={t('signUp')} onClick={async () => await signUp()} loading={loading} />
+                            <p className={styles.caption}>{t('hadAccount')} <PrimaryLink href="/login" label={t('signIn')} /></p>
                         </div>
-                        <PhoneNumberField
-                            type="tel"
-                            label={t('common:phoneNumber')}
-                            placeholder={t('common:phoneNumberPrompt')}
-                            value={phoneNumber}
-                            setValue={setPhoneNumber}
-                            validateNumber={setPhoneNumberCorrect}
-                        />
-                        <div style={{ height: "1rem" }} />
-                        <PrimaryButton title={t('signUp')} onClick={async () => await signUp()} loading={loading} />
-                        <p className={styles.caption}>{t('hadAccount')} <PrimaryLink href="/login" label={t('signIn')} /></p>
-                    </div>
-                    {isModalVisible &&
+                    }
+                    {step == 1 &&
                         <OneTimePassword
+                            type="signup"
                             name={name}
                             surname={surname}
                             phoneNumber={phoneNumber}
-                            onClick={() => setModalVisible(false)}
+                            onClick={() => {
+                                const stepWillSet = step - 1;
+                                setStep(stepWillSet)
+                            }}
                             setAlertType={setAlertType}
                             setAlertTitle={setAlertTitle}
                             setAlertDescription={setAlertDescription}

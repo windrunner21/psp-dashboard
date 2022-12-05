@@ -1,11 +1,12 @@
 .grid {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-content: center;
 }
 
 .digit {
+    margin: 0 0.2rem;
     width: 3rem;
     height: 4rem;
     font-size: 2rem;
@@ -26,7 +27,7 @@
     border: 0.15rem solid var(--error-primary);
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .digit {
         width: 2.5rem;
         height: 3.5rem;

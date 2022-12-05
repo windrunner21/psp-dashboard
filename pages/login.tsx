@@ -12,7 +12,7 @@ import OderoLogo from "../components/logo";
 import PrimaryLink from "../components/primary-link";
 import PrimaryButton from "../components/primary-button";
 import Footer from "../components/footer";
-import OneTimePassword from "../components/one-time-password";
+import { OneTimePassword } from "../components/one-time-password";
 import AlertDialog from "../components/alert-dialog";
 import AlertType from "../components/alert-dialog/AlertType";
 import PhoneNumberField from "../components/phone-number-field";
@@ -27,7 +27,7 @@ const Login: NextPage = () => {
     const [alertTitle, setAlertTitle] = React.useState("")
     const [alertDescription, setAlertDescription] = React.useState("")
     const [alertType, setAlertType] = React.useState(AlertType.UNKNOWN)
-    const [isModalVisible, setModalVisible] = React.useState(false)
+    const [step, setStep] = React.useState(0)
     const [loading, setIsLoading] = React.useState(false)
 
     // form data
@@ -56,7 +56,8 @@ const Login: NextPage = () => {
             setIsLoading(false)
 
             if (status == 200) {
-                setModalVisible(true)
+                const stepWillSet = step + 1;
+                setStep(stepWillSet)
             } else {
                 setAlertType(AlertType.ERROR);
                 setAlertTitle(t('alert-dialog:title.error.generic'))
@@ -96,31 +97,37 @@ const Login: NextPage = () => {
                             onClick={() => setAlertVisible(false)}
                         />
                     }
-                    <div className={`${styles.form} ${isModalVisible && styles.blur}`}>
-                        <OderoLogo />
-                        <h2 className={styles.title}>{t('signIn')}</h2>
+                    {step == 0 &&
+                        <div className={styles.form}>
+                            <OderoLogo />
+                            <h2 className={styles.title}>{t('signIn')}</h2>
 
-                        <p className={styles.description}>
-                            {t('welcomeBack')}
-                        </p>
+                            <p className={styles.description}>
+                                {t('welcomeBack')}
+                            </p>
 
-                        <PhoneNumberField
-                            type="tel"
-                            label={t('common:phoneNumber')}
-                            placeholder={t('common:phoneNumberPrompt')}
-                            value={phoneNumber}
-                            setValue={setPhoneNumber}
-                            validateNumber={setPhoneNumberCorrect}
-                            autofocus={true}
-                        />
-                        <div style={{ height: "1rem" }} />
-                        <PrimaryButton title={t('signIn')} onClick={async () => await signIn()} loading={loading} />
-                        <p className={styles.caption}>{t('noAccount')} <PrimaryLink href="/register" label={t('signUp')} /></p>
-                    </div>
-                    {isModalVisible &&
+                            <PhoneNumberField
+                                type="tel"
+                                label={t('common:phoneNumber')}
+                                placeholder={t('common:phoneNumberPrompt')}
+                                value={phoneNumber}
+                                setValue={setPhoneNumber}
+                                validateNumber={setPhoneNumberCorrect}
+                                autofocus={true}
+                            />
+                            <div style={{ height: "1rem" }} />
+                            <PrimaryButton title={t('signIn')} onClick={async () => await signIn()} loading={loading} />
+                            <p className={styles.caption}>{t('noAccount')} <PrimaryLink href="/register" label={t('signUp')} /></p>
+                        </div>
+                    }
+                    {step == 1 &&
                         <OneTimePassword
+                            type="signin"
                             phoneNumber={phoneNumber}
-                            onClick={() => setModalVisible(false)}
+                            onClick={() => {
+                                const stepWillSet = step - 1;
+                                setStep(stepWillSet)
+                            }}
                             setAlertType={setAlertType}
                             setAlertTitle={setAlertTitle}
                             setAlertDescription={setAlertDescription}

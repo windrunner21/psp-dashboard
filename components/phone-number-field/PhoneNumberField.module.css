@@ -66,6 +66,12 @@
     background-color: var(--error);
 }
 
+@media (max-width: 500px) {
+    .prefix {
+        width: 30%;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     .label {
         color: white

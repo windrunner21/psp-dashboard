@@ -17,6 +17,23 @@
     animation: fadein 200ms;
 }
 
+.embedded {
+    width: 400px;
+    -webkit-animation: fadein 300ms;
+    -moz-animation: fadein 300ms;
+    -ms-animation: fadein 300ms;
+    -o-animation: fadein 300ms;
+    animation: fadein 300ms;
+}
+
+.navigation {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .description {
     line-height: 1.3;
     font-size: 0.8rem;
@@ -33,6 +50,23 @@
 @media (max-width: 400px) {
     .modal {
         width: 350px;
+    }
+
+    .embedded {
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .embedded {
+        padding: 0 2rem;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .embedded {
+        padding: 0 2rem;
     }
 }
 
