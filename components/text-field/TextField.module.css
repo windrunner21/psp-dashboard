@@ -50,4 +50,14 @@
     .input {
         border: 0.1rem solid var(--background-dark)
     }
+
+    .input:focus,
+    .input:active {
+        background-color: #3B3B3B;
+    }
+
+    .inputError {
+        border-color: var(--error-primary);
+        background-color: var(--error);
+    }
 }

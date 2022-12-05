@@ -2,6 +2,7 @@ import styles from "../phone-number-field/PhoneNumberField.module.css";
 import PhoneNumberFieldProps from "./interface";
 import React from "react";
 import { applyPhoneNumberPattern } from "../../controllers/validators";
+import Image from "next/image";
 
 const PhoneNumberField = (props: PhoneNumberFieldProps) => {
     const [hasError, setHasError] = React.useState(false)
@@ -29,8 +30,10 @@ const PhoneNumberField = (props: PhoneNumberFieldProps) => {
             <p className={styles.label}>{props.label}</p>
             <div className={styles.row}>
                 <div className={styles.prefix}>
+                    <Image src="/flags/az.svg" alt="country code" width={18} height={18} />
                     <span className={styles.countryCode}>+994</span>
                 </div>
+                <div style={{ width: "0.5rem" }} />
                 <input
                     ref={inputRef}
                     className={`${styles.input} ${hasError ? styles.inputError : ''}`}

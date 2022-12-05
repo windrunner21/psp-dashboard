@@ -12,8 +12,8 @@ const Sidebar = (props: SidebarProps) => {
 
     // TEMPORARY
     React.useEffect(() => {
-        collapseOptions(router.asPath.includes("/options"))
-    }, [])
+        collapseOptions(router.asPath.includes("/more"))
+    }, [router.asPath])
 
     return (
         <div className={styles.sidebar}>
@@ -23,9 +23,11 @@ const Sidebar = (props: SidebarProps) => {
                 </div>
             </div>
             <div className={`${styles.content} ${props.collapsed ? styles.collapsed : ''}`} >
-                <SidebarItem title="Dashboard" icon="dashboard" important={true} collapsed={props.collapsed} href="/dashboard" />
-                <SidebarItem title="Payments" icon="payments" important={true} collapsed={props.collapsed} href="/dashboard/payments" />
-                <SidebarItem title="Refunds" icon="refunds" important={true} collapsed={props.collapsed} href="/dashboard/refunds" />
+                <SidebarItem title="Dashboard" icon="dashboard" important={true} collapsed={props.collapsed} href="/" />
+                <SidebarItem title="Payments" icon="payments" important={true} collapsed={props.collapsed} href="/test/payments" />
+                <SidebarItem title="Refunds" icon="refunds" important={true} collapsed={props.collapsed} href="/test/refunds" />
+                <SidebarItem title="Balances" icon="distribution" important={true} collapsed={props.collapsed} href="/test/balances" />
+                <SidebarItem title="Reports" icon="distribution" important={true} collapsed={props.collapsed} href="/test/reports" />
                 <hr className={styles.divider} />
                 <SidebarItem
                     title="More"
@@ -39,12 +41,11 @@ const Sidebar = (props: SidebarProps) => {
                 {
                     optionsCollapsed &&
                     <div>
-                        <SidebarItem title="Link" icon="link" important={true} collapsed={props.collapsed} href="/dashboard/options/pay-by-link" />
-                        <SidebarItem title="Wallet" icon="wallet" important={true} collapsed={props.collapsed} href="/dashboard/options/wallet" />
+                        <SidebarItem title="Pay by Link" icon="link" important={true} collapsed={props.collapsed} href="/test/more/pay-by-link" />
+                        <SidebarItem title="Wallet" icon="wallet" important={true} collapsed={props.collapsed} href="/test/more/wallet" />
+                        <SidebarItem title="Subscriptions" icon="wallet" important={true} collapsed={props.collapsed} href="/test/more/subscriptions" />
                     </div>
                 }
-                <hr className={styles.divider} />
-                <SidebarItem title="Distribution" icon="distribution" important={true} collapsed={props.collapsed} href="/dashboard/distribution" />
             </div>
             <div className={`${styles.footer} ${props.collapsed ? styles.collapsed : ''}`} >
                 <SidebarItem title="Account" icon="profile" collapsed={props.collapsed} href="/account" />

@@ -11,7 +11,7 @@ import DigitInput from "./digit-input"
 import OneTimePasswordProps from "./interface"
 import AlertType from "../alert-dialog/AlertType"
 import Validator from "../validator";
-import { sendSignInForm, sendSignUpForm } from "../../controllers/auth";
+import { sendSignInForm, sendSignUpForm } from "../../requests/auth";
 
 const OneTimePassword = (props: OneTimePasswordProps) => {
     const { t } = useTranslation(['otp', 'alert-dialog', 'validators']);
@@ -50,46 +50,31 @@ const OneTimePassword = (props: OneTimePasswordProps) => {
             setIsLoading(true)
 
             // wait for server to return status
-            let status
+            let response: any
             if (props.name && props.surname) {
-                status = await sendSignUpForm(props.name, props.surname, props.phoneNumber, resultedOTP);
+                response = await sendSignUpForm(props.name, props.surname, props.phoneNumber, resultedOTP);
             } else {
-                status = await sendSignInForm(props.phoneNumber, resultedOTP);
+                response = await sendSignInForm(props.phoneNumber, resultedOTP);
             }
             setIsLoading(false)
 
-            if (status == 200) {
+            if (response.status == 200) {
                 props.setAlertType(AlertType.SUCCESS);
                 props.setAlertTitle(t('alert-dialog:title.success'))
                 props.setAlertDescription(t('alert-dialog:subtitle.success.login'))
                 props.showAlert(true)
 
-                // navigate
-                Router.push("/dashboard")
+                Router.push("/")
             } else {
                 props.setAlertType(AlertType.ERROR);
                 props.setAlertTitle(t('alert-dialog:title.error.generic'))
                 props.setAlertDescription(t('alert-dialog:subtitle.error.generic'))
 
                 // client side
-                if (status == 401 || status == 502) {
+                if (response.status == 401 || response.status == 502) {
                     props.setAlertType(AlertType.WARNING);
                     props.setAlertTitle(t('alert-dialog:title.error.wrongForm'))
                     props.setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
-                }
-
-                // no response received
-                if (status == 999) {
-                    props.setAlertType(AlertType.INFORMATION);
-                    props.setAlertTitle(t('alert-dialog:title.error.generic'))
-                    props.setAlertDescription(t('alert-dialog:subtitle.error.generic'))
-                }
-
-                // axios side
-                if (status === 1000) {
-                    props.setAlertType(AlertType.INFORMATION);
-                    props.setAlertTitle(t('alert-dialog:title.error.emptyForm'))
-                    props.setAlertDescription(t('alert-dialog:subtitle.error.generic'))
                 }
 
                 props.showAlert(true)

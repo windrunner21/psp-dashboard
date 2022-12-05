@@ -16,7 +16,7 @@ import Footer from "../components/footer";
 import OneTimePassword from "../components/one-time-password";
 import AlertDialog from "../components/alert-dialog";
 import AlertType from "../components/alert-dialog/AlertType";
-import { sendOTP } from "../controllers/auth";
+import { sendOTP } from "../requests/auth";
 import PhoneNumberField from "../components/phone-number-field";
 
 const Register: NextPage = () => {
@@ -40,9 +40,6 @@ const Register: NextPage = () => {
     const [phoneNumberCorrect, setPhoneNumberCorrect] = React.useState(false)
 
     async function signUp() {
-        console.log(nameCorrect)
-        console.log(surnameCorrect)
-        console.log(phoneNumberCorrect)
         // empty form error messages
         setAlertType(AlertType.ERROR);
         setAlertTitle(t('alert-dialog:title.error.emptyForm'))
@@ -71,25 +68,10 @@ const Register: NextPage = () => {
                 setAlertTitle(t('alert-dialog:title.error.generic'))
                 setAlertDescription(t('alert-dialog:subtitle.error.generic'))
 
-                // client side
                 if (status == 401 || status == 502) {
                     setAlertType(AlertType.WARNING);
                     setAlertTitle(t('alert-dialog:title.error.wrongForm'))
                     setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
-                }
-
-                // no response received
-                if (status == 999) {
-                    setAlertType(AlertType.INFORMATION);
-                    setAlertTitle(t('alert-dialog:title.error.generic'))
-                    setAlertDescription(t('alert-dialog:subtitle.error.generic'))
-                }
-
-                // axios side
-                if (status === 1000) {
-                    setAlertType(AlertType.INFORMATION);
-                    setAlertTitle(t('alert-dialog:title.error.emptyForm'))
-                    setAlertDescription(t('alert-dialog:subtitle.error.generic'))
                 }
 
                 setAlertVisible(true)

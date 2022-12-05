@@ -11,12 +11,7 @@ export const RE_WEBSITE =
 
 // NETWORK
 export const CONNECTION = "http";
-export const HOST = "192.168.0.148";
+export const HOST = "localhost";
 export const PORT = 2108;
 export const BATSIGN =
   "d02481e67e27dea59b47ccb6a4be0629e45ef99031d2b6008551700fb9b060c5";
-
-// capitalize first letter for name and surname
-export function capitalizeFirstLetter(value: string) {
-  return value.charAt(0).toUpperCase() + value.slice(1);
-}

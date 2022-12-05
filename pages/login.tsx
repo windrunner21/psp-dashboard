@@ -16,7 +16,7 @@ import OneTimePassword from "../components/one-time-password";
 import AlertDialog from "../components/alert-dialog";
 import AlertType from "../components/alert-dialog/AlertType";
 import PhoneNumberField from "../components/phone-number-field";
-import { sendOTP } from "../controllers/auth";
+import { sendOTP } from "../requests/auth";
 
 const Login: NextPage = () => {
     const { locale } = useRouter();
@@ -63,26 +63,10 @@ const Login: NextPage = () => {
                 setAlertDescription(t('alert-dialog:subtitle.error.generic'))
 
                 // client side
-                if (status == 401) {
+                if (status == 401 || status == 502) {
                     setAlertType(AlertType.WARNING);
                     setAlertTitle(t('alert-dialog:title.error.wrongForm'))
                     setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
-                }
-
-                // server side 502 already exists TODO
-
-                // no response received
-                if (status == 999) {
-                    setAlertType(AlertType.INFORMATION);
-                    setAlertTitle(t('alert-dialog:title.error.generic'))
-                    setAlertDescription(t('alert-dialog:subtitle.error.generic'))
-                }
-
-                // axios side
-                if (status === 1000) {
-                    setAlertType(AlertType.INFORMATION);
-                    setAlertTitle(t('alert-dialog:title.error.emptyForm'))
-                    setAlertDescription(t('alert-dialog:subtitle.error.generic'))
                 }
 
                 setAlertVisible(true)

@@ -1,11 +1,6 @@
 import axios from "axios";
-import {
-  BATSIGN,
-  HOST,
-  PORT,
-  capitalizeFirstLetter,
-  CONNECTION,
-} from "../constants";
+import { BATSIGN, HOST, PORT, CONNECTION } from "../constants";
+import { capitalizeFirstLetter } from "../controllers/dataManipulation";
 
 export async function sendOTP(phone: string, type: string, language: string) {
   let status = undefined;
@@ -50,8 +45,7 @@ export async function sendSignUpForm(
   phone: string,
   otp: string
 ) {
-  let status = undefined;
-
+  let result;
   await axios
     .post(
       `${CONNECTION}://${HOST}:${PORT}/signup`,
@@ -65,30 +59,23 @@ export async function sendSignUpForm(
           "Content-Type": "application/json",
           batsign: BATSIGN,
         },
+        withCredentials: true,
       }
     )
     .then(function (response) {
-      status = response.status;
+      result = response;
     })
     .catch(function (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        status = error.response.status;
-      } else if (error.request) {
-        // The request was made but no response was received from the server
-        status = 999;
-      } else {
-        // Something happened in setting up the request that triggered an error
-        status = 1000;
+        result = error.response;
       }
     });
 
-  return status;
+  return result;
 }
 
 export async function sendSignInForm(phone: string, otp: string) {
-  let status = undefined;
-
+  let result;
   await axios
     .post(
       `${CONNECTION}://${HOST}:${PORT}/signin`,
@@ -101,25 +88,19 @@ export async function sendSignInForm(phone: string, otp: string) {
           "Content-Type": "application/json",
           batsign: BATSIGN,
         },
+        withCredentials: true,
       }
     )
     .then(function (response) {
-      status = response.status;
+      result = response;
     })
     .catch(function (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        status = error.response.status;
-      } else if (error.request) {
-        // The request was made but no response was received from the server
-        status = 999;
-      } else {
-        // Something happened in setting up the request that triggered an error
-        status = 1000;
+        result = error.response;
       }
     });
 
-  return status;
+  return result;
 }
 
 function generateFullNameFrom(name: string, surname: string) {
