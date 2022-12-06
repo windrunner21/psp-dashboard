@@ -15,9 +15,7 @@ import Router from "next/router";
 import LoadingIndicatorPage from "../components/loading-indicator-page";
 
 const Dashboard: NextPage = () => {
-    const { user, isLoading, isError } = useUser();
-
-    if (isError) { Router.push("/login") }
+    const { user, loading, loggedOut } = useUser();
 
     const [sidebarCollapsed, collapseSidebar] = React.useState(false)
     const [areNotificationslVisible, setNotificationsVisible] = React.useState(false)
@@ -40,6 +38,8 @@ const Dashboard: NextPage = () => {
         }
     }, []);
 
+    if (loggedOut) { Router.push("/login"); console.log("here") }
+
     return (
         <>
             <Head>
@@ -48,8 +48,9 @@ const Dashboard: NextPage = () => {
                 <meta name="keywords" content="Odero, odero.az, Odero.az, Payments, Visa, visa, Credit, credit, Debit, debit, Mastercard, mastercard, Amex, amex, pay by link, link" />
                 <link rel="icon" href="/odero.ico" />
             </Head>
-            {isLoading && <LoadingIndicatorPage />}
-            {user &&
+            {loading && <LoadingIndicatorPage />}
+            {
+                user && !loggedOut &&
                 <main className={styles.main}>
                     <div className={`${styles.leftContainer} ${sidebarCollapsed ? styles.collapse : ''}`}>
                         <div className={styles.desktop}>

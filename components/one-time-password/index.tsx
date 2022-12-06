@@ -13,6 +13,7 @@ import AlertType from "../alert-dialog/AlertType"
 import Validator from "../validator";
 import { sendOTP, sendSignInForm, sendSignUpForm } from "../../requests/auth";
 import SecondaryBack from "../secondary-back";
+import useUser from "../../controllers/user";
 
 // modal representation
 export const OneTimePasswordModal = (props: OneTimePasswordProps) => {
@@ -132,8 +133,10 @@ export const OneTimePasswordModal = (props: OneTimePasswordProps) => {
     )
 }
 
-// embedded representation
+// embedded representation with mutate swr
 export const OneTimePassword = (props: OneTimePasswordProps) => {
+    const { mutate } = useUser();
+
     const { locale } = useRouter();
     const { t } = useTranslation(['otp', 'alert-dialog', 'validators']);
 
@@ -148,12 +151,12 @@ export const OneTimePassword = (props: OneTimePasswordProps) => {
     const [loading, setIsLoading] = React.useState(false)
     const [hasErrors, setHasErrors] = React.useState(false)
 
-    function sendOneTimePasswordCode() {
-        checkForErrorsAndProceed()
+    async function sendOneTimePasswordCode() {
+        await checkForErrorsAndProceed()
     }
 
-    function sendPastedOneTimePasswordCode(targetValue: string) {
-        checkForErrorsAndProceed(targetValue)
+    async function sendPastedOneTimePasswordCode(targetValue: string) {
+        await checkForErrorsAndProceed(targetValue)
     }
 
     async function checkForErrorsAndProceed(targetValue?: string) {
@@ -184,8 +187,7 @@ export const OneTimePassword = (props: OneTimePasswordProps) => {
                 props.setAlertTitle(t('alert-dialog:title.success'))
                 props.setAlertDescription(t('alert-dialog:subtitle.success.login'))
                 props.showAlert(true)
-
-                Router.push("/")
+                mutate()
             } else {
                 props.setAlertType(AlertType.ERROR);
                 props.setAlertTitle(t('alert-dialog:title.error.generic'))
@@ -230,7 +232,7 @@ export const OneTimePassword = (props: OneTimePasswordProps) => {
             setSeconds(0);
             setMinutes(1);
             setDisabled(true)
-            const status = await sendOTP(props.phoneNumber, props.type!, locale ? locale : 'az');
+            await sendOTP(props.phoneNumber, props.type!, locale ? locale : 'az');
         }
     };
 

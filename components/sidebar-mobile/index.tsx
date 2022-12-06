@@ -30,25 +30,13 @@ const SidebarMobile = () => {
                     <div className={styles.content} >
                         <SidebarItem title="Dashboard" icon="dashboard" important={true} />
                         <SidebarItem title="Payments" icon="payments" important={true} />
-                        <SidebarItem title="Refunds" icon="refunds" important={true} />
+                        <SidebarItem title="Balances" icon="balances" important={true} href="/test/balances" />
+                        <SidebarItem title="Reports" icon="reports" important={true} href="/test/reports" />
                         <hr className={styles.divider} />
-                        <SidebarItem
-                            title="More"
-                            icon="tune"
-                            hasTrailing={true}
-                            important={true}
-                            onClick={() => collapseOptions(!optionsCollapsed)}
-                            state={optionsCollapsed}
-                        />
-                        {
-                            optionsCollapsed &&
-                            <div>
-                                <SidebarItem title="Link" icon="link" important={true} />
-                                <SidebarItem title="Wallet" icon="wallet" important={true} />
-                            </div>
-                        }
-                        <hr className={styles.divider} />
-                        <SidebarItem title="Distribution" icon="distribution" important={true} />
+                        <SidebarItem title="Pay by Link" icon="link" important={true} href="/test/more/pay-by-link" />
+                        <SidebarItem title="Wallet" icon="wallet" important={true} href="/test/more/wallet" />
+                        <SidebarItem title="Subscriptions" icon="subscriptions" important={true} href="/test/more/subscriptions" />
+
                     </div>
                     <div className={styles.footer} >
                         <SidebarItem title="Profile" icon="profile" />

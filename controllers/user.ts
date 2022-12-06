@@ -2,12 +2,17 @@ import useSWR from "swr";
 import { getUser } from "../requests/user";
 
 function useUser() {
-  const { data, error } = useSWR("api_get_user", getUser);
+  const { data, mutate, error } = useSWR("descartes", getUser);
+
+  const loading = !data && !error;
+  const loggedOut =
+    error && (error.response.status == 403 || error.response.status == 401);
 
   return {
+    loading,
+    loggedOut,
     user: data,
-    isLoading: !error && !data,
-    isError: error,
+    mutate,
   };
 }
 

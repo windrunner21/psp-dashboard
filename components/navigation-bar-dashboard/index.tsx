@@ -16,8 +16,10 @@ const NavigationBarDashboard = (props: NavigationBarDashboardProps) => {
                     <Search placeholder="Search merchant panel" />
                 </div>
                 <div className={styles.trailing}>
-                    <LanguageSelect />
                     <DashboardEnvironment />
+                    <div style={{ marginBottom: "-0.15rem" }}>
+                        <LanguageSelect />
+                    </div>
                     <Notifications unread={unread} onClick={() => {
                         setUnread(false)
                         props.onNotificationsClick(true)
