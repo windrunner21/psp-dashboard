@@ -71,7 +71,13 @@ const Login: NextPage = () => {
                 if (status == 401 || status == 502) {
                     setAlertType(AlertType.WARNING);
                     setAlertTitle(t('alert-dialog:title.error.wrongForm'))
-                    setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
+                    setAlertDescription(t('alert-dialog:subtitle.error.otpAlreadySent'))
+                }
+
+                if (status == 301) {
+                    setAlertType(AlertType.WARNING);
+                    setAlertTitle(t('alert-dialog:title.error.wrongForm'))
+                    setAlertDescription(t('alert-dialog:subtitle.error.otpAlreadySent'))
                 }
 
                 setAlertVisible(true)

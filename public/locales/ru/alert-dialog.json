@@ -4,7 +4,8 @@
         "error": {
             "generic": "Что-то пошло не так!",
             "wrongForm": "Найдена ошибка!",
-            "emptyForm": "Упс!"
+            "emptyForm": "Упс!",
+            "otpAlreadySent": " Проверочный код"
         }
     },
     "subtitle": {
@@ -14,7 +15,8 @@
         "error": {
             "generic": "Мы столкнулись с непредвиденной ошибкой.",
             "wrongForm": "Проверьте введенные данные на наличие ошибок.",
-            "emptyForm": "Кажется вы не заполнили свои данные."
+            "emptyForm": "Кажется вы не заполнили свои данные.",
+            "otpAlreadySent": "Verification Code"
         }
     }
 }

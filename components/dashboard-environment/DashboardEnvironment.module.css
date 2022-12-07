@@ -1,5 +1,5 @@
 .main {
-    width: 200px;
+    width: 150px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -33,7 +33,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #F3F4F8;
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 2rem;
@@ -67,36 +67,22 @@ input:checked+.slider:before {
 }
 
 /* Tooltip text */
-.switch .tooltiptext {
-    visibility: hidden;
-    width: 240px;
-    top: 150%;
-    left: 50%;
-    margin-left: -120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-
-    /* Position the tooltip text - see examples below! */
+.tooltip {
     position: absolute;
     z-index: 1;
+    display: none;
+    width: 200px;
+    top: 125%;
+    left: -85px;
+    color: var(--text);
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+    background-color: white;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-/* Show the tooltip text when you mouse over the tooltip container */
-.switch:hover .tooltiptext {
-    visibility: visible;
-}
-
-.switch .tooltiptext::after {
-    content: " ";
-    position: absolute;
-    bottom: 100%;
-    /* At the top of the tooltip */
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent black transparent;
+.show {
+    display: block;
 }

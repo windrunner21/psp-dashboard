@@ -4,7 +4,8 @@
         "error": {
             "generic": "Xəta baş verdi!",
             "wrongForm": "Xəta tapıldı!",
-            "emptyForm": "Vay!"
+            "emptyForm": "Vay!",
+            "otpAlreadySent": "Təsdiq kodu"
         }
     },
     "subtitle": {
@@ -14,7 +15,8 @@
         "error": {
             "generic": "Biz gözlənilməz xəta ilə qarşılaşdıq.",
             "wrongForm": "Səhvlər üçün daxiletmənizi yenidən yoxlayın.",
-            "emptyForm": "Görünür, siz formanızı doldurmamısınız."
+            "emptyForm": "Görünür, siz formanızı doldurmamısınız.",
+            "otpAlreadySent": "Üzr istəyirik, bir dəqiqə gözləmək lazımdır!"
         }
     }
 }

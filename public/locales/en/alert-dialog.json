@@ -4,7 +4,8 @@
         "error": {
             "generic": "Something went wrong!",
             "wrongForm": "Mistakes found!",
-            "emptyForm": "Oh no!"
+            "emptyForm": "Oh no!",
+            "otpAlreadySent": "Verification Code"
         }
     },
     "subtitle": {
@@ -14,7 +15,8 @@
         "error": {
             "generic": "We've encountered some unexpected error.",
             "wrongForm": "Please check your form for mistakes.",
-            "emptyForm": "Looks like you did not fill out the form."
+            "emptyForm": "Looks like you did not fill out the form.",
+            "otpAlreadySent": "Извините, но вам нужно подождать минуту!"
         }
     }
 }
