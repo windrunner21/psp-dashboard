@@ -1,0 +1,43 @@
+.container {
+    margin: 2.5%;
+    width: 45%;
+    height: 100px;
+    padding: 1rem;
+    background-color: var(--secondary);
+    border-radius: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.container:hover {
+    cursor: pointer;
+    background-color: rgba(var(--primary-rgb), 0.3)
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.logo {
+    margin-right: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.description {
+    color: gray;
+    font-size: 0.8rem;
+}

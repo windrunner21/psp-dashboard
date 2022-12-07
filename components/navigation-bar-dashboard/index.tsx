@@ -17,9 +17,7 @@ const NavigationBarDashboard = (props: NavigationBarDashboardProps) => {
                 </div>
                 <div className={styles.trailing}>
                     <DashboardEnvironment />
-                    <div style={{ marginBottom: "-0.15rem" }}>
-                        <LanguageSelect />
-                    </div>
+                    <LanguageSelect />
                     <Notifications unread={unread} onClick={() => {
                         setUnread(false)
                         props.onNotificationsClick(true)

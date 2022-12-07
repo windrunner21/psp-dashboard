@@ -22,7 +22,7 @@ import useUser from "../controllers/user";
 import LoadingIndicatorPage from "../components/loading-indicator-page";
 
 const Register: NextPage = () => {
-    const { loading, loggedOut } = useUser();
+    const { user, loading, loggedOut } = useUser();
 
     const { locale } = useRouter();
     const { t } = useTranslation(['register', 'common']);
@@ -85,8 +85,8 @@ const Register: NextPage = () => {
     }
 
     React.useEffect(() => {
-        if (!loggedOut) { Router.push("/") }
-    }, [loggedOut]);
+        if (!loggedOut && user) { Router.push("/") }
+    }, [loggedOut, user]);
 
     return (
         <>
@@ -101,88 +101,89 @@ const Register: NextPage = () => {
             {loading && <LoadingIndicatorPage />}
             {
                 loggedOut &&
-                <main className={styles.main}>
-                    <div className={styles.leftContainer}>
-                        {isAlertVisible &&
-                            <AlertDialog
-                                delay={4000}
-                                title={alertTitle}
-                                description={alertDescription}
-                                type={alertType}
-                                onClick={() => setAlertVisible(false)}
-                            />
-                        }
-                        {step == 0 &&
-                            <div className={styles.form}>
-                                <OderoLogo />
-                                <h2 className={styles.title}>{t('signUp')}</h2>
-
-                                <p className={styles.description}>
-                                    {t('createAccount')}
-                                </p>
-                                <div className={styles.row}>
-                                    <TextField
-                                        label={t('common:name')}
-                                        placeholder={t('common:namePrompt')}
-                                        validatorLabel="Invalid name"
-                                        validateAgainst="name"
-                                        validatorCallback={setNameCorrect}
-                                        autofocus={true}
-                                        capitalized={true}
-                                        setValue={setName}
-                                    />
-                                    <div style={{ width: "1rem" }} />
-                                    <TextField
-                                        label={t('common:surname')}
-                                        placeholder={t('common:surnamePrompt')}
-                                        validatorLabel="Invalid surname"
-                                        validateAgainst="name"
-                                        validatorCallback={setSurnameCorrect}
-                                        capitalized={true}
-                                        setValue={setSurname}
-                                    />
-                                </div>
-                                <PhoneNumberField
-                                    type="tel"
-                                    label={t('common:phoneNumber')}
-                                    placeholder={t('common:phoneNumberPrompt')}
-                                    value={phoneNumber}
-                                    setValue={setPhoneNumber}
-                                    validateNumber={setPhoneNumberCorrect}
+                <>
+                    <main className={styles.main}>
+                        <div className={styles.leftContainer}>
+                            {isAlertVisible &&
+                                <AlertDialog
+                                    delay={4000}
+                                    title={alertTitle}
+                                    description={alertDescription}
+                                    type={alertType}
+                                    onClick={() => setAlertVisible(false)}
                                 />
-                                <div style={{ height: "1rem" }} />
-                                <PrimaryButton title={t('signUp')} onClick={async () => await signUp()} loading={isLoading} />
-                                <p className={styles.caption}>{t('hadAccount')} <PrimaryLink href="/login" label={t('signIn')} /></p>
-                            </div>
-                        }
-                        {step == 1 &&
-                            <OneTimePassword
-                                type="signup"
-                                name={name}
-                                surname={surname}
-                                phoneNumber={phoneNumber}
-                                onClick={() => {
-                                    const stepWillSet = step - 1;
-                                    setStep(stepWillSet)
-                                }}
-                                setAlertType={setAlertType}
-                                setAlertTitle={setAlertTitle}
-                                setAlertDescription={setAlertDescription}
-                                showAlert={setAlertVisible}
-                            />
-                        }
-                    </div>
-                    <div className={styles.rightContainer}>
-                        <Image src="/welcome-vector.png" alt="Welcome Merchant Right Vector" width={514} height={346} />
-                        <div className={styles.callout}>
-                            <h2>{t('inspiration')}</h2>
-                            <p>{t('fromOderoAzTeam')}</p>
-                        </div>
-                    </div>
-                </main >
-            }
+                            }
+                            {step == 0 &&
+                                <div className={styles.form}>
+                                    <OderoLogo />
+                                    <h2 className={styles.title}>{t('signUp')}</h2>
 
-            <Footer />
+                                    <p className={styles.description}>
+                                        {t('createAccount')}
+                                    </p>
+                                    <div className={styles.row}>
+                                        <TextField
+                                            label={t('common:name')}
+                                            placeholder={t('common:namePrompt')}
+                                            validatorLabel="Invalid name"
+                                            validateAgainst="name"
+                                            validatorCallback={setNameCorrect}
+                                            autofocus={true}
+                                            capitalized={true}
+                                            setValue={setName}
+                                        />
+                                        <div style={{ width: "1rem" }} />
+                                        <TextField
+                                            label={t('common:surname')}
+                                            placeholder={t('common:surnamePrompt')}
+                                            validatorLabel="Invalid surname"
+                                            validateAgainst="name"
+                                            validatorCallback={setSurnameCorrect}
+                                            capitalized={true}
+                                            setValue={setSurname}
+                                        />
+                                    </div>
+                                    <PhoneNumberField
+                                        type="tel"
+                                        label={t('common:phoneNumber')}
+                                        placeholder={t('common:phoneNumberPrompt')}
+                                        value={phoneNumber}
+                                        setValue={setPhoneNumber}
+                                        validateNumber={setPhoneNumberCorrect}
+                                    />
+                                    <div style={{ height: "1rem" }} />
+                                    <PrimaryButton title={t('signUp')} onClick={async () => await signUp()} loading={isLoading} />
+                                    <p className={styles.caption}>{t('hadAccount')} <PrimaryLink href="/login" label={t('signIn')} /></p>
+                                </div>
+                            }
+                            {step == 1 &&
+                                <OneTimePassword
+                                    type="signup"
+                                    name={name}
+                                    surname={surname}
+                                    phoneNumber={phoneNumber}
+                                    onClick={() => {
+                                        const stepWillSet = step - 1;
+                                        setStep(stepWillSet)
+                                    }}
+                                    setAlertType={setAlertType}
+                                    setAlertTitle={setAlertTitle}
+                                    setAlertDescription={setAlertDescription}
+                                    showAlert={setAlertVisible}
+                                />
+                            }
+                        </div>
+                        <div className={styles.rightContainer}>
+                            <Image src="/welcome-vector.png" alt="Welcome Merchant Right Vector" width={514} height={346} />
+                            <div className={styles.callout}>
+                                <h2>{t('inspiration')}</h2>
+                                <p>{t('fromOderoAzTeam')}</p>
+                            </div>
+                        </div>
+                    </main >
+                    <Footer />
+                </>
+            }
         </>
     );
 };

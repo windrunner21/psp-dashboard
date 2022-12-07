@@ -65,6 +65,34 @@
     align-items: center;
 }
 
+.overlay {
+    border: 0.1rem solid transparent;
+    border-radius: 0.6rem;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 1px 5px rgb(0 0 0 / 0.15);
+    display: none;
+    position: absolute;
+    z-index: 1;
+    right: -505px;
+    top: 50%;
+}
+
+.overlayContent {
+    padding: 2.5%;
+    background-color: white;
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.show {
+    display: block;
+}
+
 @media (prefers-color-scheme: dark) {
 
     .sidebar {

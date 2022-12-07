@@ -21,7 +21,7 @@ import useUser from "../controllers/user";
 import LoadingIndicatorPage from "../components/loading-indicator-page";
 
 const Login: NextPage = () => {
-    const { loading, loggedOut } = useUser();
+    const { user, loading, loggedOut } = useUser();
 
     const { locale } = useRouter();
     const { t } = useTranslation(['login', 'common']);
@@ -80,8 +80,8 @@ const Login: NextPage = () => {
     }
 
     React.useEffect(() => {
-        if (!loggedOut) { Router.push("/") }
-    }, [loggedOut]);
+        if (!loggedOut && user) { Router.push("/"); }
+    }, [loggedOut, user]);
 
     return (
         <>
@@ -96,66 +96,67 @@ const Login: NextPage = () => {
             {loading && <LoadingIndicatorPage />}
             {
                 loggedOut &&
-                <main className={styles.main}>
-                    <div className={styles.leftContainer}>
-                        {isAlertVisible &&
-                            <AlertDialog
-                                delay={4000}
-                                title={alertTitle}
-                                description={alertDescription}
-                                type={alertType}
-                                onClick={() => setAlertVisible(false)}
-                            />
-                        }
-                        {step == 0 &&
-                            <div className={styles.form}>
-                                <OderoLogo />
-                                <h2 className={styles.title}>{t('signIn')}</h2>
-
-                                <p className={styles.description}>
-                                    {t('welcomeBack')}
-                                </p>
-
-                                <PhoneNumberField
-                                    type="tel"
-                                    label={t('common:phoneNumber')}
-                                    placeholder={t('common:phoneNumberPrompt')}
-                                    value={phoneNumber}
-                                    setValue={setPhoneNumber}
-                                    validateNumber={setPhoneNumberCorrect}
-                                    autofocus={true}
+                <>
+                    <main className={styles.main}>
+                        <div className={styles.leftContainer}>
+                            {isAlertVisible &&
+                                <AlertDialog
+                                    delay={4000}
+                                    title={alertTitle}
+                                    description={alertDescription}
+                                    type={alertType}
+                                    onClick={() => setAlertVisible(false)}
                                 />
-                                <div style={{ height: "1rem" }} />
-                                <PrimaryButton title={t('signIn')} onClick={async () => await signIn()} loading={isLoading} />
-                                <p className={styles.caption}>{t('noAccount')} <PrimaryLink href="/register" label={t('signUp')} /></p>
-                            </div>
-                        }
-                        {step == 1 &&
-                            <OneTimePassword
-                                type="signin"
-                                phoneNumber={phoneNumber}
-                                onClick={() => {
-                                    const stepWillSet = step - 1;
-                                    setStep(stepWillSet)
-                                }}
-                                setAlertType={setAlertType}
-                                setAlertTitle={setAlertTitle}
-                                setAlertDescription={setAlertDescription}
-                                showAlert={setAlertVisible}
-                            />
-                        }
-                    </div>
-                    <div className={styles.rightContainer}>
-                        <Image src="/welcome-vector.png" alt="Welcome Merchant Right Vector" width={514} height={346} />
-                        <div className={styles.callout}>
-                            <h2>{t('inspiration')}</h2>
-                            <p>{t('fromOderoAzTeam')}</p>
-                        </div>
-                    </div>
-                </main >
-            }
+                            }
+                            {step == 0 &&
+                                <div className={styles.form}>
+                                    <OderoLogo />
+                                    <h2 className={styles.title}>{t('signIn')}</h2>
 
-            <Footer />
+                                    <p className={styles.description}>
+                                        {t('welcomeBack')}
+                                    </p>
+
+                                    <PhoneNumberField
+                                        type="tel"
+                                        label={t('common:phoneNumber')}
+                                        placeholder={t('common:phoneNumberPrompt')}
+                                        value={phoneNumber}
+                                        setValue={setPhoneNumber}
+                                        validateNumber={setPhoneNumberCorrect}
+                                        autofocus={true}
+                                    />
+                                    <div style={{ height: "1rem" }} />
+                                    <PrimaryButton title={t('signIn')} onClick={async () => await signIn()} loading={isLoading} />
+                                    <p className={styles.caption}>{t('noAccount')} <PrimaryLink href="/register" label={t('signUp')} /></p>
+                                </div>
+                            }
+                            {step == 1 &&
+                                <OneTimePassword
+                                    type="signin"
+                                    phoneNumber={phoneNumber}
+                                    onClick={() => {
+                                        const stepWillSet = step - 1;
+                                        setStep(stepWillSet)
+                                    }}
+                                    setAlertType={setAlertType}
+                                    setAlertTitle={setAlertTitle}
+                                    setAlertDescription={setAlertDescription}
+                                    showAlert={setAlertVisible}
+                                />
+                            }
+                        </div>
+                        <div className={styles.rightContainer}>
+                            <Image src="/welcome-vector.png" alt="Welcome Merchant Right Vector" width={514} height={346} />
+                            <div className={styles.callout}>
+                                <h2>{t('inspiration')}</h2>
+                                <p>{t('fromOderoAzTeam')}</p>
+                            </div>
+                        </div>
+                    </main >
+                    <Footer />
+                </>
+            }
         </>
     );
 };

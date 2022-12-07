@@ -13,7 +13,7 @@ const LanguageSelect = () => {
         <div className={styles.dropdown}>
             <div className={styles.row}>
                 <span>{t(`${locale}`)}</span>
-                <picture>
+                <picture className={styles.picture}>
                     <source srcSet="/mui-icons/expand-more-dark.svg" media="(prefers-color-scheme: dark)" />
                     <img src="/mui-icons/expand-more.svg" alt="expand more material icon" width={20} height={20} />
                 </picture>

@@ -103,6 +103,24 @@ export async function sendSignInForm(phone: string, otp: string) {
   return result;
 }
 
+export async function logout(id: string) {
+  await axios
+    .post(
+      `${CONNECTION}://${HOST}:${PORT}/logout`,
+      {
+        id: id,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          batsign: BATSIGN,
+        },
+        withCredentials: true,
+      }
+    )
+    .then((response) => response);
+}
+
 function generateFullNameFrom(name: string, surname: string) {
   return (
     capitalizeFirstLetter(name).trim() +

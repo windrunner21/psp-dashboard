@@ -38,7 +38,7 @@ const Dashboard: NextPage = () => {
         }
     }, []);
 
-    if (loggedOut) { Router.push("/login"); console.log("here") }
+    if (loggedOut) { Router.push("/login"); }
 
     return (
         <>
@@ -54,7 +54,7 @@ const Dashboard: NextPage = () => {
                 <main className={styles.main}>
                     <div className={`${styles.leftContainer} ${sidebarCollapsed ? styles.collapse : ''}`}>
                         <div className={styles.desktop}>
-                            <Sidebar collapsed={sidebarCollapsed} collapse={collapseSidebar} />
+                            <Sidebar user={user} collapsed={sidebarCollapsed} collapse={collapseSidebar} />
                         </div>
                         <div className={styles.mobile}>
                             <SidebarMobile />

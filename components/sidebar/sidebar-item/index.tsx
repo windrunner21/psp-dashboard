@@ -6,7 +6,7 @@ import SidebarItem from "./interface";
 const SidebarItem = (props: SidebarItem) => {
     const router = useRouter();
     return (
-        <Link href={props.href!}>
+        <Link href={props.href ?? ''}>
             <div
                 className={
                     `${styles.grid} 
@@ -16,6 +16,7 @@ const SidebarItem = (props: SidebarItem) => {
                     ${props.logout && styles.logout} 
                     ${props.collapsed && styles.center}`
                 }
+                onClick={props.onClick}
             >
                 <div className={styles.leading}>
                     <picture className={styles.logo}>

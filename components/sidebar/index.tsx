@@ -4,11 +4,13 @@ import SidebarProps from "./interface";
 import OderoLogoSmall from "../logo-small";
 import SidebarItem from "./sidebar-item";
 import React from "react";
-import { useRouter } from "next/router";
+import GridItem from "../grid-item";
+import { logout } from "../../requests/auth";
+import { useSWRConfig } from 'swr'
 
 const Sidebar = (props: SidebarProps) => {
-    const router = useRouter()
-    const [optionsCollapsed, collapseOptions] = React.useState(false)
+    const { mutate } = useSWRConfig()
+    const [moreOverlay, showMoreOverlay] = React.useState(false)
 
     return (
         <div className={styles.sidebar}>
@@ -18,28 +20,76 @@ const Sidebar = (props: SidebarProps) => {
                 </div>
             </div>
             <div className={`${styles.content} ${props.collapsed ? styles.collapsed : ''}`} >
-                <SidebarItem title="Dashboard" icon="dashboard" important={true} collapsed={props.collapsed} href="/" />
-                <SidebarItem title="Payments" icon="payments" important={true} collapsed={props.collapsed} href="/test/payments" />
-                <SidebarItem title="Balances" icon="balances" important={true} collapsed={props.collapsed} href="/test/balances" />
-                <SidebarItem title="Reports" icon="reports" important={true} collapsed={props.collapsed} href="/test/reports" />
+                <SidebarItem
+                    title="Dashboard"
+                    icon="dashboard"
+                    important={true}
+                    collapsed={props.collapsed}
+                    href="/"
+                />
+                <SidebarItem
+                    title="Payments"
+                    icon="payments"
+                    important={true}
+                    collapsed={props.collapsed}
+                    href="/test/payments"
+                />
+                <SidebarItem
+                    title="Balances"
+                    icon="balances"
+                    important={true}
+                    collapsed={props.collapsed}
+                    href="/test/balances"
+                />
+                <SidebarItem
+                    title="Reports"
+                    icon="reports"
+                    important={true}
+                    collapsed={props.collapsed}
+                    href="/test/reports"
+                />
                 <hr className={styles.divider} />
-                <div>
-                    <SidebarItem
-                        title="More"
-                        icon="more"
-                        important={true}
-                        collapsed={props.collapsed}
-                        href="/more"
-                    />
+                <SidebarItem
+                    title="More"
+                    icon="more"
+                    important={true}
+                    collapsed={props.collapsed}
+                    onClick={() => showMoreOverlay(true)}
+                />
+                <div className={`${styles.overlay} ${moreOverlay && styles.show}`}>
+                    <div className={styles.overlayContent} onMouseLeave={() => showMoreOverlay(false)}>
+                        <GridItem
+                            label="Pay by Link"
+                            icon="link"
+                            description="Accept payments with zero setup"
+                            href="/test/pay-by-link"
+                        />
+                        <GridItem
+                            label="Subscriptions"
+                            icon="subscriptions"
+                            description="Setup your subscriptions and plans"
+                            href="/test/subscriptions" />
+                    </div>
                 </div>
-                {/* <SidebarItem title="Pay by Link" icon="link" important={true} collapsed={props.collapsed} href="/test/more/pay-by-link" />
-                        <SidebarItem title="Wallet" icon="wallet" important={true} collapsed={props.collapsed} href="/test/more/wallet" />
-                        <SidebarItem title="Subscriptions" icon="subscriptions" important={true} collapsed={props.collapsed} href="/test/more/subscriptions" /> */}
             </div>
             <div className={`${styles.footer} ${props.collapsed ? styles.collapsed : ''}`} >
-                <SidebarItem title="Account" icon="profile" collapsed={props.collapsed} href="/account" />
-                <SidebarItem title="Settings" icon="settings" collapsed={props.collapsed} href="/settings" />
-                <SidebarItem title="Sign out" icon="logout" collapsed={props.collapsed} logout={true} href="/logout" />
+                <SidebarItem
+                    title="Account"
+                    icon="profile"
+                    collapsed={props.collapsed}
+                    href="/account" />
+                <SidebarItem
+                    title="Settings"
+                    icon="settings"
+                    collapsed={props.collapsed}
+                    href="/settings" />
+                <SidebarItem
+                    title="Sign out"
+                    icon="logout"
+                    collapsed={props.collapsed}
+                    logout={true}
+                    onClick={() => { logout(props.user._id).then(() => mutate("descartes")) }}
+                />
             </div>
             <div className={styles.swapper} onClick={() => props.collapse(!props.collapsed)}>
                 <picture className={styles.logo}>

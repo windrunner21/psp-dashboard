@@ -6,7 +6,9 @@ function useUser() {
 
   const loading = !data && !error;
   const loggedOut =
-    error && (error.response.status == 403 || error.response.status == 401);
+    error && error.code == "ERR_NETWORK"
+      ? true
+      : error && (error.response.status == 403 || error.response.status == 401);
 
   return {
     loading,
