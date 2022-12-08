@@ -21,12 +21,6 @@
     position: relative;
 }
 
-.pageContent {
-    padding: 1.5rem 3rem;
-    width: 100%;
-    height: calc(100vh - 4.5rem);
-}
-
 .mobile {
     display: none;
 }

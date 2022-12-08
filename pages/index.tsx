@@ -13,6 +13,7 @@ import NotificationItem from "../components/notifications-dialog/notifications-i
 import useUser from "../controllers/user";
 import Router from "next/router";
 import LoadingIndicatorPage from "../components/loading-indicator-page";
+import GetStarted from "../components/get-started-dashboard";
 
 const Dashboard: NextPage = () => {
     const { user, loading, loggedOut } = useUser();
@@ -63,6 +64,7 @@ const Dashboard: NextPage = () => {
                     <div className={styles.rightContainer}>
                         <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} />
                         <div className={styles.pageContent}>
+                            <GetStarted phone={user.phone} />
                         </div>
                     </div>
                     {
@@ -80,7 +82,7 @@ export default Dashboard
 export async function getStaticProps({ locale }: { locale: string }) {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ["languages"]))
+            ...(await serverSideTranslations(locale, ["languages", "otp", "alert-dialog", "validators"]))
         },
     };
 }
