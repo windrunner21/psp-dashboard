@@ -4,21 +4,17 @@
     "step0": {
         "main": {
             "title": "Fəaliyyətiniz haqda məlumat verin",
-            "option1": "Siz fərdi sahibkar və ya frilansersiniz (ƏDV ödəyicisi)",
-            "option2": "Siz fərdi sahibkar və ya frilansersiniz (ƏDV ödəyicisi olmayan)",
-            "option3": "Siz hüquqi şəxssiniz (ƏDV ödəyicisi)",
-            "option4": "Siz hüquqi şəxssiniz (ƏDV ödəyicisi olmayan)"
+            "option1": "Siz fərdi sahibkar və ya frilansersiniz",
+            "option2": "Siz hüquqi şəxssiniz"
         },
         "help": {
             "title": "Odero Qeydiyyat Mərhələsinə Xoş Gəlmisiniz.",
-            "subtitle": "Müqavilənizi hazırlamaq üçün bizə biznesiniz haqqında məlumat lazımdır. Zəhmət olmasa hüquqi və şəxsi sənədlərinizi hazırlayın və yaxınlıqda saxlayın.",
-            "helperTitle": "ƏDV nədir?",
-            "helperSubtitle": "ƏDV ödəyicisi* - Əlavə Dəyər Vergisi Ödəyicisi. ƏDV ödəyicisi ƏDV-ni ödəmək öhdəliyi ilə vergi orqanında qeydiyyata alınmış vergi tutulan şəxsdir."
+            "subtitle": "Müqavilənizi hazırlamaq üçün bizə biznesiniz haqqında məlumat lazımdır. Zəhmət olmasa hüquqi və şəxsi sənədlərinizi hazırlayın və yaxınlıqda saxlayın."
         }
     },
     "step1": {
         "main": {
-            "title": "Özünüz haqda məlumat verin"
+            "title": "Qanuni təmsilçinin məlumatları"
         },
         "help": {
             "title": "Siz qanuni təmsilçisiniz?",
@@ -30,9 +26,8 @@
             "title": "Biznesiniz haqda məlumat verin"
         },
         "help": {
-            "title": "Sualınız var? Sizin üçün buradayıq.",
-            "subtitle": "Hansı fəaliyyət formasının biznesimə uyğun olduğunu necə öyrənə bilərəm? Əgər digər sahibkarlar sizin veb-saytınızda öz məhsullarını satırsa, bu MARKETPLEYS fəaliyyətidir.",
-            "example": "Məşhur nümunələr: Amazon, Trendyol, Umico."
+            "title": "ƏDV nədir?",
+            "subtitle": "ƏDV ödəyicisi* - Əlavə Dəyər Vergisi Ödəyicisi. ƏDV ödəyicisi ƏDV-ni ödəmək öhdəliyi ilə vergi orqanında qeydiyyata alınmış vergi tutulan şəxsdir."
         }
     },
     "step3": {

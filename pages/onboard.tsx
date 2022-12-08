@@ -1,7 +1,6 @@
 import { NextPage } from "next";
 import styles from "../styles/Onboard.module.css"
 import Head from "next/head";
-import Image from 'next/image'
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from 'next-i18next';
@@ -15,6 +14,7 @@ import Select from "../components/select";
 import StepIndicators from "../components/step-indicators";
 import TextField from "../components/text-field";
 import UploadField from "../components/upload-field";
+import PhoneNumberField from "../components/phone-number-field";
 
 enum UserType {
     CONTRACTOR,
@@ -27,70 +27,42 @@ const Onboard: NextPage = () => {
     const { t } = useTranslation(['onboard', 'common']);
     const title = `${t('title')} | Odero`;
 
+    // data
     const [step, setStep] = React.useState(0)
     const [userType, setUserType] = React.useState(UserType.UNKNOWN)
+    const [paysVat, setPaysVat] = React.useState(undefined)
     const [name, setName] = React.useState("")
     const [surname, setSurname] = React.useState("")
     const [email, setEmail] = React.useState("")
     const [phoneNumber, setPhoneNumber] = React.useState("")
-    const [city, setCity] = React.useState(-1)
+
+    // validators
+    const [nameCorrect, setNameCorrect] = React.useState(false)
+    const [surnameCorrect, setSurnameCorrect] = React.useState(false)
+    const [phoneNumberCorrect, setPhoneNumberCorrect] = React.useState(false)
 
     const initialChoices = [
         {
-            type: UserType.CONTRACTOR,
-            vat: true,
             image: "user",
             label: t('step0.main.option1')
         },
         {
-            type: UserType.CONTRACTOR,
-            vat: false,
-            image: "user",
+            image: "company",
             label: t('step0.main.option2')
         },
-        {
-            type: UserType.COMPANY,
-            vat: true,
-            image: "company",
-            label: t('step0.main.option3')
-        },
-        {
-            type: UserType.COMPANY,
-            vat: false,
-            image: "company",
-            label: t('step0.main.option4')
-        },
+    ]
+
+    const businessVatOptions = [
+        'Please select your VAT option...',
+        'Yes',
+        'No'
     ]
 
     const businessTypeOptions = [
+        'Please select your business type...',
         t('common:llc'),
         t('common:ojsc'),
         t('common:cjsc'),
-    ]
-
-    const formOfOperationOptions = [
-        t('common:standart'),
-        t('common:marketplace'),
-    ]
-
-    const cityOptions = [
-        "Bakı",
-        "Gəncə"
-    ]
-
-    const districtOptions = [
-        "Binəqədi",
-        "Khazar",
-        "Nərimanov",
-        "Nəsimi",
-        "Nizami",
-        "Pirallahı",
-        "Qaradağ",
-        "Sabail",
-        "Sabunçu",
-        "Suraxanı",
-        "Xətai",
-        "Yasamal"
     ]
 
     return (
@@ -117,17 +89,11 @@ const Onboard: NextPage = () => {
                                             <OnboardChoice key={index} image={initialChoice.image} title={initialChoice.label} onClick={() => {
                                                 if (index == 0) {
                                                     setUserType(UserType.CONTRACTOR)
-                                                    setStep(1)
                                                 } else if (index == 1) {
-                                                    setUserType(UserType.CONTRACTOR)
-                                                    setStep(1)
-                                                } else if (index == 2) {
                                                     setUserType(UserType.COMPANY)
-                                                    setStep(1)
-                                                } else if (index == 3) {
-                                                    setUserType(UserType.COMPANY)
-                                                    setStep(1)
                                                 }
+                                                const stepWillSet = step + 1;
+                                                setStep(stepWillSet)
                                             }} />
                                         ))
                                     }
@@ -145,6 +111,7 @@ const Onboard: NextPage = () => {
                                             placeholder={t('common:namePrompt')}
                                             validatorLabel="Invalid name"
                                             validateAgainst="name"
+                                            validatorCallback={setNameCorrect}
                                             autofocus={name == "" ? true : false}
                                             capitalized={true}
                                             value={name}
@@ -156,6 +123,7 @@ const Onboard: NextPage = () => {
                                             placeholder={t('common:surnamePrompt')}
                                             validatorLabel="Invalid surname"
                                             validateAgainst="name"
+                                            validatorCallback={setSurnameCorrect}
                                             capitalized={true}
                                             value={surname}
                                             setValue={setSurname}
@@ -170,14 +138,13 @@ const Onboard: NextPage = () => {
                                         value={email}
                                         setValue={setEmail}
                                     />
-                                    <TextField
-                                        label={t('common:phoneNumber')}
+                                    <PhoneNumberField
                                         type="tel"
-                                        placeholder="+994 (XX) XXX XX XX"
-                                        pattern="+### (##) ### ## ##"
-                                        validateAgainst="phoneNumber"
+                                        label={t('common:phoneNumber')}
+                                        placeholder={t('common:phoneNumberPrompt')}
                                         value={phoneNumber}
                                         setValue={setPhoneNumber}
+                                        validateNumber={setPhoneNumberCorrect}
                                     />
                                     <div className={`${styles.row} ${styles.pagination}`}>
                                         <SecondaryBack onClick={() => {
@@ -202,7 +169,7 @@ const Onboard: NextPage = () => {
                                         userType == UserType.COMPANY &&
                                         <Select label={t('common:businessType')} optionsList={businessTypeOptions} />
                                     }
-                                    <Select label={t('common:operationForm')} optionsList={formOfOperationOptions} />
+                                    <Select label={'Do you pay VAT?'} optionsList={businessVatOptions} />
                                     <TextField
                                         label={t('common:businessName')}
                                         placeholder={t('common:businessNamePrompt')}
@@ -218,9 +185,9 @@ const Onboard: NextPage = () => {
                                     />
                                     <TextField
                                         label={t('common:iban')}
-                                        placeholder="AZDD CCCC DDDD DDDD DDDD DDDD DDDD"
-                                        pattern="#### #### #### #### #### #### ####"
+                                        placeholder="Enter your IBAN"
                                         validateAgainst="iban"
+                                        max={34}
                                     />
                                     <div className={`${styles.row} ${styles.pagination}`}>
                                         <SecondaryBack onClick={() => {
@@ -241,14 +208,32 @@ const Onboard: NextPage = () => {
                             {step == 3 &&
                                 <div className={styles.subform}>
                                     <h1 style={{ marginBottom: "2rem" }}>{t('step3.main.title')}</h1>
-                                    <Select label={t('common:city')} optionsList={cityOptions} onClick={setCity} />
-                                    {city == 0 && <Select label={t('common:district')} optionsList={districtOptions} />}
                                     <TextField
-                                        label={t('common:contactPhoneBusiness')}
-                                        placeholder={t('common:contactPhoneBusinessPrompt')}
-                                        pattern="+### (##) ### ## ##"
-                                        validateAgainst="phoneNumber"
+                                        label="Address"
+                                        placeholder="Enter your address line"
                                         autofocus={true}
+                                    />
+                                    <TextField
+                                        placeholder="Address line 2 (Optional)"
+                                    />
+                                    <div className={styles.row}>
+                                        <TextField
+                                            label="City"
+                                            placeholder="Enter your city"
+                                        />
+                                        <div style={{ width: "1rem" }} />
+                                        <TextField
+                                            label="Postal Code"
+                                            placeholder="Enter your postal code"
+                                        />
+                                    </div>
+                                    <PhoneNumberField
+                                        type="tel"
+                                        label={t('common:phoneNumber')}
+                                        placeholder={t('common:phoneNumberPrompt')}
+                                        value={phoneNumber}
+                                        setValue={setPhoneNumber}
+                                        validateNumber={setPhoneNumberCorrect}
                                     />
                                     <TextField
                                         label={t('common:website')}
@@ -291,7 +276,7 @@ const Onboard: NextPage = () => {
                                         label={t('common:bankRequisites')}
                                         validatorLabel="Bank requisites upload failed"
                                     />
-                                    <UploadField
+                                    {/* <UploadField
                                         id="optional#1"
                                         label={t('common:optional1')}
                                         validatorLabel="First optional documents upload failed"
@@ -300,7 +285,7 @@ const Onboard: NextPage = () => {
                                         id="optional#2"
                                         label={t('common:optional2')}
                                         validatorLabel="Second optional documents upload failed"
-                                    />
+                                    /> */}
                                     <div className={`${styles.row} ${styles.pagination}`}>
                                         <SecondaryBack onClick={() => {
                                             const stepWillSet = step - 1;
@@ -331,38 +316,30 @@ const Onboard: NextPage = () => {
                 <div className={styles.rightContainer}>
                     {step == 0 &&
                         <div className={styles.subform}>
-                            <Image src="/onboard/step0.svg" alt="Onboard Choice Logo" width={200} height={200} priority />
                             <h3>{t('step0.help.title')}</h3>
                             <p className={styles.description}>{t('step0.help.subtitle')}</p>
-                            <h4>{t('step0.help.helperTitle')}</h4>
-                            <p className={styles.description} style={{ fontSize: "0.9rem" }}>{t('step0.help.helperSubtitle')}</p>
                         </div>
                     }
                     {step == 1 &&
                         <div className={styles.subform}>
-                            <Image src="/onboard/step1.svg" alt="Onboard Choice Logo" width={200} height={200} />
                             <h3>{t('step1.help.title')}</h3>
                             <p className={styles.description}>{t('step1.help.subtitle')}</p>
                         </div>
                     }
                     {step == 2 &&
                         <div className={styles.subform}>
-                            <Image src="/onboard/step2.svg" alt="Onboard Choice Logo" width={200} height={200} />
                             <h3>{t('step2.help.title')}</h3>
                             <p className={styles.description}>{t('step2.help.subtitle')}</p>
-                            <p className={styles.description}>{t('step2.help.example')}</p>
                         </div>
                     }
                     {step == 3 &&
                         <div className={styles.subform}>
-                            <Image src="/onboard/step3.svg" alt="Onboard Choice Logo" width={200} height={200} />
                             <h3>{t('step3.help.title')}</h3>
                             <p className={styles.description}>{t('step3.help.subtitle')}</p>
                         </div>
                     }
                     {step == 4 &&
                         <div className={styles.subform}>
-                            <Image src="/onboard/step4.svg" alt="Onboard Choice Logo" width={200} height={200} />
                             <h3>{t('step4.help.title')}</h3>
                             <div style={{ textAlign: "justify" }}>
                                 <p className={styles.description}>&#x2022; {t('step4.help.option1')}</p>
@@ -374,7 +351,6 @@ const Onboard: NextPage = () => {
                     {step < 5 && <StepIndicators totalSteps={5} step={step} />}
                     {step == 5 &&
                         <div>
-                            <Image src="/onboard/step5.svg" alt="Onboard Choice Logo" width={300} height={300} />
                             <h3>{t('step5.help.title')}</h3>
                             <h1 style={{ color: "var(--success-primary)", textTransform: "uppercase" }}>{t('common:applied')}</h1>
                         </div>

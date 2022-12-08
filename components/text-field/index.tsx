@@ -34,8 +34,8 @@ const TextField = (props: TextFieldProps) => {
     }
 
     function handlePattern(e: any) {
-        if (props.pattern && props.validateAgainst == "iban") {
-            e.target.value = applyIBANPattern(e.target.value, props.pattern)
+        if (props.validateAgainst == "iban") {
+            e.target.value = applyIBANPattern(e.target.value)
         }
 
         if (props.setValue) { props.setValue(e.target.value) }
@@ -50,9 +50,9 @@ const TextField = (props: TextFieldProps) => {
                 className={`${styles.input} ${hasError ? styles.inputError : ''}`}
                 placeholder={props.placeholder}
                 type={props.type}
-                onBlur={(e) => { validate(e.target); handlePattern(e) }}
+                onChange={(e) => handlePattern(e)}
+                onBlur={(e) => validate(e.target)}
                 maxLength={props.max}
-                pattern={props.pattern}
                 defaultValue={props.value}
             />
         </div>

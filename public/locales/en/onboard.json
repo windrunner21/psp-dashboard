@@ -4,21 +4,17 @@
     "step0": {
         "main": {
             "title": "Tell us about your situation",
-            "option1": "You are a freelance or independent contractor (VAT payer)",
-            "option2": "You are a freelance or independent contractor (Non VAT payer)",
-            "option3": "You have a company (VAT payer)",
-            "option4": "You have a company (Non VAT payer)"
+            "option1": "You are a freelance or independent contractor",
+            "option2": "You have a company"
         },
         "help": {
             "title": "Welcome to Odero Onboard Procedure.",
-            "subtitle": "We need an information about your business in order for us to prepare your contract. Please have your business and personal documents ready and nearby.",
-            "helperTitle": "What's a VAT?",
-            "helperSubtitle": "VAT Payer* - Value Added Tax Payer. VAT payer is a taxable person registered by the tax authority office as obliged to pay VAT."
+            "subtitle": "We need an information about your business in order for us to prepare your contract. Please have your business and personal documents ready and nearby."
         }
     },
     "step1": {
         "main": {
-            "title": "Tell us about yourself"
+            "title": "Legal representative information"
         },
         "help": {
             "title": "Are you the legal representative?",
@@ -30,9 +26,8 @@
             "title": "Tell us about your business"
         },
         "help": {
-            "title": "Have questions? We are here for you.",
-            "subtitle": "How do I know which form of operations corresponds to my business? If you have merchants who sell their products on your website, then you are a MARKETPLACE.",
-            "example": "Popular examples: Amazon, Trendyol, Umico."
+            "title": "What's a VAT?",
+            "subtitle": "VAT Payer* - Value Added Tax Payer. VAT payer is a taxable person registered by the tax authority office as obliged to pay VAT."
         }
     },
     "step3": {

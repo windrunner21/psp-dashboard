@@ -26,21 +26,13 @@ export function applyPhoneNumberPattern(str: string) {
     .replace(/(\d{2})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4");
 }
 
-export function applyIBANPattern(str: string, mask: string) {
-  if (!mask) return str;
-
-  const numeric = str.replaceAll(/[^0-9a-z]/gi, "");
-
-  let idx = 0;
-  const formated = mask.split("").map((el) => {
-    if (el == "#") {
-      el = numeric[idx].toUpperCase();
-      idx++;
-    }
-    return el;
-  });
-
-  return formated.join("");
+export function applyIBANPattern(str: string) {
+  return str
+    .replace(
+      /^([a-zA-Z]{2})(\d{2})([a-zA-Z]{4})(\d{4})(\d{4})(\d{4})(\d{4})(\d{4})/,
+      "$1$2 $3 $4 $5 $6 $7 $8"
+    )
+    .toUpperCase();
 }
 
 export function isValidTaxNumber(target: EventTarget) {

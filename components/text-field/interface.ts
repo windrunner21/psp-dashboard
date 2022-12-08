@@ -6,7 +6,6 @@ interface TextFieldProps {
   autofocus?: boolean;
   validatorLabel?: string;
   validateAgainst?: string;
-  pattern?: string;
   max?: number;
   value?: string;
   validatorCallback?: (params: any) => void;

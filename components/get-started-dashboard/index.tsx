@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import React from "react"
+import AlertDialog from "../alert-dialog"
 import AlertType from "../alert-dialog/AlertType"
 import styles from "../get-started-dashboard/GetStarted.module.css"
 import { OneTimePasswordModal } from "../one-time-password"
@@ -16,6 +17,15 @@ const GetStarted = (props: GetStartedProps) => {
     const [alertType, setAlertType] = React.useState(AlertType.UNKNOWN)
     return (
         <div className={styles.main}>
+            {isAlertVisible &&
+                <AlertDialog
+                    delay={4000}
+                    title={alertTitle}
+                    description={alertDescription}
+                    type={alertType}
+                    onClick={() => setAlertVisible(false)}
+                />
+            }
             {
                 isModalVisible &&
                 <OneTimePasswordModal
@@ -53,7 +63,7 @@ const GetStarted = (props: GetStartedProps) => {
                     <div className={styles.column} style={{ width: "25%" }}>
                         <span className={styles.subtitle}>Don&apos;t have a website?</span>
                         <span className={styles.subdescription}>Create your own custom website with payment system at <PrimaryLink href="https://odero.shop" label="odero.shop" /></span>
-                        <Image src={"/pay-by-link.png"} alt="pay by link" width={239} height={200} />
+                        <Image src={"/odero-shop.png"} alt="pay by link" width={322} height={200} />
                     </div>
                     <div className={styles.column} style={{ width: "25%" }}>
                         <span className={styles.subtitle}>Have a website or an app</span>
@@ -86,7 +96,16 @@ const GetStarted = (props: GetStartedProps) => {
             <div className={styles.section3}>
                 <span className={styles.caption}>Not sure where to start?</span>
                 <span className={styles.contactUs}>Contact us and we will personally help you set up your Odero account</span>
-                <span className={styles.contactNumber}>+994 (12) 310 57 10</span>
+                <div className={styles.rowStart}>
+                    <picture>
+                        <source srcSet="/mui-icons/support-dark.svg" media="(prefers-color-scheme: dark)" />
+                        <img src="/mui-icons/support.svg" alt="For developers" width={16} height={16} />
+                    </picture>
+                    <div style={{ width: "0.5rem" }} />
+                    <span className={styles.contactNumber}>+994 (12) 310 57 10</span>
+                </div>
+
+
             </div>
         </div>
     )

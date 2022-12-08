@@ -6,7 +6,7 @@ const Select = (props: SelectProps) => {
     const [hasError, setHasError] = React.useState(false)
 
     const [isOptionsOpen, setIsOptionsOpen] = React.useState(false);
-    const [selectedOption, setSelectedOption] = React.useState(-1);
+    const [selectedOption, setSelectedOption] = React.useState(0);
     const optionsList = props.optionsList
 
     function toggleOptions() {
@@ -36,13 +36,11 @@ const Select = (props: SelectProps) => {
                     className={styles.option}
                     tabIndex={-1}
                 >
-                    {optionsList.map((option, index) => (
+                    {optionsList.slice(1).map((option, index) => (
                         <p key={index} tabIndex={0} onClick={() => {
-                            setSelectedOption(index);
+                            const selectedIndex = index + 1;
+                            setSelectedOption(selectedIndex);
                             setIsOptionsOpen(false);
-                            if (props.onClick) {
-                                props.onClick(index)
-                            }
                         }}>
                             {option}
                         </p>
