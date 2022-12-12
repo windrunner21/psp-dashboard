@@ -21,7 +21,16 @@ const PhoneNumberField = (props: PhoneNumberFieldProps) => {
     };
 
     function validate(e: any) {
-        setHasError(e.target.value.length != 12)
+        setHasError(
+            e.target.value.length != 12 || (e.target.value.substring(0, 2) != "50" &&
+                e.target.value.substring(0, 2) != "51" &&
+                e.target.value.substring(0, 2) != "55" &&
+                e.target.value.substring(0, 2) != "77" &&
+                e.target.value.substring(0, 2) != "99" &&
+                e.target.value.substring(0, 2) != "10" &&
+                e.target.value.substring(0, 2) != "12")
+        )
+
         props.validateNumber(e.target.value.length == 12)
     }
 
@@ -41,8 +50,8 @@ const PhoneNumberField = (props: PhoneNumberFieldProps) => {
                     type={props.type}
                     onChange={(e) => handlePattern(e)}
                     onBlur={(e) => validate(e)}
-                    defaultValue={props.value}
                     maxLength={12}
+                    defaultValue={props.value}
                 />
             </div>
         </div>

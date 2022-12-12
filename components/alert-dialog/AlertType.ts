@@ -1,9 +1,9 @@
 enum AlertType {
-  SUCCESS,
-  WARNING,
-  ERROR,
-  INFORMATION,
-  UNKNOWN,
+  SUCCESS = "success",
+  WARNING = "warning",
+  ERROR = "error",
+  INFORMATION = "info",
+  UNKNOWN = "error",
 }
 
 export default AlertType;

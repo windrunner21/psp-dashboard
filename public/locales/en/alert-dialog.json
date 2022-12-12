@@ -16,7 +16,7 @@
             "generic": "We've encountered some unexpected error.",
             "wrongForm": "Please check your form for mistakes.",
             "emptyForm": "Looks like you did not fill out the form.",
-            "otpAlreadySent": "Извините, но вам нужно подождать минуту!"
+            "otpAlreadySent": "Please wait a minute!"
         }
     }
 }

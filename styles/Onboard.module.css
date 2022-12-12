@@ -60,6 +60,12 @@
     justify-content: center;
 }
 
+.caption {
+    color: gray;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
 /* SCREEN SETTINGS */
 
 @media (max-width: 400px) {

@@ -1,7 +1,7 @@
 import styles from "../text-field/TextField.module.css";
 import TextFieldProps from "./interface";
 import React from "react";
-import { applyIBANPattern, isValidEmailAddress, isValidNameSurname, isValidTaxNumber, isValidWebsite } from "../../controllers/validators";
+import { applyIBANPattern, applyPostalCodePattern, isValidAddress, isValidBusinessName, isValidCity, isValidEmailAddress, isValidIBAN, isValidNameSurname, isValidPostalCode, isValidTaxNumber, isValidWebsite } from "../../controllers/validators";
 
 const TextField = (props: TextFieldProps) => {
     const [hasError, setHasError] = React.useState(false)
@@ -21,12 +21,35 @@ const TextField = (props: TextFieldProps) => {
                 break;
             case "email":
                 setHasError(!isValidEmailAddress(target))
+                props.validatorCallback!(isValidEmailAddress(target))
                 break;
-            case "voen":
+            case "businessName":
+                setHasError(!isValidBusinessName(target))
+                props.validatorCallback!(isValidBusinessName(target))
+                break;
+            case "taxNumber":
                 setHasError(!isValidTaxNumber(target))
+                props.validatorCallback!(isValidTaxNumber(target))
+                break;
+            case "IBAN":
+                setHasError(!isValidIBAN(target))
+                props.validatorCallback!(isValidIBAN(target))
+                break;
+            case "address":
+                setHasError(!isValidAddress(target))
+                props.validatorCallback!(isValidAddress(target))
+                break;
+            case "city":
+                setHasError(!isValidCity(target))
+                props.validatorCallback!(isValidCity(target))
+                break;
+            case "postalCode":
+                setHasError(!isValidPostalCode(target))
+                props.validatorCallback!(isValidPostalCode(target))
                 break;
             case "website":
                 setHasError(!isValidWebsite(target))
+                props.validatorCallback!(isValidWebsite(target))
                 break;
             default:
                 break;
@@ -34,8 +57,12 @@ const TextField = (props: TextFieldProps) => {
     }
 
     function handlePattern(e: any) {
-        if (props.validateAgainst == "iban") {
+        if (props.validateAgainst == "IBAN") {
             e.target.value = applyIBANPattern(e.target.value)
+        }
+
+        if (props.validateAgainst == "postalCode") {
+            e.target.value = applyPostalCodePattern(e.target.value)
         }
 
         if (props.setValue) { props.setValue(e.target.value) }

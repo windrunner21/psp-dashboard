@@ -45,9 +45,9 @@
         },
         "help": {
             "title": "Правила загрузки документов!",
-            "option1": "Все документы должны быть в pdf формате.",
-            "option2": "Если у вас есть удостоверение личности старого поколения, отсканируйте обратную сторону и загрузите ее с помощью дополнительных документов.",
-            "option3": "Дополнительные документы можно не указывать, если они вам не требуются."
+            "option1": "Все документы должны быть в PDF (.pdf) формате.",
+            "option2": "Both sides of the document, if exist, must be upload in the same PDF file.",
+            "option3": "Additional documents may be required in the future if the need arises."
         }
     },
     "step5": {

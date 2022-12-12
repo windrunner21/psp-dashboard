@@ -1,48 +1,24 @@
 import CloseButton from "../close-button"
 import AlertDialogProps from "./interface"
 import styles from "../alert-dialog/AlertDialog.module.css"
-import AlertType from "./AlertType";
 import React from "react";
 import Image from 'next/image'
 
 const AlertDialog = (props: AlertDialogProps) => {
     const alertRef = React.useRef<HTMLDivElement>(null)
-    const [style, setStyle] = React.useState(``)
-    const [icon, setIcon] = React.useState("")
 
 
     React.useEffect(() => {
-        switch (props.type) {
-            case AlertType.SUCCESS:
-                setStyle(`${styles.grid} ${styles.success}`)
-                setIcon("success")
-                return;
-            case AlertType.INFORMATION:
-                setStyle(`${styles.grid} ${styles.info}`)
-                setIcon("info")
-                return;
-            case AlertType.WARNING:
-                setStyle(`${styles.grid} ${styles.warning}`)
-                setIcon("warning")
-                return;
-            case AlertType.ERROR:
-                setStyle(`${styles.grid} ${styles.error}`)
-                setIcon("error")
-                break;
-            default:
-                return;
-        }
-
         const timer = setTimeout(() => {
             props.onClick()
         }, props.delay);
         return () => clearTimeout(timer)
-    }, [props.type, props.delay, props])
+    }, [props])
 
     return (
-        <div ref={alertRef} className={style}>
+        <div ref={alertRef} className={`${styles.grid} ${props.style}`}>
             <div className={styles.leadingGrid}>
-                <Image src={`/alerts/${icon}.png`} alt="successful alert" width={30} height={30} />
+                <Image src={`/alerts/${props.type}.png`} alt="successful alert" width={30} height={30} />
                 <div className={`${styles.texts}`}>
                     <span className={styles.title}>{props.title}</span>
                     <span className={styles.description}>{props.description}</span>

@@ -45,9 +45,9 @@
         },
         "help": {
             "title": "Sənədləri yükləmə qaydası!",
-            "option1": "Bütün sənədlər pdf formatında olmalıdır.",
-            "option2": "Əgər sizin şəsiyyət vəsiqəniz könə nəsildirsə, arxa tərəfinin surətini əlavə sənədlər bölməsinə yükləyin.",
-            "option3": "Əlavə təqdim ediləcək sənəd yoxdursa, əlavə sənədlər bölməsi boş buraxıla bilər."
+            "option1": "Bütün sənədlər PDF (.pdf) formatında olmalıdır.",
+            "option2": "Both sides of the document, if exist, must be upload in the same PDF file.",
+            "option3": "Additional documents may be required in the future if the need arises."
         }
     },
     "step5": {

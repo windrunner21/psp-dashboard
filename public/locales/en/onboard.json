@@ -27,7 +27,9 @@
         },
         "help": {
             "title": "What's a VAT?",
-            "subtitle": "VAT Payer* - Value Added Tax Payer. VAT payer is a taxable person registered by the tax authority office as obliged to pay VAT."
+            "subtitle": "VAT Payer* - Value Added Tax Payer. VAT payer is a taxable person registered by the tax authority office as obliged to pay VAT.",
+            "title2": "Legal Name vs Business Name",
+            "subtitle2": "Legal business name is the name of you business as stated on official documents. Business name is a name you want people to know you by."
         }
     },
     "step3": {
@@ -45,9 +47,9 @@
         },
         "help": {
             "title": "Document upload rules!",
-            "option1": "All documents must be in pdf format.",
-            "option2": "If you have old-gen ID card, scan the back side and upload it via optional documents.",
-            "option3": "Optional documents can be omitted, if you do not require them."
+            "option1": "All documents must be in PDF (.pdf) format.",
+            "option2": "Both sides of the document, if exist, must be upload in the same PDF file.",
+            "option3": "Additional documents may be required in the future if the need arises."
         }
     },
     "step5": {

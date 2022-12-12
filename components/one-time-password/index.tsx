@@ -14,6 +14,7 @@ import Validator from "../validator";
 import { sendOTP, sendSignInForm, sendSignUpForm } from "../../requests/auth";
 import SecondaryBack from "../secondary-back";
 import useUser from "../../controllers/user";
+import alertStyles from "../alert-dialog/AlertDialog.module.css"
 
 // modal representation
 export const OneTimePasswordModal = (props: OneTimePasswordProps) => {
@@ -168,6 +169,7 @@ export const OneTimePassword = (props: OneTimePasswordProps) => {
             props.setAlertType(AlertType.ERROR);
             props.setAlertTitle(t('alert-dialog:title.error.generic'))
             props.setAlertDescription(t('alert-dialog:subtitle.error.generic'))
+            props.setAlertStyle(alertStyles.error)
             props.showAlert(true)
         } else {
             setHasErrors(false)
@@ -186,18 +188,21 @@ export const OneTimePassword = (props: OneTimePasswordProps) => {
                 props.setAlertType(AlertType.SUCCESS);
                 props.setAlertTitle(t('alert-dialog:title.success'))
                 props.setAlertDescription(t('alert-dialog:subtitle.success.login'))
+                props.setAlertStyle(alertStyles.success)
                 props.showAlert(true)
                 mutate()
             } else {
                 props.setAlertType(AlertType.ERROR);
                 props.setAlertTitle(t('alert-dialog:title.error.generic'))
                 props.setAlertDescription(t('alert-dialog:subtitle.error.generic'))
+                props.setAlertStyle(alertStyles.error)
 
                 // client side
                 if (response.status == 401 || response.status == 502) {
                     props.setAlertType(AlertType.WARNING);
                     props.setAlertTitle(t('alert-dialog:title.error.wrongForm'))
                     props.setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
+                    props.setAlertStyle(alertStyles.warning)
                 }
 
                 props.showAlert(true)

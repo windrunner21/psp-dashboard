@@ -1,7 +1,8 @@
 interface SelectProps {
   label?: string;
-  validatorLabel?: string;
   optionsList: string[];
+  value?: number;
+  setValue: (params: any) => void;
 }
 
 export default SelectProps;

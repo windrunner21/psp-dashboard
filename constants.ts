@@ -6,8 +6,16 @@ export const RE_EMAIL = new RegExp(
 export const RE_NAME =
   /^[ABCÇDEƏFGHXİJKQLMNOÖPRSŞTUÜVYZA-Z]{1}[abcçdeəfgğhxıijkqlmnoöprsştuüvyza-z]{2,23}$/;
 export const RE_ONLY_DIGITS = /^[0-9]*$/;
+export const RE_BUSINESS_NAME =
+  /^(?!\s)(?!.*\s$)(?=.*[a-zA-Z0-9])[abcçdeəfgğhxıijkqlmnoöprsştuüvyza-zABCÇDEƏFGHXİJKQLMNOÖPRSŞTUÜVYZA-Z0-9 .]{2,}$/;
+export const RE_IBAN =
+  /^([a-zA-Z]{2})(\d{2})([a-zA-Z]{4})(\d{4})(\d{4})(\d{4})(\d{4})(\d{4})/;
+export const RE_ADDRESS =
+  /^[abcçdeəfgğhxıijkqlmnoöprsştuüvyza-zABCÇDEƏFGHXİJKQLMNOÖPRSŞTUÜVYZA-Z0-9\s,.']{3,}$/;
+export const RE_CITY = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
+export const RE_POSTAL_CODE = /^([a-zA-Z]{2})(\d{4})/;
 export const RE_WEBSITE =
-  /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(:[0-9]+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+  /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
 
 // NETWORK
 export const CONNECTION = "http";

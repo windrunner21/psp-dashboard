@@ -5,7 +5,7 @@
             "generic": "Что-то пошло не так!",
             "wrongForm": "Найдена ошибка!",
             "emptyForm": "Упс!",
-            "otpAlreadySent": " Проверочный код"
+            "otpAlreadySent": "Проверочный код"
         }
     },
     "subtitle": {
@@ -16,7 +16,7 @@
             "generic": "Мы столкнулись с непредвиденной ошибкой.",
             "wrongForm": "Проверьте введенные данные на наличие ошибок.",
             "emptyForm": "Кажется вы не заполнили свои данные.",
-            "otpAlreadySent": "Verification Code"
+            "otpAlreadySent": "Извините, но вам нужно подождать минуту!"
         }
     }
 }

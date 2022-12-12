@@ -1,7 +1,9 @@
 .grid {
-    z-index: 1000;
+    z-index: 1;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%, -10%);
     max-width: 400px;
-    top: 2.5rem;
     padding: 0.5rem 1rem;
     position: absolute;
     display: flex;

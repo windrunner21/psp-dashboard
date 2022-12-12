@@ -3,18 +3,20 @@ import styles from "../select/Select.module.css"
 import SelectProps from "./interface";
 
 const Select = (props: SelectProps) => {
-    const [hasError, setHasError] = React.useState(false)
-
     const [isOptionsOpen, setIsOptionsOpen] = React.useState(false);
-    const [selectedOption, setSelectedOption] = React.useState(0);
+    const [selectedOption, setSelectedOption] = React.useState(props.value ?? 0);
     const optionsList = props.optionsList
+
+    // close on outside click
+    const ref = React.useRef(null)
+    useOnClickOutside(ref, () => setIsOptionsOpen(false));
 
     function toggleOptions() {
         setIsOptionsOpen(!isOptionsOpen);
     };
 
     return (
-        <div className={styles.grid}>
+        <div className={styles.grid} ref={ref}>
             <p className={styles.label}>{props.label}</p>
             <div className={`${styles.input} ${isOptionsOpen ? styles.inputFocused : styles.input}`} onClick={toggleOptions}>
                 <span className={styles.option}>{props.optionsList[selectedOption]}</span>
@@ -40,6 +42,7 @@ const Select = (props: SelectProps) => {
                         <p key={index} tabIndex={0} onClick={() => {
                             const selectedIndex = index + 1;
                             setSelectedOption(selectedIndex);
+                            props.setValue(selectedIndex)
                             setIsOptionsOpen(false);
                         }}>
                             {option}
@@ -47,11 +50,28 @@ const Select = (props: SelectProps) => {
                     ))}
                 </ul>
             </div>
-            {hasError && <div style={{ marginTop: "0.1rem" }}>
-                {/* <Validator label={props.validatorLabel} /> */}
-            </div>}
         </div>
     )
+}
+
+function useOnClickOutside(ref: any, handler: (event: any) => void) {
+    React.useEffect(
+        () => {
+            const listener = (event: Event) => {
+                if (!ref.current || ref.current.contains(event.target)) {
+                    return;
+                }
+                handler(event);
+            };
+            document.addEventListener("mousedown", listener);
+            document.addEventListener("touchstart", listener);
+            return () => {
+                document.removeEventListener("mousedown", listener);
+                document.removeEventListener("touchstart", listener);
+            };
+        },
+        [ref, handler]
+    );
 }
 
 export default Select

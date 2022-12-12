@@ -9,7 +9,7 @@ const StepIndicators = (props: StepIndicatorsProps) => {
         <div className={styles.grid}>
             {
                 [...Array(props.totalSteps)].map((_, index) =>
-                    <Step key={index} active={index == props.step} />
+                    <Step key={index} active={index == props.step} completed={index <= props.completedStep} progress={props.completedStep} index={index} />
                 )
             }
         </div>

@@ -1,6 +1,7 @@
 interface StepIndicatorsProps {
   totalSteps?: number;
-  step?: number;
+  step: number;
+  completedStep: number;
 }
 
 export default StepIndicatorsProps;

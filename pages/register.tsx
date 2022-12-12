@@ -20,6 +20,7 @@ import { sendOTP } from "../requests/auth";
 import PhoneNumberField from "../components/phone-number-field";
 import useUser from "../controllers/user";
 import LoadingIndicatorPage from "../components/loading-indicator-page";
+import alertStyles from "../components/alert-dialog/AlertDialog.module.css"
 
 const Register: NextPage = () => {
     const { user, loading, loggedOut } = useUser();
@@ -28,10 +29,13 @@ const Register: NextPage = () => {
     const { t } = useTranslation(['register', 'common']);
     const title = `${t('title')} | Odero`;
 
+    // alert dialog configuration
     const [isAlertVisible, setAlertVisible] = React.useState(false)
     const [alertTitle, setAlertTitle] = React.useState("")
     const [alertDescription, setAlertDescription] = React.useState("")
     const [alertType, setAlertType] = React.useState(AlertType.UNKNOWN)
+    const [alertStyle, setAlertStyle] = React.useState(alertStyles.error)
+
     const [step, setStep] = React.useState(0)
     const [isLoading, setIsLoading] = React.useState(false)
 
@@ -48,6 +52,7 @@ const Register: NextPage = () => {
         setAlertType(AlertType.ERROR);
         setAlertTitle(t('alert-dialog:title.error.emptyForm'))
         setAlertDescription(t('alert-dialog:subtitle.error.emptyForm'))
+        setAlertStyle(alertStyles.error)
 
         // check for empty then invalid form
         if (name === "" || surname === "" || phoneNumber === "") {
@@ -57,6 +62,7 @@ const Register: NextPage = () => {
             setAlertType(AlertType.WARNING);
             setAlertTitle(t('alert-dialog:title.error.wrongForm'))
             setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
+            setAlertStyle(alertStyles.warning)
             setAlertVisible(true)
         } else {
             setIsLoading(true)
@@ -72,11 +78,20 @@ const Register: NextPage = () => {
                 setAlertType(AlertType.ERROR);
                 setAlertTitle(t('alert-dialog:title.error.generic'))
                 setAlertDescription(t('alert-dialog:subtitle.error.generic'))
+                setAlertStyle(alertStyles.error)
 
                 if (status == 401 || status == 502) {
                     setAlertType(AlertType.WARNING);
                     setAlertTitle(t('alert-dialog:title.error.wrongForm'))
                     setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
+                    setAlertStyle(alertStyles.warning)
+                }
+
+                if (status == 301) {
+                    setAlertType(AlertType.WARNING);
+                    setAlertTitle(t('alert-dialog:title.error.otpAlreadySent'))
+                    setAlertDescription(t('alert-dialog:subtitle.error.otpAlreadySent'))
+                    setAlertStyle(alertStyles.warning)
                 }
 
                 setAlertVisible(true)
@@ -110,6 +125,7 @@ const Register: NextPage = () => {
                                     title={alertTitle}
                                     description={alertDescription}
                                     type={alertType}
+                                    style={alertStyle}
                                     onClick={() => setAlertVisible(false)}
                                 />
                             }
@@ -147,7 +163,6 @@ const Register: NextPage = () => {
                                         type="tel"
                                         label={t('common:phoneNumber')}
                                         placeholder={t('common:phoneNumberPrompt')}
-                                        value={phoneNumber}
                                         setValue={setPhoneNumber}
                                         validateNumber={setPhoneNumberCorrect}
                                     />
@@ -166,9 +181,10 @@ const Register: NextPage = () => {
                                         const stepWillSet = step - 1;
                                         setStep(stepWillSet)
                                     }}
-                                    setAlertType={setAlertType}
                                     setAlertTitle={setAlertTitle}
                                     setAlertDescription={setAlertDescription}
+                                    setAlertType={setAlertType}
+                                    setAlertStyle={setAlertStyle}
                                     showAlert={setAlertVisible}
                                 />
                             }

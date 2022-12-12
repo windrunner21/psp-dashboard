@@ -98,8 +98,8 @@ const GetStarted = (props: GetStartedProps) => {
                 <span className={styles.contactUs}>Contact us and we will personally help you set up your Odero account</span>
                 <div className={styles.rowStart}>
                     <picture>
-                        <source srcSet="/mui-icons/support-dark.svg" media="(prefers-color-scheme: dark)" />
-                        <img src="/mui-icons/support.svg" alt="For developers" width={16} height={16} />
+                        <source srcSet="/mui-icons/call-dark.svg" media="(prefers-color-scheme: dark)" />
+                        <img src="/mui-icons/call.svg" alt="For developers" width={16} height={16} />
                     </picture>
                     <div style={{ width: "0.5rem" }} />
                     <span className={styles.contactNumber}>+994 (12) 310 57 10</span>

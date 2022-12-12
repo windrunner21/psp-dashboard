@@ -15,10 +15,12 @@ const UploadField = (props: UploadProps) => {
     const labelRef = React.useRef<HTMLLabelElement>(null);
 
     function getFileName(e: any) {
-        console.log(e.target.files)
+        console.log(e.target.value)
         if (e.target.files[0] != undefined) {
-            const fileUploaded = e.target.files[0].name;
-            setFileName(fileUploaded)
+            const fileUploaded = e.target.files[0];
+            setHasError(false)
+            props.setValue(fileUploaded)
+            setFileName(fileUploaded.name)
         } else {
             setFileName(removed)
             setHasError(true)
@@ -28,14 +30,11 @@ const UploadField = (props: UploadProps) => {
     return (
         <div className={styles.grid}>
             <p className={styles.label}>{props.label}</p>
-            <input type="file" id={props.id} hidden onChange={(e) => getFileName(e)} />
-            <div className={styles.input}>
+            <input type="file" accept="application/pdf" id={props.id} hidden onChange={(e) => getFileName(e)} defaultValue={props.value} />
+            <div className={`${styles.input} ${hasError && styles.inputError}`}>
                 <span className={styles.document} ref={spanRef}>{fileName}</span>
                 <label className={styles.upload} htmlFor={props.id} ref={labelRef}>{t('upload')}</label>
             </div>
-            {hasError && <div style={{ marginTop: "0.1rem" }}>
-                <Validator label={props.validatorLabel} />
-            </div>}
         </div>
     )
 }
