@@ -31,7 +31,13 @@ const PhoneNumberField = (props: PhoneNumberFieldProps) => {
                 e.target.value.substring(0, 2) != "12")
         )
 
-        props.validateNumber(e.target.value.length == 12)
+        props.validateNumber(e.target.value.length == 12 && (e.target.value.substring(0, 2) == "50" ||
+            e.target.value.substring(0, 2) == "51" ||
+            e.target.value.substring(0, 2) == "55" ||
+            e.target.value.substring(0, 2) == "77" ||
+            e.target.value.substring(0, 2) == "99" ||
+            e.target.value.substring(0, 2) == "10" ||
+            e.target.value.substring(0, 2) == "12"))
     }
 
     return (

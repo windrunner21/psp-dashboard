@@ -43,7 +43,10 @@ export function isValidBusinessName(target: EventTarget) {
 export function isValidTaxNumber(target: EventTarget) {
   const targetStrong = target as HTMLTextAreaElement;
 
-  if (RE_ONLY_DIGITS.test(targetStrong.value)) {
+  if (
+    RE_ONLY_DIGITS.test(targetStrong.value) &&
+    targetStrong.value.length == 10
+  ) {
     return true;
   } else {
     return false;

@@ -1,10 +1,10 @@
 // REGEX
 export const RE_DIGIT = new RegExp(/^\d+$/);
 export const RE_EMAIL = new RegExp(
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|az|ru)\b/
 );
 export const RE_NAME =
-  /^[ABCÇDEƏFGHXİJKQLMNOÖPRSŞTUÜVYZA-Z]{1}[abcçdeəfgğhxıijkqlmnoöprsştuüvyza-z]{2,23}$/;
+  /^[abcçdeəfgğhxıijkqlmnoöprsştuüvyza-zABCÇDEƏFGHXİJKQLMNOÖPRSŞTUÜVYZA-Z]+$/i;
 export const RE_ONLY_DIGITS = /^[0-9]*$/;
 export const RE_BUSINESS_NAME =
   /^(?!\s)(?!.*\s$)(?=.*[a-zA-Z0-9])[abcçdeəfgğhxıijkqlmnoöprsştuüvyza-zABCÇDEƏFGHXİJKQLMNOÖPRSŞTUÜVYZA-Z0-9 .]{2,}$/;

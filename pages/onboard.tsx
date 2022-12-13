@@ -259,7 +259,6 @@ const Onboard: NextPage = () => {
                                     <TextField
                                         label={t('common:legalBusinessName')}
                                         placeholder={t('common:legalBusinessNamePrompt')}
-                                        capitalized={true}
                                         validateAgainst="businessName"
                                         validatorCallback={setLegalBusinessNameCorrect}
                                         value={legalBusinessName}
@@ -268,7 +267,6 @@ const Onboard: NextPage = () => {
                                     <TextField
                                         label={t('common:businessName')}
                                         placeholder={t('common:businessNamePrompt')}
-                                        capitalized={true}
                                         validateAgainst="businessName"
                                         validatorCallback={setDisplayBusinessNameCorrect}
                                         value={displayBusinessName}
@@ -300,25 +298,50 @@ const Onboard: NextPage = () => {
                                         }} />
                                         <div style={{ width: "1rem" }} />
                                         <SecondaryNext onClick={() => {
-                                            if (businessType == 0 || vatType == 0 || legalBusinessName == "" || displayBusinessName == "" || taxNumber == "" || IBAN == "") {
-                                                setAlertType(AlertType.ERROR);
-                                                setAlertTitle(t('alert-dialog:title.error.emptyForm'))
-                                                setAlertDescription(t('alert-dialog:subtitle.error.emptyForm'))
-                                                setAlertVisible(true)
-                                                setAlertStyle(alertStyles.error)
-                                            } else {
-                                                if (businessType != 0 && vatType != 0 && legalBusinessNameCorrect && displayBusinessNameCorrect && taxNumberCorrect && IBANCorrect) {
-                                                    const stepWillSet = step + 1;
-                                                    setStep(stepWillSet)
-                                                    if (completedStep < stepWillSet) {
-                                                        setCompletedStep(3)
-                                                    }
-                                                } else {
-                                                    setAlertType(AlertType.WARNING);
-                                                    setAlertTitle(t('alert-dialog:title.error.wrongForm'))
-                                                    setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
+                                            // check for user type first
+                                            if (userType == UserType.COMPANY) {
+                                                if (businessType == 0 || vatType == 0 || legalBusinessName == "" || displayBusinessName == "" || taxNumber == "" || IBAN == "") {
+                                                    setAlertType(AlertType.ERROR);
+                                                    setAlertTitle(t('alert-dialog:title.error.emptyForm'))
+                                                    setAlertDescription(t('alert-dialog:subtitle.error.emptyForm'))
                                                     setAlertVisible(true)
-                                                    setAlertStyle(alertStyles.warning)
+                                                    setAlertStyle(alertStyles.error)
+                                                } else {
+                                                    if (businessType != 0 && vatType != 0 && legalBusinessNameCorrect && displayBusinessNameCorrect && taxNumberCorrect && IBANCorrect) {
+                                                        const stepWillSet = step + 1;
+                                                        setStep(stepWillSet)
+                                                        if (completedStep < stepWillSet) {
+                                                            setCompletedStep(3)
+                                                        }
+                                                    } else {
+                                                        setAlertType(AlertType.WARNING);
+                                                        setAlertTitle(t('alert-dialog:title.error.wrongForm'))
+                                                        setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
+                                                        setAlertVisible(true)
+                                                        setAlertStyle(alertStyles.warning)
+                                                    }
+                                                }
+                                            } else {
+                                                if (vatType == 0 || legalBusinessName == "" || displayBusinessName == "" || taxNumber == "" || IBAN == "") {
+                                                    setAlertType(AlertType.ERROR);
+                                                    setAlertTitle(t('alert-dialog:title.error.emptyForm'))
+                                                    setAlertDescription(t('alert-dialog:subtitle.error.emptyForm'))
+                                                    setAlertVisible(true)
+                                                    setAlertStyle(alertStyles.error)
+                                                } else {
+                                                    if (vatType != 0 && legalBusinessNameCorrect && displayBusinessNameCorrect && taxNumberCorrect && IBANCorrect) {
+                                                        const stepWillSet = step + 1;
+                                                        setStep(stepWillSet)
+                                                        if (completedStep < stepWillSet) {
+                                                            setCompletedStep(3)
+                                                        }
+                                                    } else {
+                                                        setAlertType(AlertType.WARNING);
+                                                        setAlertTitle(t('alert-dialog:title.error.wrongForm'))
+                                                        setAlertDescription(t('alert-dialog:subtitle.error.wrongForm'))
+                                                        setAlertVisible(true)
+                                                        setAlertStyle(alertStyles.warning)
+                                                    }
                                                 }
                                             }
                                         }} />
@@ -456,16 +479,31 @@ const Onboard: NextPage = () => {
                                         }} />
                                         <div style={{ width: "1rem" }} />
                                         <SecondaryNext onClick={() => {
-                                            if (stateRegisterDocument == "" || taxNumberDocument == "" || idCardDocument == "" || bankRequisitesDocument == "") {
-                                                setAlertType(AlertType.ERROR);
-                                                setAlertTitle(t('alert-dialog:title.error.emptyForm'))
-                                                setAlertDescription(t('alert-dialog:subtitle.error.emptyForm'))
-                                                setAlertVisible(true)
-                                                setAlertStyle(alertStyles.error)
+                                            // check for user type first
+                                            if (userType == UserType.COMPANY) {
+                                                if (stateRegisterDocument == "" || taxNumberDocument == "" || idCardDocument == "" || bankRequisitesDocument == "") {
+                                                    setAlertType(AlertType.ERROR);
+                                                    setAlertTitle(t('alert-dialog:title.error.emptyForm'))
+                                                    setAlertDescription(t('alert-dialog:subtitle.error.emptyForm'))
+                                                    setAlertVisible(true)
+                                                    setAlertStyle(alertStyles.error)
+                                                } else {
+                                                    const stepWillSet = step + 1;
+                                                    setStep(stepWillSet)
+                                                    setCompletedStep(5)
+                                                }
                                             } else {
-                                                const stepWillSet = step + 1;
-                                                setStep(stepWillSet)
-                                                setCompletedStep(5)
+                                                if (taxNumberDocument == "" || idCardDocument == "" || bankRequisitesDocument == "") {
+                                                    setAlertType(AlertType.ERROR);
+                                                    setAlertTitle(t('alert-dialog:title.error.emptyForm'))
+                                                    setAlertDescription(t('alert-dialog:subtitle.error.emptyForm'))
+                                                    setAlertVisible(true)
+                                                    setAlertStyle(alertStyles.error)
+                                                } else {
+                                                    const stepWillSet = step + 1;
+                                                    setStep(stepWillSet)
+                                                    setCompletedStep(5)
+                                                }
                                             }
                                         }} />
                                     </div>
