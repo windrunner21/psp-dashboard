@@ -8,23 +8,37 @@ import { OneTimePasswordModal } from "../one-time-password"
 import PrimaryButton from "../primary-button"
 import PrimaryLink from "../primary-link"
 import GetStartedProps from "./interface"
+import alertStyles from "../alert-dialog/AlertDialog.module.css"
+import StepIndicators from "../step-indicators"
 
 const GetStarted = (props: GetStartedProps) => {
+
     const [isModalVisible, setModalVisible] = React.useState(false)
     const [isAlertVisible, setAlertVisible] = React.useState(false)
     const [alertTitle, setAlertTitle] = React.useState("")
     const [alertDescription, setAlertDescription] = React.useState("")
     const [alertType, setAlertType] = React.useState(AlertType.UNKNOWN)
+    const [alertStyle, setAlertStyle] = React.useState(alertStyles.error)
+
+    // TODO: refactor and improve
+    const currentStep: any = {
+        "Legal Entity": { completed: 0, previous: "initial" },
+        "Legal Information": { completed: 1, previous: "Legal Entity" },
+        "Business Information": { completed: 2, previous: "Legal Information" },
+        "Billing Information": { completed: 3, previous: "Business Information" },
+        "Documents Upload": { completed: 4, previous: "Billing Information" },
+        "Completed": { completed: 5, previous: "Documents Upload" },
+    }
+
     return (
         <div className={styles.main}>
             {isAlertVisible &&
                 <AlertDialog
-                    delay={4000}
+                    delay={2000}
                     title={alertTitle}
                     description={alertDescription}
                     type={alertType}
-                    onClick={() => setAlertVisible(false)}
-                />
+                    onClick={() => setAlertVisible(false)} style={undefined} />
             }
             {
                 isModalVisible &&
@@ -33,22 +47,60 @@ const GetStarted = (props: GetStartedProps) => {
                     setAlertTitle={setAlertTitle}
                     setAlertDescription={setAlertDescription}
                     showAlert={setAlertVisible}
+                    setAlertStyle={setAlertStyle}
                     phoneNumber={props.phone}
-                    onClick={() => setModalVisible(false)} />
+                    onClick={() => setModalVisible(false)}
+                />
             }
             <div className={styles.section1}>
-                <div className={styles.column}>
-                    <span className={styles.title}>Activate your account and start receiving payments</span>
-                    <span className={styles.description}>Pass the onboard procedure and fill out your business profile to start accepting payments. Any progress you make during the onboard procedure will be saved, so you can always finish later.</span>
-                    <div style={{ width: "20%" }}>
-                        <Link href="/onboard">
-                            <div>
-                                <PrimaryButton title="Activate Account" />
+                {
+                    props.step ?
+                        (
+                            props.step == 'Completed' ?
+                                <div className={styles.column}>
+                                    <span className={styles.title}>Congratulations!</span>
+                                    <span className={styles.description}>
+                                        You have successfully submitted your onboard application. Our team will review it and get back to you as soon as possible via your work email or a phone call.<br /><br />Meanwhile, you can track your application status below.
+                                    </span>
+                                    <span className={styles.onboardStatus}>{props.status}</span>
+                                </div>
+                                :
+                                <div className={styles.column}>
+                                    <span className={styles.title}>Continue your onboard procedure</span>
+                                    <span className={styles.description}>
+                                        You have just completed the <b>{currentStep[props.step].previous}</b> step. Next please fill out <b>{props.step}</b> step.
+                                        <br />Only {5 - (currentStep[props.step].completed)} more steps to reach the goal and activate your account.
+                                    </span>
+                                    <div style={{ width: '50%', marginTop: "1rem" }}>
+                                        <StepIndicators totalSteps={5} step={currentStep[props.step].completed - 1} completedStep={currentStep[props.step].completed - 1} position='fixed' type='circle' />
+                                    </div>
+                                    <div style={{ width: "20%" }}>
+                                        <Link href="/onboard">
+                                            <div>
+                                                <PrimaryButton title="Continue onboard" />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                        )
+                        :
+                        <div className={styles.column}>
+                            <span className={styles.title}>Activate your account and start receiving payments</span>
+                            <span className={styles.description}>Pass the onboard procedure and fill out your business profile to start accepting payments. Any progress you make during the onboard procedure will be saved, so you can always finish later.</span>
+                            <div style={{ width: "20%" }}>
+                                <Link href="/onboard">
+                                    <div>
+                                        <PrimaryButton title="Activate Account" />
+                                    </div>
+                                </Link>
                             </div>
-                        </Link>
+                        </div>
+                }
+                <div className={styles.pattern}>
+                    <div style={{ width: '100px', height: '100%', position: 'relative' }}>
+                        <Image src={"/odero-pattern.svg"} alt="Odero Pattern" layout='fill' />
                     </div>
                 </div>
-                <Image className={styles.image} src={"/odero-pattern.svg"} alt="Odero Pattern" width={"100%"} height={"100%"} />
             </div>
             <div className={styles.section2}>
                 <span className={styles.title}>Get started with Odero</span>

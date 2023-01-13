@@ -10,7 +10,7 @@ import Sidebar from "../components/sidebar";
 import SidebarMobile from "../components/sidebar-mobile";
 import NotificationsDialog from "../components/notifications-dialog";
 import NotificationItem from "../components/notifications-dialog/notifications-item/NotificationItem";
-import useUser from "../controllers/user";
+import { useUser } from "../controllers/swr";
 import Router from "next/router";
 import LoadingIndicatorPage from "../components/loading-indicator-page";
 import GetStarted from "../components/get-started-dashboard";
@@ -64,7 +64,7 @@ const Dashboard: NextPage = () => {
                     <div className={styles.rightContainer}>
                         <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} />
                         <div className={styles.pageContent}>
-                            <GetStarted phone={user.phone} />
+                            <GetStarted phone={user.phone} step={user.onboard && user.onboard.currentStep} status={user.onboard && user.onboard.status} />
                         </div>
                     </div>
                     {

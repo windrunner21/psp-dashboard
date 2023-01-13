@@ -1,0 +1,17 @@
+.column {
+    margin: 0.25rem 0;
+}
+
+.step {
+    border-radius: 50%;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.active {
+    background-color: var(--primary);
+}
+
+.inactive {
+    background-color: #EAEAEA;
+}

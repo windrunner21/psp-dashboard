@@ -1,39 +1,59 @@
 import React from "react";
 import styles from "../upload-field/UploadField.module.css"
-import Validator from "../validator";
 import UploadProps from "./interface";
 import { useTranslation } from 'next-i18next';
+import Image from "next/image";
 
 const UploadField = (props: UploadProps) => {
     const { t } = useTranslation('common');
     const empty = t('nothingUploaded')
-    const removed = t('uploadRemoved')
-    const [hasError, setHasError] = React.useState(false)
     const [fileName, setFileName] = React.useState(empty)
 
-    const spanRef = React.useRef<HTMLSpanElement>(null);
-    const labelRef = React.useRef<HTMLLabelElement>(null);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
     function getFileName(e: any) {
-        console.log(e.target.value)
+
+        console.log(e.target.files)
         if (e.target.files[0] != undefined) {
             const fileUploaded = e.target.files[0];
-            setHasError(false)
-            props.setValue(fileUploaded)
             setFileName(fileUploaded.name)
+
+            let reader = new FileReader();
+            reader.readAsDataURL(fileUploaded);
+            reader.onload = () => {
+                props.setValue(reader.result)
+                props.validatorCallback!(true)
+            };
         } else {
-            setFileName(removed)
-            setHasError(true)
+            setFileName(empty)
+            props.setValue("")
+            props.validatorCallback!(false)
+        }
+    }
+
+    function removeFile() {
+        if (inputRef.current) {
+            inputRef.current.value = ""
+            setFileName(empty)
+            props.setValue("")
+            props.validatorCallback!(false)
         }
     }
 
     return (
         <div className={styles.grid}>
             <p className={styles.label}>{props.label}</p>
-            <input type="file" accept="application/pdf" id={props.id} hidden onChange={(e) => getFileName(e)} defaultValue={props.value} />
-            <div className={`${styles.input} ${hasError && styles.inputError}`}>
-                <span className={styles.document} ref={spanRef}>{fileName}</span>
-                <label className={styles.upload} htmlFor={props.id} ref={labelRef}>{t('upload')}</label>
+            <input ref={inputRef} type="file" accept="application/pdf" id={props.id} hidden onChange={(e) => getFileName(e)} defaultValue={props.value} />
+            <div className={styles.row}>
+                <div className={styles.input}>
+                    <span className={styles.document}>{fileName}</span>
+                    <label className={`${styles.upload} ${props.value != "" && styles.change}`} htmlFor={props.id}>{props.value == "" ? t('upload') : "Change"}</label>
+                </div>
+                {
+                    props.value && <span className={styles.remove} onClick={removeFile}>
+                        <Image src="/mui-icons/delete.svg" alt="delete" width={17} height={17} />
+                    </span>
+                }
             </div>
         </div>
     )

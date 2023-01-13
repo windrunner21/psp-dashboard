@@ -17,7 +17,7 @@ import AlertDialog from "../components/alert-dialog";
 import AlertType from "../components/alert-dialog/AlertType";
 import PhoneNumberField from "../components/phone-number-field";
 import { sendOTP } from "../requests/auth";
-import useUser from "../controllers/user";
+import { useUser } from "../controllers/swr";
 import LoadingIndicatorPage from "../components/loading-indicator-page";
 import alertStyles from "../components/alert-dialog/AlertDialog.module.css"
 

@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import { getUser } from "../requests/user";
 
-function useUser() {
+export function useUser() {
   const { data, mutate, error } = useSWR("descartes", getUser);
 
   const loading = !data && !error;
@@ -17,5 +17,3 @@ function useUser() {
     mutate,
   };
 }
-
-export default useUser;

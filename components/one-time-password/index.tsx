@@ -13,7 +13,7 @@ import AlertType from "../alert-dialog/AlertType"
 import Validator from "../validator";
 import { sendOTP, sendSignInForm, sendSignUpForm } from "../../requests/auth";
 import SecondaryBack from "../secondary-back";
-import useUser from "../../controllers/user";
+import { useUser } from "../../controllers/swr";
 import alertStyles from "../alert-dialog/AlertDialog.module.css"
 
 // modal representation
