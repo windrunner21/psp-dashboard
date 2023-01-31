@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 const SecondaryBack = (props: SecondaryBackProps) => {
     const { t } = useTranslation('common');
     return (
-        <span className={styles.button} onClick={props.onClick}>&#8592; {t('back')}</span>
+        <span className={styles.button} onClick={props.onClick}>&#8592; Previous</span>
     )
 }
 
