@@ -10,8 +10,13 @@ import Sidebar from "../../components/sidebar";
 import SidebarMobile from "../../components/sidebar-mobile";
 import NavigationBarDashboard from "../../components/navigation-bar-dashboard";
 import NotificationsDialog from "../../components/notifications-dialog";
+import { useUser } from "../../controllers/swr";
+import Router from "next/router";
+import LoadingIndicatorPage from "../../components/loading-indicator-page";
 
 const PayByLink: NextPage = () => {
+    const { user, loading, loggedOut } = useUser();
+
     const [sidebarCollapsed, collapseSidebar] = React.useState(false)
     const [areNotificationslVisible, setNotificationsVisible] = React.useState(false)
     const [notificationsList, setNotificationsList] = React.useState([
@@ -27,6 +32,8 @@ const PayByLink: NextPage = () => {
         }
     }, []);
 
+    if (loggedOut) { Router.push("/login"); }
+
     return (
         <>
             <Head>
@@ -34,24 +41,27 @@ const PayByLink: NextPage = () => {
                 <meta name="home" content="Dashboard page where you can view and manage your business." />
                 <link rel="icon" href="/odero.ico" />
             </Head>
-
-            <main className={styles.main}>
-                <div className={`${styles.leftContainer} ${sidebarCollapsed ? styles.collapse : ''}`}>
-                    <div className={styles.desktop}>
-                        <Sidebar collapsed={sidebarCollapsed} collapse={collapseSidebar} />
+            {loading && <LoadingIndicatorPage />}
+            {
+                user && !loggedOut &&
+                <main className={styles.main}>
+                    <div className={`${styles.leftContainer} ${sidebarCollapsed ? styles.collapse : ''}`}>
+                        <div className={styles.desktop}>
+                            <Sidebar user={user} collapsed={sidebarCollapsed} collapse={collapseSidebar} />
+                        </div>
+                        <div className={styles.mobile}>
+                            <SidebarMobile />
+                        </div>
                     </div>
-                    <div className={styles.mobile}>
-                        <SidebarMobile />
+                    <div className={styles.rightContainer}>
+                        <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} />
                     </div>
-                </div>
-                <div className={styles.rightContainer}>
-                    <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} />
-                </div>
-                {
-                    areNotificationslVisible &&
-                    <NotificationsDialog notifications={notificationsList} onClick={setNotificationsVisible} updateNotifications={setNotificationsList} />
-                }
-            </main>
+                    {
+                        areNotificationslVisible &&
+                        <NotificationsDialog notifications={notificationsList} onClick={setNotificationsVisible} updateNotifications={setNotificationsList} />
+                    }
+                </main>
+            }
         </>
     )
 }
