@@ -25,6 +25,7 @@ import LoadingIndicatorPage from "../components/loading-indicator-page";
 import { sendOnboardStep0, sendOnboardStep1, sendOnboardStep2, sendOnboardStep3, sendOnboardStep4 } from "../requests/onboard";
 import { OnboardStep } from "../controllers/enums/onboardStep";
 import { formatPhone } from "../controllers/dataManipulation";
+import Back from "../components/back";
 
 export enum UserType {
     CONTRACTOR = 'Contractor',
@@ -314,6 +315,9 @@ const Onboard: NextPage = () => {
                             />
                         }
                         <NavigationBarOnboard user={user.fullname} />
+                        <div style={{ marginTop: "2rem" }}>
+                            <Back />
+                        </div>
                         <div className={styles.form}>
                             <>
                                 {

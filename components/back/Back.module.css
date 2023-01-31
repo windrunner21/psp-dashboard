@@ -1,0 +1,17 @@
+.button {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.9;
+}
+
+.button:hover {
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+@media (prefers-color-scheme: dark) {
+    .button {
+        color: white;
+    }
+}
