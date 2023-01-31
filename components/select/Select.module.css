@@ -81,9 +81,13 @@ ul.option p:active,
 ul.option p:focus,
 ul.option p:hover,
 ul.option p[aria-selected="true"] {
-    border-radius: 0.4rem;
     background-color: #D2D4D8;
     cursor: pointer;
+}
+
+.hovered {
+    color: white;
+    background-color: var(--primary);
 }
 
 .label {

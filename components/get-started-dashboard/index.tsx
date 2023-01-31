@@ -10,6 +10,7 @@ import PrimaryLink from "../primary-link"
 import GetStartedProps from "./interface"
 import alertStyles from "../alert-dialog/AlertDialog.module.css"
 import StepIndicators from "../step-indicators"
+import { OnboardStatus } from "../../controllers/enums/onboardStatus"
 
 const GetStarted = (props: GetStartedProps) => {
 
@@ -58,11 +59,28 @@ const GetStarted = (props: GetStartedProps) => {
                         (
                             props.step == 'Completed' ?
                                 <div className={styles.column}>
-                                    <span className={styles.title}>Congratulations!</span>
-                                    <span className={styles.description}>
-                                        You have successfully submitted your onboard application. Our team will review it and get back to you as soon as possible via your work email or a phone call.<br /><br />Meanwhile, you can track your application status below.
-                                    </span>
-                                    <span className={styles.onboardStatus}>{props.status}</span>
+                                    {props.status == OnboardStatus.approved ?
+                                        <>
+                                            <span className={styles.title}>Awesome news!</span>
+                                            <span className={styles.description}>
+                                                Your application has been reviewed by our team. And congratulations! After thorough examination your application has been successfully approved.<br /><br />You can find your contract and the corresponding financials below.
+                                            </span>
+                                            <div style={{ width: "20%" }}>
+                                                <Link href="/account/contract-and-financials">
+                                                    <div>
+                                                        <PrimaryButton title="See Contract" />
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        </>
+                                        :
+                                        <>
+                                            <span className={styles.title}>Congratulations!</span>
+                                            <span className={styles.description}>
+                                                You have successfully submitted your onboard application. Our team will review it and get back to you as soon as possible via your work email or a phone call.<br /><br />Meanwhile, you can track your application status below.
+                                            </span>
+                                            <span className={styles.onboardStatus}>{props.status}</span>
+                                        </>}
                                 </div>
                                 :
                                 <div className={styles.column}>

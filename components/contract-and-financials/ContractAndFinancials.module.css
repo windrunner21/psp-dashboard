@@ -1,0 +1,124 @@
+.main {
+    position: relative;
+    padding: 1.5rem 0;
+    width: 100%;
+    overflow: auto;
+    height: calc(100vh - 9rem);
+}
+
+.section {
+    padding: 0 3rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    margin: 1rem 0 1.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.rowBetween {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rowEnd {
+    width: 100%;
+    background-color: white;
+    border-top: 0.1rem solid var(--secondary);
+    position: absolute;
+    bottom: 0rem;
+    right: 0rem;
+    padding: 1.5rem 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.column {
+    margin: 0rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.primaryText {
+    color: var(--text);
+    line-height: 1.5rem;
+}
+
+.rate {
+    padding: 0.25rem 1rem;
+    width: 6rem;
+    background-color: var(--primary);
+    color: white;
+    line-height: 1.5rem;
+    font-weight: 500;
+}
+
+.payout {
+    padding: 0.25rem 1rem;
+    width: 6rem;
+    background-color: var(--info-primary);
+    color: white;
+    line-height: 1.5rem;
+    font-weight: 500;
+}
+
+.description {
+    color: gray;
+    line-height: 1.5rem;
+    width: 900px;
+}
+
+.divider {
+    border: 1px solid var(--secondary);
+    border-radius: 1rem;
+    margin: 1rem 0
+}
+
+.info:hover {
+    cursor: pointer;
+}
+
+.info {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 400px;
+    background-color: white;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    text-align: center;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    left: 2rem;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

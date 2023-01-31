@@ -26,7 +26,7 @@ import { sendOnboardStep0, sendOnboardStep1, sendOnboardStep2, sendOnboardStep3,
 import { OnboardStep } from "../controllers/enums/onboardStep";
 import { formatPhone } from "../controllers/dataManipulation";
 
-enum UserType {
+export enum UserType {
     CONTRACTOR = 'Contractor',
     COMPANY = 'Company',
     UNKNOWN = 'Unknown'

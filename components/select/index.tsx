@@ -38,16 +38,25 @@ const Select = (props: SelectProps) => {
                     className={styles.option}
                     tabIndex={-1}
                 >
-                    {optionsList.slice(1).map((option, index) => (
-                        <p key={index} tabIndex={0} onClick={() => {
-                            const selectedIndex = index + 1;
-                            setSelectedOption(selectedIndex);
-                            props.setValue(selectedIndex)
-                            setIsOptionsOpen(false);
-                        }}>
-                            {option}
-                        </p>
-                    ))}
+                    {
+                        optionsList.slice(1).map((option, index) => (
+                            <p
+                                className={
+                                    `${selectedOption === (index + 1) && styles.hovered}`
+                                }
+                                key={index}
+                                tabIndex={0}
+                                onClick={() => {
+                                    const selectedIndex = index + 1;
+                                    setSelectedOption(selectedIndex);
+                                    props.setValue(selectedIndex)
+                                    setIsOptionsOpen(false);
+                                }}
+                            >
+                                {option}
+                            </p>
+                        ))
+                    }
                 </ul>
             </div>
         </div>
