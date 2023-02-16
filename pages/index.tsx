@@ -62,9 +62,15 @@ const Dashboard: NextPage = () => {
                         </div>
                     </div>
                     <div className={styles.rightContainer}>
-                        <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} />
+                        <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} businesses={user.businesses} />
                         <div className={styles.pageContent}>
-                            <GetStarted phone={user.phone} step={user.onboard && user.onboard.currentStep} status={user.onboard && user.onboard.status} />
+                            <GetStarted
+                                phone={user.phone}
+                                step={user.onboard && user.onboard.currentStep}
+                                status={user.onboard && user.onboard.status}
+                                privateKey={user.status == 'Testing' ? user.testPrivateKey : 'live private key'}
+                                publicKey={user.status == 'Testing' ? user.testPublicKey : 'live public key'}
+                            />
                         </div>
                     </div>
                     {

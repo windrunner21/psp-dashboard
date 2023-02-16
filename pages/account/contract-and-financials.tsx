@@ -59,7 +59,7 @@ const ContractAndFinancials: NextPage = () => {
                         </div>
                     </div>
                     <div className={styles.rightContainer}>
-                        <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} />
+                        <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} businesses={user.businesses} />
                         <div className={styles.pageContent}>
                             <div>
                                 <ContractAndFinancialsModule

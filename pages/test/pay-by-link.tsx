@@ -54,7 +54,7 @@ const PayByLink: NextPage = () => {
                         </div>
                     </div>
                     <div className={styles.rightContainer}>
-                        <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} />
+                        <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} businesses={user.businesses} />
                     </div>
                     {
                         areNotificationslVisible &&

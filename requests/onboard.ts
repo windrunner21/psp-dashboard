@@ -1,18 +1,21 @@
 import axios from "axios";
-import { BATSIGN, HOST, PORT, CONNECTION } from "../constants";
+import { HOST, PORT, CONNECTION } from "../constants";
 
-export async function sendOnboardStep0(legalEntityType: string) {
+export async function sendOnboardStep0(
+  businessId: string,
+  legalEntityType: string
+) {
   let result;
   await axios
     .post(
       `${CONNECTION}://${HOST}:${PORT}/onboard/step0`,
       {
+        businessId: businessId,
         legalEntityType: legalEntityType,
       },
       {
         headers: {
           "Content-Type": "application/json",
-          batsign: BATSIGN,
         },
         withCredentials: true,
       }
@@ -29,6 +32,7 @@ export async function sendOnboardStep0(legalEntityType: string) {
 }
 
 export async function sendOnboardStep1(
+  businessId: string,
   legalFullName: string,
   legalEmail: String,
   legalPhone: string
@@ -38,6 +42,7 @@ export async function sendOnboardStep1(
     .post(
       `${CONNECTION}://${HOST}:${PORT}/onboard/step1`,
       {
+        businessId: businessId,
         legalFullName: legalFullName,
         legalEmail: legalEmail,
         legalPhone: getRawPhoneNumber(legalPhone),
@@ -45,7 +50,6 @@ export async function sendOnboardStep1(
       {
         headers: {
           "Content-Type": "application/json",
-          batsign: BATSIGN,
         },
         withCredentials: true,
       }
@@ -62,6 +66,7 @@ export async function sendOnboardStep1(
 }
 
 export async function sendOnboardStep2(
+  businessId: string,
   vat: boolean,
   legalBusinessName: string,
   displayBusinessName: string,
@@ -74,6 +79,7 @@ export async function sendOnboardStep2(
     .post(
       `${CONNECTION}://${HOST}:${PORT}/onboard/step2`,
       {
+        businessId: businessId,
         businessType: businessType,
         vat: vat,
         legalBusinessName: legalBusinessName,
@@ -84,7 +90,6 @@ export async function sendOnboardStep2(
       {
         headers: {
           "Content-Type": "application/json",
-          batsign: BATSIGN,
         },
         withCredentials: true,
       }
@@ -101,6 +106,7 @@ export async function sendOnboardStep2(
 }
 
 export async function sendOnboardStep3(
+  businessId: string,
   address: string,
   city: String,
   postalCode: string,
@@ -112,6 +118,7 @@ export async function sendOnboardStep3(
     .post(
       `${CONNECTION}://${HOST}:${PORT}/onboard/step3`,
       {
+        businessId: businessId,
         address: address,
         city: city,
         postalCode: postalCode,
@@ -121,7 +128,6 @@ export async function sendOnboardStep3(
       {
         headers: {
           "Content-Type": "application/json",
-          batsign: BATSIGN,
         },
         withCredentials: true,
       }
@@ -138,6 +144,7 @@ export async function sendOnboardStep3(
 }
 
 export async function sendOnboardStep4(
+  businessId: string,
   taxNumber: String,
   identificationCard: string,
   bankRequisites: string,
@@ -148,6 +155,7 @@ export async function sendOnboardStep4(
     .post(
       `${CONNECTION}://${HOST}:${PORT}/onboard/step4`,
       {
+        businessId: businessId,
         stateRegister: stateRegister,
         taxNumber: taxNumber,
         identificationCard: identificationCard,
@@ -156,7 +164,6 @@ export async function sendOnboardStep4(
       {
         headers: {
           "Content-Type": "application/json",
-          batsign: BATSIGN,
         },
         withCredentials: true,
       }

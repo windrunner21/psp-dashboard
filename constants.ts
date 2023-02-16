@@ -21,5 +21,3 @@ export const RE_WEBSITE =
 export const CONNECTION = "http";
 export const HOST = "localhost";
 export const PORT = 2108;
-export const BATSIGN =
-  "d02481e67e27dea59b47ccb6a4be0629e45ef99031d2b6008551700fb9b060c5";

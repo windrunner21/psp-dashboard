@@ -4,17 +4,15 @@ import React from "react"
 import AlertDialog from "../alert-dialog"
 import AlertType from "../alert-dialog/AlertType"
 import styles from "../get-started-dashboard/GetStarted.module.css"
-import { OneTimePasswordModal } from "../one-time-password"
-import PrimaryButton from "../primary-button"
 import PrimaryLink from "../primary-link"
 import GetStartedProps from "./interface"
 import alertStyles from "../alert-dialog/AlertDialog.module.css"
 import StepIndicators from "../step-indicators"
 import { OnboardStatus } from "../../controllers/enums/onboardStatus"
+import Button from "../button"
 
 const GetStarted = (props: GetStartedProps) => {
 
-    const [isModalVisible, setModalVisible] = React.useState(false)
     const [isAlertVisible, setAlertVisible] = React.useState(false)
     const [alertTitle, setAlertTitle] = React.useState("")
     const [alertDescription, setAlertDescription] = React.useState("")
@@ -41,18 +39,6 @@ const GetStarted = (props: GetStartedProps) => {
                     type={alertType}
                     onClick={() => setAlertVisible(false)} style={undefined} />
             }
-            {
-                isModalVisible &&
-                <OneTimePasswordModal
-                    setAlertType={setAlertType}
-                    setAlertTitle={setAlertTitle}
-                    setAlertDescription={setAlertDescription}
-                    showAlert={setAlertVisible}
-                    setAlertStyle={setAlertStyle}
-                    phoneNumber={props.phone}
-                    onClick={() => setModalVisible(false)}
-                />
-            }
             <div className={styles.section1}>
                 {
                     props.step ?
@@ -67,8 +53,14 @@ const GetStarted = (props: GetStartedProps) => {
                                             </span>
                                             <div style={{ width: "20%" }}>
                                                 <Link href="/account/contract-and-financials">
-                                                    <div>
-                                                        <PrimaryButton title="See Contract" />
+                                                    <div style={{ margin: '1rem 0' }}>
+                                                        <Button
+                                                            label="See Contract"
+                                                            backgroundColor="var(--primary)"
+                                                            color="white"
+                                                            borderRadius="0.3rem"
+                                                            padding="0.75rem 1rem"
+                                                        />
                                                     </div>
                                                 </Link>
                                             </div>
@@ -94,8 +86,14 @@ const GetStarted = (props: GetStartedProps) => {
                                     </div>
                                     <div style={{ width: "20%" }}>
                                         <Link href="/onboard">
-                                            <div>
-                                                <PrimaryButton title="Continue onboard" />
+                                            <div style={{ margin: '1rem 0' }}>
+                                                <Button
+                                                    label="Continue onboard"
+                                                    backgroundColor="var(--primary)"
+                                                    color="white"
+                                                    borderRadius="0.3rem"
+                                                    padding="0.75rem 1rem"
+                                                />
                                             </div>
                                         </Link>
                                     </div>
@@ -107,8 +105,14 @@ const GetStarted = (props: GetStartedProps) => {
                             <span className={styles.description}>Pass the onboard procedure and fill out your business profile to start accepting payments. Any progress you make during the onboard procedure will be saved, so you can always finish later.</span>
                             <div style={{ width: "20%" }}>
                                 <Link href="/onboard">
-                                    <div>
-                                        <PrimaryButton title="Activate Account" />
+                                    <div style={{ margin: '1rem 0' }}>
+                                        <Button
+                                            label="Activate Account"
+                                            backgroundColor="var(--primary)"
+                                            color="white"
+                                            borderRadius="0.3rem"
+                                            padding="0.75rem 1rem"
+                                        />
                                     </div>
                                 </Link>
                             </div>
@@ -149,10 +153,21 @@ const GetStarted = (props: GetStartedProps) => {
                         <div />
 
                         <div className={styles.rowCenter}>
-                            <span className={styles.api}>API Key</span>
-                            <input className={styles.key} value={"d02481e67e27dea59b47ccb6a4be0629e45ef99031d2b6008551700fb9b060c5"} disabled type={'password'} />
+                            <span className={styles.api}>Public Key</span>
+                            <input className={styles.key} value={props.publicKey} disabled />
                             <div style={{ width: "0.5rem" }} />
-                            <div className={styles.copy} onClick={() => setModalVisible(true)}>
+                            <div className={styles.copy} onClick={() => navigator.clipboard.writeText(props.publicKey)}>
+                                <picture>
+                                    <source srcSet="/mui-icons/copy-dark.svg" media="(prefers-color-scheme: dark)" />
+                                    <img src="/mui-icons/copy.svg" alt="For developers" width={16} height={16} />
+                                </picture>
+                            </div>
+                        </div>
+                        <div className={styles.rowCenter}>
+                            <span className={styles.api}>Private Key</span>
+                            <input className={styles.key} value={props.privateKey} disabled type={'password'} />
+                            <div style={{ width: "0.5rem" }} />
+                            <div className={styles.copy} onClick={() => navigator.clipboard.writeText(props.privateKey)}>
                                 <picture>
                                     <source srcSet="/mui-icons/copy-dark.svg" media="(prefers-color-scheme: dark)" />
                                     <img src="/mui-icons/copy.svg" alt="For developers" width={16} height={16} />
@@ -162,20 +177,6 @@ const GetStarted = (props: GetStartedProps) => {
                         <PrimaryLink label="View docs" />
                     </div>
                 </div>
-            </div>
-            <div className={styles.section3}>
-                <span className={styles.caption}>Not sure where to start?</span>
-                <span className={styles.contactUs}>Contact us and we will personally help you set up your Odero account</span>
-                <div className={styles.rowStart}>
-                    <picture>
-                        <source srcSet="/mui-icons/call-dark.svg" media="(prefers-color-scheme: dark)" />
-                        <img src="/mui-icons/call.svg" alt="For developers" width={16} height={16} />
-                    </picture>
-                    <div style={{ width: "0.5rem" }} />
-                    <span className={styles.contactNumber}>+994 (12) 310 57 10</span>
-                </div>
-
-
             </div>
         </div>
     )

@@ -17,7 +17,7 @@ const Select = (props: SelectProps) => {
 
     return (
         <div className={styles.grid} ref={ref}>
-            <p className={styles.label}>{props.label}</p>
+            {props.label && <p className={styles.label}>{props.label}</p>}
             <div className={`${styles.input} ${isOptionsOpen ? styles.inputFocused : styles.input}`} onClick={toggleOptions}>
                 <span className={styles.option}>{props.optionsList[selectedOption]}</span>
                 {

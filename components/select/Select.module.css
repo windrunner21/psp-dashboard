@@ -8,11 +8,11 @@
 }
 
 .input {
+    position: relative;
     width: 100%;
     padding: 0.6rem;
     border-radius: 0.4rem;
     border: 0.1rem solid #D2D4D8;
-    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -33,7 +33,7 @@
 
 .options {
     z-index: 1;
-    top: 5rem;
+    top: 102%;
     position: absolute;
     width: 100%;
     border-radius: 0.4rem;

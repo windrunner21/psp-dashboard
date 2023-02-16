@@ -113,7 +113,6 @@
 
 .key {
     outline: none;
-    font-size: 0.6rem;
     background-color: var(--secondary);
     padding: 0.25rem 0.5rem;
     border: 0.1rem solid var(--secondary);

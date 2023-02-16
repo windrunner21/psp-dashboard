@@ -330,10 +330,10 @@ const Onboard: NextPage = () => {
                                                     let response: any
                                                     if (index == 0) {
                                                         setUserType(UserType.CONTRACTOR)
-                                                        response = await sendOnboardStep0(UserType.CONTRACTOR)
+                                                        response = await sendOnboardStep0(user.businessId, UserType.CONTRACTOR)
                                                     } else if (index == 1) {
                                                         setUserType(UserType.COMPANY)
-                                                        response = await sendOnboardStep0(UserType.COMPANY)
+                                                        response = await sendOnboardStep0(user.businessId, UserType.COMPANY)
                                                     }
 
                                                     if (response.status == 200) {
@@ -419,7 +419,7 @@ const Onboard: NextPage = () => {
                                                 } else {
                                                     if (nameCorrect && surnameCorrect && legalEmailCorrect && legalPhoneNumberCorrect) {
                                                         const fullName = name + " " + surname;
-                                                        let response: any = await sendOnboardStep1(fullName, legalEmail, legalPhoneNumber)
+                                                        let response: any = await sendOnboardStep1(user.businessId, fullName, legalEmail, legalPhoneNumber)
 
                                                         if (response.status == 200) {
                                                             const stepWillSet = step + 1;
@@ -537,7 +537,7 @@ const Onboard: NextPage = () => {
                                                                     return;
                                                             }
 
-                                                            let response: any = await sendOnboardStep2(vatType == 1, legalBusinessName, displayBusinessName, taxNumber, IBAN, businessTypeString)
+                                                            let response: any = await sendOnboardStep2(user.businessId, vatType == 1, legalBusinessName, displayBusinessName, taxNumber, IBAN, businessTypeString)
 
                                                             if (response.status == 200) {
                                                                 const stepWillSet = step + 1;
@@ -569,7 +569,7 @@ const Onboard: NextPage = () => {
                                                         setAlertStyle(alertStyles.error)
                                                     } else {
                                                         if (vatType != 0 && legalBusinessNameCorrect && displayBusinessNameCorrect && taxNumberCorrect && IBANCorrect) {
-                                                            let response: any = await sendOnboardStep2(vatType == 1, legalBusinessName, displayBusinessName, taxNumber, IBAN)
+                                                            let response: any = await sendOnboardStep2(user.businessId, vatType == 1, legalBusinessName, displayBusinessName, taxNumber, IBAN)
 
                                                             if (response.status == 200) {
                                                                 const stepWillSet = step + 1;
@@ -664,7 +664,7 @@ const Onboard: NextPage = () => {
                                                     setAlertStyle(alertStyles.error)
                                                 } else {
                                                     if (addressCorrect && cityCorrect && postalCodeCorrect && businessPhoneNumberCorrect && websiteCorrect) {
-                                                        let response: any = await sendOnboardStep3(address, city, postalCode, businessPhoneNumber, website)
+                                                        let response: any = await sendOnboardStep3(user.businessId, address, city, postalCode, businessPhoneNumber, website)
 
                                                         if (response.status == 200) {
                                                             const stepWillSet = step + 1;
@@ -787,7 +787,7 @@ const Onboard: NextPage = () => {
                                                         console.log(idCardDocumentCorrect)
                                                         console.log(bankRequisitesDocumentCorrect)
                                                         if (taxNumberDocumentCorrect && idCardDocumentCorrect && bankRequisitesDocumentCorrect) {
-                                                            let response: any = await sendOnboardStep4(taxNumberDocument, idCardDocument, bankRequisitesDocument)
+                                                            let response: any = await sendOnboardStep4(user.businessId, taxNumberDocument, idCardDocument, bankRequisitesDocument)
 
                                                             if (response.status == 200) {
                                                                 const stepWillSet = step + 1;

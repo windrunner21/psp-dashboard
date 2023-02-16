@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BATSIGN, HOST, PORT, CONNECTION } from "../constants";
+import { HOST, PORT, CONNECTION } from "../constants";
 import { capitalizeFirstLetter } from "../controllers/dataManipulation";
 
 export async function sendOTP(phone: string, type: string, language: string) {
@@ -14,7 +14,6 @@ export async function sendOTP(phone: string, type: string, language: string) {
       {
         headers: {
           "Content-Type": "application/json",
-          batsign: BATSIGN,
           type: type,
           language: language,
         },
@@ -57,7 +56,6 @@ export async function sendSignUpForm(
       {
         headers: {
           "Content-Type": "application/json",
-          batsign: BATSIGN,
         },
         withCredentials: true,
       }
@@ -86,7 +84,6 @@ export async function sendSignInForm(phone: string, otp: string) {
       {
         headers: {
           "Content-Type": "application/json",
-          batsign: BATSIGN,
         },
         withCredentials: true,
       }
@@ -113,7 +110,6 @@ export async function logout(id: string) {
       {
         headers: {
           "Content-Type": "application/json",
-          batsign: BATSIGN,
         },
         withCredentials: true,
       }
