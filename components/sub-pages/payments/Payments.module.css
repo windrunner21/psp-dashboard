@@ -1,0 +1,31 @@
+.main {
+    padding: 1rem 0rem 1.5rem 0rem;
+    width: 100%;
+    overflow: auto;
+    height: calc(100vh - 4.5rem);
+
+    border-top: 0.1rem solid var(--secondary);
+}
+
+.container {
+    height: calc(100% - 4.5rem);
+    padding: 2rem 3rem 0rem 3rem;
+}
+
+.rowSpaceBetween {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}

@@ -14,6 +14,11 @@
   --warning-primary: #FEBF23;
   --error-primary: #FB5758;
 
+  --status-success: #59CE8F;
+  --status-info: #5F9DF7;
+  --status-warning: #FBC252;
+  --status-error: #DD5353;
+
   --success-border: #D5EAD9;
   --info-border: #B4CDEF;
   --warning-border: #F4E1B9;

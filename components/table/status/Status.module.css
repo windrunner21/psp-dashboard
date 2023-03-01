@@ -1,0 +1,22 @@
+.container {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-radius: 1rem;
+    color: white;
+}
+
+.success {
+    background-color: var(--status-success);
+}
+
+.info {
+    background-color: var(--status-info);
+}
+
+.warning {
+    background-color: var(--status-warning);
+}
+
+.error {
+    background-color: var(--status-error);
+}

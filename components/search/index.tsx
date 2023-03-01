@@ -1,6 +1,7 @@
 import styles from "../search/Search.module.css"
 import SearchProps from "./interface";
 import React from "react";
+import Image from "next/image";
 
 const Search = (props: SearchProps) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
@@ -11,10 +12,7 @@ const Search = (props: SearchProps) => {
 
     return (
         <div className={styles.search} onClick={focusInput}>
-            <picture className={styles.logo}>
-                <source srcSet="/mui-icons/search-dark.svg" media="(prefers-color-scheme: dark)" />
-                <img src="/mui-icons/search.svg" alt="notifications material icon" width={24} height={24} />
-            </picture>
+            <Image src="/mui-icons/search.svg" alt="search material icon" width={20} height={20} />
             <input ref={inputRef} className={styles.input} placeholder={props.placeholder} />
         </div>
     )

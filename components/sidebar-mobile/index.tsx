@@ -29,7 +29,7 @@ const SidebarMobile = () => {
                     </div>
                     <div className={styles.content} >
                         <SidebarItem title="Dashboard" icon="dashboard" important={true} />
-                        <SidebarItem title="Payments" icon="payments" important={true} />
+                        <SidebarItem title="Payments" icon="payments" important={true} href="/test/payment/payments" />
                         <SidebarItem title="Balances" icon="balances" important={true} href="/test/balances" />
                         <SidebarItem title="Reports" icon="reports" important={true} href="/test/reports" />
                         <hr className={styles.divider} />

@@ -1,15 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
 import React from "react"
-import AlertDialog from "../alert-dialog"
-import AlertType from "../alert-dialog/AlertType"
-import styles from "../get-started-dashboard/GetStarted.module.css"
-import PrimaryLink from "../primary-link"
+import AlertDialog from "../../alert-dialog"
+import AlertType from "../../alert-dialog/AlertType"
+import styles from "./GetStarted.module.css"
+import PrimaryLink from "../../primary-link"
 import GetStartedProps from "./interface"
-import alertStyles from "../alert-dialog/AlertDialog.module.css"
-import StepIndicators from "../step-indicators"
-import { OnboardStatus } from "../../controllers/enums/onboardStatus"
-import Button from "../button"
+import alertStyles from "../../alert-dialog/AlertDialog.module.css"
+import StepIndicators from "../../step-indicators"
+import { OnboardStatus } from "../../../controllers/enums/onboardStatus"
+import Button from "../../button"
 
 const GetStarted = (props: GetStartedProps) => {
 

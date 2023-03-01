@@ -1,21 +1,25 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import styles from "../../styles/Dashboard.module.css"
+import styles from "../../../styles/Dashboard.module.css"
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // custom components
-import NotificationItem from "../../components/notifications-dialog/notifications-item/NotificationItem";
-import Sidebar from "../../components/sidebar";
-import SidebarMobile from "../../components/sidebar-mobile";
-import NavigationBarDashboard from "../../components/navigation-bar-dashboard";
-import NotificationsDialog from "../../components/notifications-dialog";
-import { useUser } from "../../controllers/swr";
+import NotificationItem from "../../../components/notifications-dialog/notifications-item/NotificationItem";
+import Sidebar from "../../../components/sidebar";
+import SidebarMobile from "../../../components/sidebar-mobile";
+import NavigationBarDashboard from "../../../components/navigation-bar-dashboard";
+import NotificationsDialog from "../../../components/notifications-dialog";
+import { useTransactions, useUser } from "../../../controllers/swr";
 import Router from "next/router";
-import LoadingIndicatorPage from "../../components/loading-indicator-page";
+import LoadingIndicatorPage from "../../../components/loading-indicator-page";
+import PaymentPage from "../../../components/sub-pages/payments";
+import { formatDate, getStyleBySessionStatus } from "../../../controllers/auxiliary";
+import Status from "../../../components/table/status";
 
-const Payments: NextPage = () => {
+const Transactions: NextPage = () => {
     const { user, loading, loggedOut } = useUser();
+    const { transactions, loadingTransactions } = useTransactions();
 
     const [sidebarCollapsed, collapseSidebar] = React.useState(false)
     const [areNotificationslVisible, setNotificationsVisible] = React.useState(false)
@@ -33,6 +37,29 @@ const Payments: NextPage = () => {
     }, []);
 
     if (loggedOut) { Router.push("/login"); }
+
+    const tableHeaders = [
+        'Date',
+        'Reference ID',
+        'Mode',
+        'Status',
+    ]
+
+    let newPaymentData: { data: any, href?: any }[] = []
+
+    if (transactions) {
+        transactions.forEach((element: any) => {
+            newPaymentData.push({
+                data: {
+                    date: formatDate(element.date),
+                    referenceId: element.referenceId,
+                    mode: element.mode,
+                    status: <Status label={element.status} style={getStyleBySessionStatus(element.status)} />
+                }
+            })
+        })
+    }
+
 
     return (
         <>
@@ -55,6 +82,13 @@ const Payments: NextPage = () => {
                     </div>
                     <div className={styles.rightContainer}>
                         <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} businesses={user.businesses} />
+                        <PaymentPage
+                            title={"All Checkout Sessions"}
+                            loadingData={loadingTransactions}
+                            data={transactions}
+                            tableHeaders={tableHeaders}
+                            tableData={newPaymentData}
+                        />
                     </div>
                     {
                         areNotificationslVisible &&
@@ -66,7 +100,7 @@ const Payments: NextPage = () => {
     )
 }
 
-export default Payments
+export default Transactions
 
 export async function getStaticProps({ locale }: { locale: string }) {
     return {

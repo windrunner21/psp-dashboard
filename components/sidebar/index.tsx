@@ -32,7 +32,7 @@ const Sidebar = (props: SidebarProps) => {
                     icon="payments"
                     important={true}
                     collapsed={props.collapsed}
-                    href="/test/payments"
+                    href="/test/payments/payments"
                 />
                 <SidebarItem
                     title="Balances"

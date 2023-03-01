@@ -13,7 +13,7 @@ import NotificationItem from "../components/notifications-dialog/notifications-i
 import { useUser } from "../controllers/swr";
 import Router from "next/router";
 import LoadingIndicatorPage from "../components/loading-indicator-page";
-import GetStarted from "../components/get-started-dashboard";
+import GetStarted from "../components/sub-pages/get-started";
 
 const Dashboard: NextPage = () => {
     const { user, loading, loggedOut } = useUser();
@@ -63,15 +63,13 @@ const Dashboard: NextPage = () => {
                     </div>
                     <div className={styles.rightContainer}>
                         <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} businesses={user.businesses} />
-                        <div className={styles.pageContent}>
-                            <GetStarted
-                                phone={user.phone}
-                                step={user.onboard && user.onboard.currentStep}
-                                status={user.onboard && user.onboard.status}
-                                privateKey={user.status == 'Testing' ? user.testPrivateKey : 'live private key'}
-                                publicKey={user.status == 'Testing' ? user.testPublicKey : 'live public key'}
-                            />
-                        </div>
+                        <GetStarted
+                            phone={user.phone}
+                            step={user.onboard && user.onboard.currentStep}
+                            status={user.onboard && user.onboard.status}
+                            privateKey={user.status == 'Testing' ? user.testPrivateKey : 'live private key'}
+                            publicKey={user.status == 'Testing' ? user.testPublicKey : 'live public key'}
+                        />
                     </div>
                     {
                         areNotificationslVisible &&

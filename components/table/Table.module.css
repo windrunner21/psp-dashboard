@@ -1,0 +1,110 @@
+.container {
+    padding-top: 2rem;
+    height: 100%;
+}
+
+.table {
+    position: relative;
+    height: 100%;
+    border-radius: 0.4rem;
+    border: 1px solid var(--secondary);
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--secondary);
+}
+
+.body {
+    overflow: auto;
+    position: absolute;
+    top: 4rem;
+    bottom: 4rem;
+    right: 0;
+    left: 0;
+}
+
+.footer {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 4rem;
+}
+
+.headerItem {
+    height: 45px;
+    padding: 0 1rem;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 0.4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.headerItem:hover {
+    cursor: pointer;
+    background-color: var(--secondary);
+}
+
+.headerActive {
+    background-color: var(--secondary);
+}
+
+.bodyItem {
+    height: 45px;
+    padding: 0 1rem;
+    color: var(--text);
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.row {
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.simpleRow {
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.zebra {
+    background-color: var(--secondary);
+}
+
+.row:hover {
+    cursor: pointer;
+    background-color: rgba(var(--primary-rgb), 0.9);
+
+}
+
+.row:hover .bodyItem {
+    color: white;
+    font-weight: 500;
+}

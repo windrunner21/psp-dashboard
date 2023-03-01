@@ -752,7 +752,7 @@ const Onboard: NextPage = () => {
                                                         setAlertStyle(alertStyles.error)
                                                     } else {
                                                         if (stateRegisterDocumentCorrect && taxNumberDocumentCorrect && idCardDocumentCorrect && bankRequisitesDocumentCorrect) {
-                                                            let response: any = await sendOnboardStep4(taxNumberDocument, idCardDocument, bankRequisitesDocument, stateRegisterDocument)
+                                                            let response: any = await sendOnboardStep4(user.businessId, taxNumberDocument, idCardDocument, bankRequisitesDocument, stateRegisterDocument)
 
                                                             if (response.status == 200) {
                                                                 const stepWillSet = step + 1;

@@ -1,0 +1,19 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 2rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.caption {
+    font-size: 1.2rem;
+    color: var(--text);
+}

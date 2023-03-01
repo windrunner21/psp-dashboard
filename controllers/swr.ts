@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import { getPayments, getTransactions } from "../requests/payments";
 import { getUser } from "../requests/user";
 
 export function useUser() {
@@ -15,5 +16,27 @@ export function useUser() {
     loggedOut,
     user: data,
     mutate,
+  };
+}
+
+export function usePayments() {
+  const { data, error } = useSWR("all-payments", getPayments);
+
+  const loading = !data && !error;
+
+  return {
+    loadingPayments: loading,
+    payments: data,
+  };
+}
+
+export function useTransactions() {
+  const { data, error } = useSWR("all-transactions", getTransactions);
+
+  const loading = !data && !error;
+
+  return {
+    loadingTransactions: loading,
+    transactions: data,
   };
 }

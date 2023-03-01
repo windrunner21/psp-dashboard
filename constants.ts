@@ -21,3 +21,6 @@ export const RE_WEBSITE =
 export const CONNECTION = "http";
 export const HOST = "localhost";
 export const PORT = 2108;
+
+// PAGINATION
+export const PAGE_SIZE = 30;
