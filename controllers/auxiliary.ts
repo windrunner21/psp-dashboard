@@ -18,3 +18,16 @@ export const getStyleBySessionStatus = (value: string) => {
       return statusStyles.error;
   }
 };
+
+export const getIconBySessionStatus = (value: string) => {
+  switch (value) {
+    case CheckoutSessionStatus.completed:
+      return "done";
+    case CheckoutSessionStatus.expired:
+      return "fail";
+    case CheckoutSessionStatus.open:
+      return "fail";
+    default:
+      return "fail";
+  }
+};

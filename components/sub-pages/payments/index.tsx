@@ -28,12 +28,13 @@ const PaymentPage = (props: PaymentProps) => {
                         />
                     </div>
                 </div>
+                <div style={{ height: "2rem" }} />
                 {props.loadingData && <LoadingIndicatorPage />}
                 {props.data ?
                     props.data.length == 0 ?
                         <Empty caption='You have not received any payments' />
                         :
-                        <Table headers={props.tableHeaders} data={props.tableData} width={'200px'} />
+                        <Table headers={props.tableHeaders} data={props.tableData} dimensions={props.tableDimensions} />
                     :
                     <Empty caption='Something went wrong' />
                 }

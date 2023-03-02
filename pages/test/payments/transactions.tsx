@@ -14,8 +14,9 @@ import { useTransactions, useUser } from "../../../controllers/swr";
 import Router from "next/router";
 import LoadingIndicatorPage from "../../../components/loading-indicator-page";
 import PaymentPage from "../../../components/sub-pages/payments";
-import { formatDate, getStyleBySessionStatus } from "../../../controllers/auxiliary";
+import { formatDate, getIconBySessionStatus, getStyleBySessionStatus } from "../../../controllers/auxiliary";
 import Status from "../../../components/table/status";
+import Button from "../../../components/button";
 
 const Transactions: NextPage = () => {
     const { user, loading, loggedOut } = useUser();
@@ -41,8 +42,19 @@ const Transactions: NextPage = () => {
     const tableHeaders = [
         'Date',
         'Reference ID',
-        'Mode',
         'Status',
+        'Products',
+        'Session',
+        'Actions'
+    ]
+
+    const dimensions = [
+        '200px',
+        '200px',
+        '125px',
+        '50px',
+        '50px',
+        '50px',
     ]
 
     let newPaymentData: { data: any, href?: any }[] = []
@@ -53,8 +65,32 @@ const Transactions: NextPage = () => {
                 data: {
                     date: formatDate(element.date),
                     referenceId: element.referenceId,
-                    mode: element.mode,
-                    status: <Status label={element.status} style={getStyleBySessionStatus(element.status)} />
+                    status: <Status icon={getIconBySessionStatus(element.status)} label={element.status} style={getStyleBySessionStatus(element.status)} />,
+                    items:
+                        <Button
+                            label="Details"
+                            backgroundColor="transparent"
+                            color="var(--info-primary)"
+                            borderRadius="0.3rem"
+                            padding="0 0.5rem"
+                        />,
+                    intents:
+                        <Button
+                            label="Details"
+                            backgroundColor="transparent"
+                            color="var(--info-primary)"
+                            borderRadius="0.3rem"
+                            padding="0 0.5rem"
+                        />
+                    ,
+                    actions:
+                        <Button
+                            backgroundColor="#D1D1D1"
+                            color="var(--info-primary)"
+                            borderRadius="0.3rem"
+                            padding="0.5rem"
+                            icon="more-horizontal"
+                        />
                 }
             })
         })
@@ -88,6 +124,7 @@ const Transactions: NextPage = () => {
                             data={transactions}
                             tableHeaders={tableHeaders}
                             tableData={newPaymentData}
+                            tableDimensions={dimensions}
                         />
                     </div>
                     {

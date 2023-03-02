@@ -16,6 +16,7 @@ import LoadingIndicatorPage from "../../../components/loading-indicator-page";
 import PaymentPage from "../../../components/sub-pages/payments";
 import { formatDate } from "../../../controllers/auxiliary";
 import { CurrencySign } from "../../../controllers/enums/currency";
+import Button from "../../../components/button";
 
 const Payments: NextPage = () => {
     const { user, loading, loggedOut } = useUser();
@@ -41,12 +42,22 @@ const Payments: NextPage = () => {
     const tableHeaders = [
         'Date',
         'Reference ID',
-        'Mode',
         'Card',
         'Price',
+        'Products',
+        'Actions'
     ]
 
-    let newPaymentData: { data: any, href?: any }[] = []
+    const dimensions = [
+        '200px',
+        '200px',
+        '200px',
+        '100px',
+        '50px',
+        '50px'
+    ]
+
+    let newPaymentData: { data: any }[] = []
 
     if (payments) {
         payments.forEach((element: any) => {
@@ -54,9 +65,24 @@ const Payments: NextPage = () => {
                 data: {
                     date: formatDate(element.date),
                     referenceId: element.referenceId,
-                    mode: element.mode,
                     last4: `**** **** **** ${element.last4}`,
-                    price: `${element.price} ${CurrencySign[element.currency as keyof typeof CurrencySign]}`
+                    price: `${element.price} ${CurrencySign[element.currency as keyof typeof CurrencySign]}`,
+                    items:
+                        <Button
+                            label="Details"
+                            backgroundColor="transparent"
+                            color="var(--info-primary)"
+                            borderRadius="0.3rem"
+                            padding="0"
+                        />,
+                    actions:
+                        <Button
+                            backgroundColor="#E1E1E1"
+                            color="var(--info-primary)"
+                            borderRadius="0.3rem"
+                            padding="0.5rem"
+                            icon="more-horizontal"
+                        />
                 }
             })
         })
@@ -88,7 +114,9 @@ const Payments: NextPage = () => {
                             loadingData={loadingPayments}
                             data={payments}
                             tableHeaders={tableHeaders}
-                            tableData={newPaymentData} />
+                            tableData={newPaymentData}
+                            tableDimensions={dimensions}
+                        />
                     </div>
                     {
                         areNotificationslVisible &&

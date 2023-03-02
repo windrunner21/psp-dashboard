@@ -1,5 +1,5 @@
 interface ButtonProps {
-  label: any;
+  label?: any;
   backgroundColor: string;
   color: string;
   padding: string;
