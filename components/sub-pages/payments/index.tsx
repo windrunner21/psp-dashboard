@@ -6,8 +6,16 @@ import Table from "../../table";
 import Empty from "../../empty";
 import Search from "../../search";
 import Button from "../../button";
+import * as XLSX from 'xlsx';
 
 const PaymentPage = (props: PaymentProps) => {
+
+    const downloadExcel = () => {
+        const worksheet = XLSX.utils.json_to_sheet(props.data);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+        XLSX.writeFile(workbook, `${props.excelTitle}.xlsx`);
+    };
 
     return (
         <div className={styles.main}>
@@ -25,6 +33,8 @@ const PaymentPage = (props: PaymentProps) => {
                             borderRadius="0.3rem"
                             padding="0.3rem 1rem"
                             icon="export"
+
+                            onClick={downloadExcel}
                         />
                     </div>
                 </div>

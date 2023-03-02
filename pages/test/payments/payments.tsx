@@ -111,6 +111,7 @@ const Payments: NextPage = () => {
                         <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} businesses={user.businesses} />
                         <PaymentPage
                             title={"Successful Payments"}
+                            excelTitle={'odero_successful_payments'}
                             loadingData={loadingPayments}
                             data={payments}
                             tableHeaders={tableHeaders}

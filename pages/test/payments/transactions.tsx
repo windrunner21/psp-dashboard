@@ -120,6 +120,7 @@ const Transactions: NextPage = () => {
                         <NavigationBarDashboard onNotificationsClick={setNotificationsVisible} businesses={user.businesses} />
                         <PaymentPage
                             title={"All Checkout Sessions"}
+                            excelTitle={'odero_all_sessions'}
                             loadingData={loadingTransactions}
                             data={transactions}
                             tableHeaders={tableHeaders}
