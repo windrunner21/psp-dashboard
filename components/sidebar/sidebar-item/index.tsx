@@ -10,8 +10,12 @@ const SidebarItem = (props: SidebarItem) => {
             <div
                 className={
                     `${styles.grid} 
-                    ${router.asPath == props.href && props.important && styles.gridSelectedImportant} 
-                    ${router.asPath == props.href && !props.important && styles.gridSelected} 
+                    ${props.activePath ?
+                        router.asPath.includes(props.activePath) && props.important && styles.gridSelectedImportant :
+                        router.asPath == props.href && props.important && styles.gridSelectedImportant}
+                    ${props.activePath ?
+                        router.asPath.includes(props.activePath) && !props.important && styles.gridSelected :
+                        router.asPath == props.href && !props.important && styles.gridSelected}
                     ${props.important && styles.important} 
                     ${props.logout && styles.logout} 
                     ${props.collapsed && styles.center}`

@@ -7,6 +7,7 @@ interface SidebarItem {
   state?: boolean;
   onClick?: () => void;
   href?: string;
+  activePath?: string;
 }
 
 export default SidebarItem;

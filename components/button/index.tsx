@@ -8,6 +8,7 @@ const Button = (props: ButtonProps) => {
             style={{ backgroundColor: props.backgroundColor, color: props.color, borderRadius: props.borderRadius, padding: props.padding, fontSize: props.size, border: props.border }}
             className={styles.button}
             onClick={props.onClick}
+            disabled={props.disabled}
         >
             <div className={styles.content}>
                 {props.icon && <Image className={styles.icon} src={`/mui-icons/${props.icon}.svg`} alt="icon" width={15} height={15} />}

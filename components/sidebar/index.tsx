@@ -33,6 +33,7 @@ const Sidebar = (props: SidebarProps) => {
                     important={true}
                     collapsed={props.collapsed}
                     href="/test/payments/payments"
+                    activePath="/payments"
                 />
                 <SidebarItem
                     title="Balances"

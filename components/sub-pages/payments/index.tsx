@@ -34,6 +34,7 @@ const PaymentPage = (props: PaymentProps) => {
                             padding="0.3rem 1rem"
                             icon="export"
 
+                            disabled={props.data?.length == 0}
                             onClick={downloadExcel}
                         />
                     </div>

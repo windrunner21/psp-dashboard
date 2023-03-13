@@ -8,6 +8,7 @@ interface ButtonProps {
   size?: string;
   border?: string;
   onClick?: (params: any) => void;
+  disabled?: boolean;
 }
 
 export default ButtonProps;
