@@ -299,7 +299,7 @@ const Onboard: NextPage = () => {
                 />
                 <link rel="icon" href="/odero.ico" />
             </Head>
-            {loading && <LoadingIndicatorPage />}
+            {loading && <div style={{ height: "100vh" }}><LoadingIndicatorPage /></div>}
             {
                 user && !loggedOut &&
                 <main className={styles.main}>

@@ -49,7 +49,7 @@ const Dashboard: NextPage = () => {
                 <meta name="keywords" content="Odero, odero.az, Odero.az, Payments, Visa, visa, Credit, credit, Debit, debit, Mastercard, mastercard, Amex, amex, pay by link, link" />
                 <link rel="icon" href="/odero.ico" />
             </Head>
-            {loading && <LoadingIndicatorPage />}
+            {loading && <div style={{ height: "100vh" }}><LoadingIndicatorPage /></div>}
             {
                 user && !loggedOut &&
                 <main className={styles.main}>

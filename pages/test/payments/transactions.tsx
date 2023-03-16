@@ -104,7 +104,7 @@ const Transactions: NextPage = () => {
                 <meta name="home" content="Dashboard page where you can view and manage your business." />
                 <link rel="icon" href="/odero.ico" />
             </Head>
-            {loading && <LoadingIndicatorPage />}
+            {loading && <div style={{ height: "100vh" }}><LoadingIndicatorPage /></div>}
             {
                 user && !loggedOut &&
                 <main className={styles.main}>

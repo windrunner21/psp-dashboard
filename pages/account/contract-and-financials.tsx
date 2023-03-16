@@ -47,7 +47,7 @@ const ContractAndFinancials: NextPage = () => {
                 <meta name="keywords" content="Odero, Odero.az, odero.az, odero, odero azerbaijan, merchant, contract, financials, rates, banks" />
                 <link rel="icon" href="/odero.ico" />
             </Head>
-            {loading && <LoadingIndicatorPage />}
+            {loading && <div style={{ height: "100vh" }}><LoadingIndicatorPage /></div>}
             {user && !loggedOut &&
                 <main className={styles.main}>
                     <div className={`${styles.leftContainer} ${sidebarCollapsed ? styles.collapse : ''}`}>
